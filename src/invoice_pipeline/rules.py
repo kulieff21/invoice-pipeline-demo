@@ -84,6 +84,11 @@ REQUIRED = ["vendor_name", "vendor_tax_id", "invoice_number", "issue_date", "cur
 # country prefix + at least six consecutive digits (so "ROSEANDSONS" is not an ID), or a US EIN;
 # a malformed EIN is still captured so the validator can reject it instead of calling it missing
 TAX_ID_RE = re.compile(r"\b([A-Z]{2}(?=[0-9A-Z]*\d{6})[0-9A-Z]{8,12}|\d{2}-\d{5,8})\b")
+# OCR glues words ("VATnumberNL433768154B49"), so a second pass accepts a known VAT country prefix
+# without a word boundary in front of it
+VAT_PREFIXED_RE = re.compile(
+    r"(?:AT|BE|BG|CY|CZ|DE|DK|EE|EL|ES|FI|FR|GB|HR|HU|IE|IT|LT|LU|LV|MT|NL|PL|PT|RO|SE|SI|SK|CH|NO)"
+    r"(?=[0-9A-Z]*\d{6})[0-9A-Z]{8,12}\b")
 EUROZONE = {"AT", "BE", "CY", "DE", "EE", "ES", "FI", "FR", "GR", "EL", "HR", "IE", "IT", "LT", "LU", "LV",
             "MT", "NL", "PT", "SI", "SK"}
 NUMERIC_CELL_RE = re.compile(r"^[-+]?[\d\s.,' ]*\d[\d\s.,' ]*$")
@@ -108,7 +113,7 @@ def _label_match(cell_text: str) -> tuple[str, str] | None:
     for field, labels in LABELS.items():
         for label in labels:
             head, rest = f[: len(label)], f[len(label):]
-            if rest and rest[0].isalpha():
+            if rest and rest[0].isalpha() and not _label_then_value(cell_text, label):
                 continue
             if head == label:
                 if exact is None or len(label) > exact[0]:
@@ -135,6 +140,34 @@ def is_numeric_cell(text: str) -> bool:
     return bool(NUMERIC_CELL_RE.match(_strip_currency(text)))
 
 
+def _label_then_value(text: str, label: str) -> bool:
+    """'VAT number NL8829…': the label is followed by a word boundary in the printed text and the
+    rest carries digits. Keeps 'vat' from matching 'VAT Reg No' and 'data' from 'Data Systems Ltd'."""
+    for i in range(1, len(text) + 1):
+        if fold(text[:i]) == label:
+            return i < len(text) and not text[i].isalnum() and any(ch.isdigit() for ch in text[i:])
+    return False
+
+
+def _compact_ids(text: str) -> str:
+    """'GB 526 0181 74' -> 'GB526018174' without gluing neighbouring words together."""
+    text = text.upper().replace(".", "")
+    text = re.sub(r"(?<=\d) (?=\d)", "", text)
+    return re.sub(r"\b([A-Z]{2}) (?=\d)", r"\1", text)
+
+
+RATE_CELL_RE = re.compile(r"^[-+]?\d{1,2}(?:[.,]\d{1,3})?\s*%$")
+
+
+def _after_label(text: str, label: str) -> str | None:
+    """Text that follows the label inside the same cell: 'Fattura n. 2026/0147' -> '2026/0147'."""
+    for i in range(1, len(text) + 1):
+        if fold(text[:i]) == label:
+            rest = text[i:].strip(" :#.°º-")
+            return rest or None
+    return None
+
+
 def _after_colon(text: str) -> str | None:
     for sep in (":", "#", "°", "º"):
         if sep in text:
@@ -150,11 +183,11 @@ class Extractor:
         self.lines = page.lines
 
     # --- value lookup ---------------------------------------------------------------------------
-    def _candidates(self, li: int, ci: int) -> list[str]:
+    def _candidates(self, li: int, ci: int, label: str) -> list[str]:
         line = self.lines[li]
         cell = line.cells[ci]
         out: list[str] = []
-        inline = _after_colon(cell.text)
+        inline = _after_colon(cell.text) or _after_label(cell.text, label)
         if inline:
             out.append(inline)
         out.extend(c.text for c in line.cells[ci + 1 :])
@@ -166,15 +199,15 @@ class Extractor:
                         out.append(c.text)
         return out
 
-    def _label_hits(self) -> dict[str, list[tuple[int, int, str]]]:
-        hits: dict[str, list[tuple[int, int, str]]] = {}
+    def _label_hits(self) -> dict[str, list[tuple[int, int, str, str]]]:
+        hits: dict[str, list[tuple[int, int, str, str]]] = {}
         for li, line in enumerate(self.lines):
             if self._is_header(line):  # column headers ("Montant HT") are not field labels
                 continue
             for ci, cell in enumerate(line.cells):
                 m = _label_match(cell.text)
                 if m:
-                    hits.setdefault(m[0], []).append((li, ci, cell.text))
+                    hits.setdefault(m[0], []).append((li, ci, cell.text, m[1]))
         return hits
 
     # --- document-level conventions ---------------------------------------------------------------
@@ -239,8 +272,8 @@ class Extractor:
         values: dict[str, list[str]] = {f: [] for f in LABELS}
         label_text: dict[str, str] = {}
         for field, positions in hits.items():
-            for li, ci, text in positions:
-                values[field].extend(self._candidates(li, ci))
+            for li, ci, text, label in positions:
+                values[field].extend(self._candidates(li, ci, label))
                 label_text.setdefault(field, text)
 
         all_text = self.page.text
@@ -259,15 +292,25 @@ class Extractor:
         inv.vendor_name = self.vendor_name()
 
         for text in values["vendor_tax_id"]:
-            m = TAX_ID_RE.search(text.replace(" ", "").replace(".", "").upper())
+            m = TAX_ID_RE.search(_compact_ids(text))
             if m:
                 inv.vendor_tax_id = m.group(1)
                 break
         if inv.vendor_tax_id is None:
-            m = TAX_ID_RE.search(all_text.replace(" ", ""))
-            if m:
-                inv.vendor_tax_id = m.group(1)
-                inferred.append("vendor_tax_id")
+            # no labelled ID: look for one cell by cell (joining the whole page glued two ISO dates
+            # into an "EIN" once) and never inside a date
+            for line in self.lines:
+                for c in line.cells:
+                    if parse_date(c.text):
+                        continue
+                    compact = _compact_ids(c.text)
+                    m = TAX_ID_RE.search(compact) or VAT_PREFIXED_RE.search(compact)
+                    if m:
+                        inv.vendor_tax_id = m.group(m.lastindex or 0)
+                        inferred.append("vendor_tax_id")
+                        break
+                if inv.vendor_tax_id:
+                    break
 
         for text in values["invoice_number"]:
             candidate = text.strip(" :#.°º")
@@ -343,8 +386,9 @@ class Extractor:
         for line in self.lines[start + 1 :]:
             if any((m := _label_match(c.text)) and m[0] in ("subtotal", "total", "tax_amount") for c in line.cells):
                 break
-            numeric = [c for c in line.cells if is_numeric_cell(c.text)]
-            text_cells = [c for c in line.cells if not is_numeric_cell(c.text)]
+            cells = [c for c in line.cells if not RATE_CELL_RE.match(c.text.strip())]  # "21%" column
+            numeric = [c for c in cells if is_numeric_cell(c.text)]
+            text_cells = [c for c in cells if not is_numeric_cell(c.text)]
             if not numeric:
                 if text_cells and items:  # wrapped description
                     items[-1].description += " " + " ".join(c.text for c in text_cells)
