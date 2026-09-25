@@ -1,7 +1,7 @@
 {
  "summary": {
   "files": 120,
-  "seconds": 37.2,
+  "seconds": 36.2,
   "fields": {
    "vendor_name": {
     "text_ok": 81,
@@ -110,6 +110,7 @@
    "total": 89,
    "flagged": 8
   },
+  "defective_passed_as_ok": [],
   "false_alarm_codes": {
    "MISSING_CURRENCY": 13,
    "LOW_CONFIDENCE": 5

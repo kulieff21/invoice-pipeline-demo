@@ -62,6 +62,7 @@ def run(split_dir: Path, cache_dir: str | None, fallback=None) -> dict:
     caught = Counter()
     false_alarms = Counter()
     clean_flagged = 0
+    slipped: list[str] = []  # planted defect, yet no issue at all: would reach the sheet as "ok"
     clean_total = 0
     rows = []
     t0 = time.time()
@@ -90,6 +91,8 @@ def run(split_dir: Path, cache_dir: str | None, fallback=None) -> dict:
         if rec["defect"]:
             defects[rec["defect"]] += 1
             caught[rec["defect"]] += bool(expected & set(codes))
+            if not codes:
+                slipped.append(rec["file"])
         else:
             clean_total += 1
             clean_flagged += bool(codes)
@@ -109,6 +112,7 @@ def run(split_dir: Path, cache_dir: str | None, fallback=None) -> dict:
         },
         "defects": {d: {"planted": defects[d], "caught": caught[d]} for d in sorted(defects)},
         "clean": {"total": clean_total, "flagged": clean_flagged},
+        "defective_passed_as_ok": slipped,
         "false_alarm_codes": dict(false_alarms.most_common()),
     }
     return {"summary": summary, "rows": rows}
@@ -125,6 +129,7 @@ def print_summary(s: dict) -> None:
         print(f"{f:20} {cells[0]:>12} {cells[1]:>12}")
     print("defects caught:", {d: f"{v['caught']}/{v['planted']}" for d, v in s["defects"].items()})
     print(f"clean invoices flagged: {s['clean']['flagged']}/{s['clean']['total']}")
+    print(f"defective invoices passed as ok: {len(s['defective_passed_as_ok'])} {s['defective_passed_as_ok']}")
     print("false alarm codes:", s["false_alarm_codes"])
 
 

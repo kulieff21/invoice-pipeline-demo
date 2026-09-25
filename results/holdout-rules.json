@@ -1,7 +1,7 @@
 {
  "summary": {
   "files": 80,
-  "seconds": 24.6,
+  "seconds": 23.9,
   "fields": {
    "vendor_name": {
     "scan_ok": 24,
@@ -110,6 +110,7 @@
    "total": 59,
    "flagged": 1
   },
+  "defective_passed_as_ok": [],
   "false_alarm_codes": {
    "LOW_CONFIDENCE": 2,
    "MISSING_TOTAL": 1
