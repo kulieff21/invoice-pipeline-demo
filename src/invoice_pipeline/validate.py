@@ -32,7 +32,7 @@ def validate(inv: Invoice, as_of: date, confidence: float | None = None, min_con
             issues.append(_issue("INVALID_TAX_ID", f"{inv.vendor_tax_id} fails the {how} check"))
 
     for i, line in enumerate(inv.line_items, 1):
-        expected = money(line.quantity * line.unit_price)
+        expected = money(line.quantity * line.unit_price * (100 - (line.discount_percent or 0)) / 100)
         if abs(expected - line.amount) > TOLERANCE:
             issues.append(_issue("LINE_AMOUNT_MISMATCH",
                                  f"line {i}: {line.quantity} x {line.unit_price} = {expected}, printed {line.amount}"))

@@ -1,0 +1,120 @@
+{
+ "note": "rules v3 (after holdout-2 fixes); holdout and holdout2 are seen at this point",
+ "summary": {
+  "files": 120,
+  "seconds": 36.8,
+  "fields": {
+   "vendor_name": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "vendor_tax_id": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "invoice_number": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "issue_date": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "due_date": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "currency": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 26,
+    "scan_n": 39
+   },
+   "subtotal": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "tax_rate": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "tax_amount": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "total": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "line_items": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "line_descriptions": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 35,
+    "scan_n": 39
+   }
+  },
+  "defects": {
+   "due_before_issue": {
+    "planted": 3,
+    "caught": 3
+   },
+   "future_date": {
+    "planted": 8,
+    "caught": 8
+   },
+   "line_amount": {
+    "planted": 4,
+    "caught": 4
+   },
+   "missing_number": {
+    "planted": 7,
+    "caught": 7
+   },
+   "tax": {
+    "planted": 3,
+    "caught": 3
+   },
+   "tax_id": {
+    "planted": 4,
+    "caught": 4
+   },
+   "total": {
+    "planted": 2,
+    "caught": 2
+   }
+  },
+  "clean": {
+   "total": 89,
+   "flagged": 8
+  },
+  "defective_passed_as_ok": [],
+  "false_alarm_codes": {
+   "MISSING_CURRENCY": 13,
+   "LOW_CONFIDENCE": 5
+  }
+ }
+}

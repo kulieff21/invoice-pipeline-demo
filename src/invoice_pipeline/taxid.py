@@ -30,8 +30,16 @@ FORMATS = {
 }
 
 
+def _ch_ok(digits: str) -> bool:
+    s = sum(w * int(d) for w, d in zip([5, 4, 3, 2, 7, 6, 5, 4], digits[:8]))
+    check = 11 - s % 11
+    return check != 10 and (0 if check == 11 else check) == int(digits[8])
+
+
 def normalize(tax_id: str) -> str:
-    return re.sub(r"[\s.]", "", tax_id).upper()
+    t = re.sub(r"[\s.]", "", tax_id).upper()
+    m = re.fullmatch(r"CHE-?(\d{9})(?:MWST|TVA|IVA)?", t)  # Swiss UID, any printed form
+    return f"CHE{m.group(1)}" if m else t
 
 
 def check(tax_id: str) -> tuple[bool, str]:
@@ -39,6 +47,8 @@ def check(tax_id: str) -> tuple[bool, str]:
     t = normalize(tax_id)
     if re.fullmatch(r"\d{2}-\d{7}", t):
         return True, "format"
+    if t.startswith("CHE"):
+        return bool(re.fullmatch(r"CHE\d{9}", t)) and _ch_ok(t[3:]), "checksum"
     country, body = t[:2], t[2:]
     if country == "DE":
         return bool(re.fullmatch(r"\d{9}", body)) and _de_ok(body), "checksum"

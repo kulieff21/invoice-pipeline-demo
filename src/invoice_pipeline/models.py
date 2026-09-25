@@ -20,6 +20,7 @@ class LineItem(BaseModel):
     quantity: Decimal
     unit_price: Decimal
     amount: Decimal
+    discount_percent: Decimal | None = None
 
 
 class Invoice(BaseModel):

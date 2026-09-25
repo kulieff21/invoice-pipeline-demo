@@ -45,13 +45,13 @@ LABELS: dict[str, list[str]] = {
     ],
     "vendor_tax_id": [
         "vatregno", "vatregistrationnumber", "vatno", "vatnumber", "vatid", "vatreg", "taxid", "ein",
-        "ust-idnr", "ustidnr", "ust-id", "ustid", "steuernummer",
+        "ust-idnr", "ustidnr", "ust-id", "ustid", "steuernummer", "mwst-nr", "mwstnr", "uid", "uid-nr",
         "n°tva", "ntva", "numerotva", "tvaintracommunautaire", "n°tvaintracom",
         "partitaiva", "p.iva", "piva", "nif", "cif", "btw-nummer", "btwnummer", "btw-nr", "btwnr",
     ],
     "subtotal": [
         "subtotal", "sub-total", "netamount", "totalnet", "totalexcl", "totalexclvat", "net",
-        "nettobetrag", "netto", "summenetto", "zwischensumme",
+        "nettobetrag", "netto", "summenetto", "zwischensumme", "zwischentotal",
         "totalht", "sous-total",
         "imponibile", "totaleimponibile", "baseimponible", "subtotaal", "totaalexcl",
     ],
@@ -83,7 +83,7 @@ REQUIRED = ["vendor_name", "vendor_tax_id", "invoice_number", "issue_date", "cur
 
 # country prefix + at least six consecutive digits (so "ROSEANDSONS" is not an ID), or a US EIN;
 # a malformed EIN is still captured so the validator can reject it instead of calling it missing
-TAX_ID_RE = re.compile(r"\b([A-Z]{2}(?=[0-9A-Z]*\d{6})[0-9A-Z]{8,12}|\d{2}-\d{5,8})\b")
+TAX_ID_RE = re.compile(r"\b(CHE-?\d{9}|[A-Z]{2}(?=[0-9A-Z]*\d{6})[0-9A-Z]{8,12}|\d{2}-\d{5,8})\b")
 # OCR glues words ("VATnumberNL433768154B49"), so a second pass accepts a known VAT country prefix
 # without a word boundary in front of it
 VAT_PREFIXED_RE = re.compile(
@@ -145,13 +145,17 @@ def _label_then_value(text: str, label: str) -> bool:
     rest carries digits. Keeps 'vat' from matching 'VAT Reg No' and 'data' from 'Data Systems Ltd'."""
     for i in range(1, len(text) + 1):
         if fold(text[:i]) == label:
-            return i < len(text) and not text[i].isalnum() and any(ch.isdigit() for ch in text[i:])
+            if i >= len(text) or text[i].isalnum():
+                return False
+            rest = text[i:].strip(" :.")
+            # "Rechnungsbetrag CHF": a currency code after the label is part of the label
+            return any(ch.isdigit() for ch in rest) or rest.upper() in CURRENCY_CODES
     return False
 
 
 def _compact_ids(text: str) -> str:
     """'GB 526 0181 74' -> 'GB526018174' without gluing neighbouring words together."""
-    text = text.upper().replace(".", "")
+    text = text.upper().replace(".", "").replace("CHE-", "CHE")
     text = re.sub(r"(?<=\d) (?=\d)", "", text)
     return re.sub(r"\b([A-Z]{2}) (?=\d)", r"\1", text)
 
@@ -382,11 +386,15 @@ class Extractor:
         if start is None:
             return []
         ocr = self.page.source == "ocr"
+        header = fold(self.lines[start].text)
+        # a percent cell in a row is a discount only when the header says so; otherwise a VAT column
+        has_discount = any(w in header for w in ("dto", "discount", "rabatt", "sconto", "remise", "korting", "desc."))
         items: list[LineItem] = []
         for line in self.lines[start + 1 :]:
             if any((m := _label_match(c.text)) and m[0] in ("subtotal", "total", "tax_amount") for c in line.cells):
                 break
-            cells = [c for c in line.cells if not RATE_CELL_RE.match(c.text.strip())]  # "21%" column
+            rate_cells = [c for c in line.cells if RATE_CELL_RE.match(c.text.strip())]
+            cells = [c for c in line.cells if c not in rate_cells]  # "21%" column is not description
             numeric = [c for c in cells if is_numeric_cell(c.text)]
             text_cells = [c for c in cells if not is_numeric_cell(c.text)]
             if not numeric:
@@ -408,9 +416,11 @@ class Extractor:
                     self.notes.append(f"line {n}: quantity {qty} recovered from amount / unit price")
             if qty is None:
                 break
-            if ocr and money(qty * unit) != amount:
+            discount = parse_percent(rate_cells[0].text) if has_discount and rate_cells else None
+            if ocr and discount is None and money(qty * unit) != amount:
                 qty, unit, amount = self._repair_separators(n, qty, unit, amount, numeric)
-            items.append(LineItem(description=description, quantity=qty, unit_price=unit, amount=amount))
+            items.append(LineItem(description=description, quantity=qty, unit_price=unit, amount=amount,
+                                  discount_percent=discount))
         return items
 
     def _repair_separators(self, n, qty, unit, amount, cells):

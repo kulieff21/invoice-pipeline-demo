@@ -1,7 +1,7 @@
 {
  "summary": {
   "files": 80,
-  "seconds": 23.9,
+  "seconds": 25.2,
   "fields": {
    "vendor_name": {
     "scan_ok": 24,
@@ -145,37 +145,43 @@
       "description": "Laptopstand,aluminium",
       "quantity": "4",
       "unit_price": "57.98",
-      "amount": "231.92"
+      "amount": "231.92",
+      "discount_percent": null
      },
      {
       "description": "Annualsoftwarelicence-5seats",
       "quantity": "2",
       "unit_price": "546.32",
-      "amount": "1092.64"
+      "amount": "1092.64",
+      "discount_percent": null
      },
      {
       "description": "Cloud hostingplan(Business,3vCPU/8GB)",
       "quantity": "1",
       "unit_price": "161.00",
-      "amount": "161.00"
+      "amount": "161.00",
+      "discount_percent": null
      },
      {
       "description": "Printertonercartridge,black,highyield",
       "quantity": "11",
       "unit_price": "50.32",
-      "amount": "553.52"
+      "amount": "553.52",
+      "discount_percent": null
      },
      {
       "description": "On-sitesupportvisitincl.travel withinzone2",
       "quantity": "3",
       "unit_price": "186.89",
-      "amount": "560.67"
+      "amount": "560.67",
+      "discount_percent": null
      },
      {
       "description": "Hours-backend development(sprint14)",
       "quantity": "13.75",
       "unit_price": "62.90",
-      "amount": "864.88"
+      "amount": "864.88",
+      "discount_percent": null
      }
     ]
    }
@@ -206,19 +212,22 @@
       "description": "Consulting - data migration workshop",
       "quantity": "14",
       "unit_price": "90.93",
-      "amount": "1273.02"
+      "amount": "1273.02",
+      "discount_percent": null
      },
      {
       "description": "Copywriting: product descriptions for 25 SKUs",
       "quantity": "2",
       "unit_price": "307.30",
-      "amount": "614.60"
+      "amount": "614.60",
+      "discount_percent": null
      },
      {
       "description": "USB-C docking station 12-in-1",
       "quantity": "1",
       "unit_price": "144.28",
-      "amount": "144.28"
+      "amount": "144.28",
+      "discount_percent": null
      }
     ]
    }
@@ -249,31 +258,36 @@
       "description": "Consulting - data migration workshop",
       "quantity": "16",
       "unit_price": "121.37",
-      "amount": "1941.92"
+      "amount": "1941.92",
+      "discount_percent": null
      },
      {
       "description": "USB-C docking station 12-in-1",
       "quantity": "4",
       "unit_price": "140.02",
-      "amount": "560.08"
+      "amount": "560.08",
+      "discount_percent": null
      },
      {
       "description": "Website maintenance, monthly retainer",
       "quantity": "1",
       "unit_price": "757.18",
-      "amount": "757.18"
+      "amount": "757.18",
+      "discount_percent": null
      },
      {
       "description": "Copywriting: product descriptions for 25 SKUs",
       "quantity": "1",
       "unit_price": "872.93",
-      "amount": "872.93"
+      "amount": "872.93",
+      "discount_percent": null
      },
      {
       "description": "On-site support visit incl. travel within zone 2",
       "quantity": "3",
       "unit_price": "238.08",
-      "amount": "714.24"
+      "amount": "714.24",
+      "discount_percent": null
      }
     ]
    }
@@ -304,25 +318,29 @@
       "description": "Consulting - data migration workshop",
       "quantity": "5",
       "unit_price": "126.21",
-      "amount": "631.05"
+      "amount": "631.05",
+      "discount_percent": null
      },
      {
       "description": "Annual software licence - 5 seats",
       "quantity": "2",
       "unit_price": "2195.18",
-      "amount": "4390.36"
+      "amount": "4390.36",
+      "discount_percent": null
      },
      {
       "description": "On-site support visit incl. travel within zone 2",
       "quantity": "2",
       "unit_price": "249.13",
-      "amount": "498.26"
+      "amount": "498.26",
+      "discount_percent": null
      },
      {
       "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
       "quantity": "2",
       "unit_price": "127.36",
-      "amount": "254.72"
+      "amount": "254.72",
+      "discount_percent": null
      }
     ]
    }
@@ -353,13 +371,15 @@
       "description": "Ore di sviluppo backend (sprint 14)",
       "quantity": "34",
       "unit_price": "70.93",
-      "amount": "2411.62"
+      "amount": "2411.62",
+      "discount_percent": null
      },
      {
       "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
       "quantity": "2",
       "unit_price": "95.18",
-      "amount": "190.36"
+      "amount": "190.36",
+      "discount_percent": null
      }
     ]
    }
@@ -390,37 +410,43 @@
       "description": "Hours - backend development (sprint 14)",
       "quantity": "28",
       "unit_price": "108.78",
-      "amount": "3045.84"
+      "amount": "3045.84",
+      "discount_percent": null
      },
      {
       "description": "USB-C docking station 12-in-1",
       "quantity": "7",
       "unit_price": "89.59",
-      "amount": "627.13"
+      "amount": "627.13",
+      "discount_percent": null
      },
      {
       "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
       "quantity": "1",
       "unit_price": "122.19",
-      "amount": "122.19"
+      "amount": "122.19",
+      "discount_percent": null
      },
      {
       "description": "On-site support visit incl. travel within zone 2",
       "quantity": "3",
       "unit_price": "153.17",
-      "amount": "459.51"
+      "amount": "459.51",
+      "discount_percent": null
      },
      {
       "description": "Laptop stand, aluminium",
       "quantity": "2",
       "unit_price": "71.77",
-      "amount": "143.54"
+      "amount": "143.54",
+      "discount_percent": null
      },
      {
       "description": "Annual software licence - 5 seats",
       "quantity": "2",
       "unit_price": "2162.39",
-      "amount": "4324.78"
+      "amount": "4324.78",
+      "discount_percent": null
      }
     ]
    }
@@ -451,37 +477,43 @@
       "description": "Spese di spedizione",
       "quantity": "1",
       "unit_price": "13.30",
-      "amount": "13.30"
+      "amount": "13.30",
+      "discount_percent": null
      },
      {
       "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
       "quantity": "2",
       "unit_price": "52.38",
-      "amount": "104.76"
+      "amount": "104.76",
+      "discount_percent": null
      },
      {
       "description": "Ore di sviluppo backend (sprint 14)",
       "quantity": "8",
       "unit_price": "59.77",
-      "amount": "478.16"
+      "amount": "478.16",
+      "discount_percent": null
      },
      {
       "description": "Licenza software annuale, 5 postazioni",
       "quantity": "2",
       "unit_price": "1185.69",
-      "amount": "2371.38"
+      "amount": "2371.38",
+      "discount_percent": null
      },
      {
       "description": "Docking station USB-C 12-in-1",
       "quantity": "6",
       "unit_price": "180.29",
-      "amount": "1081.74"
+      "amount": "1081.74",
+      "discount_percent": null
      },
      {
       "description": "Canone manutenzione sito web, mensile",
       "quantity": "1",
       "unit_price": "604.28",
-      "amount": "604.28"
+      "amount": "604.28",
+      "discount_percent": null
      }
     ]
    }
@@ -512,13 +544,15 @@
       "description": "USB-C docking station 12-in-1",
       "quantity": "7",
       "unit_price": "157.51",
-      "amount": "1102.57"
+      "amount": "1102.57",
+      "discount_percent": null
      },
      {
       "description": "Annual software licence - 5 seats",
       "quantity": "1",
       "unit_price": "1343.29",
-      "amount": "1343.29"
+      "amount": "1343.29",
+      "discount_percent": null
      }
     ]
    }
@@ -549,25 +583,29 @@
       "description": "Designreviewand accessibilityauditofcheckout flow",
       "quantity": "1",
       "unit_price": "1296.86",
-      "amount": "1296.86"
+      "amount": "1296.86",
+      "discount_percent": null
      },
      {
       "description": "Hours-backend development(sprint14)",
       "quantity": "21.25",
       "unit_price": "92.67",
-      "amount": "1969.24"
+      "amount": "1969.24",
+      "discount_percent": null
      },
      {
       "description": "Annualsoftwarelicence-5seats",
       "quantity": "1",
       "unit_price": "701.11",
-      "amount": "701.11"
+      "amount": "701.11",
+      "discount_percent": null
      },
      {
       "description": "USB-Cdockingstation12-in-1",
       "quantity": "6",
       "unit_price": "219.45",
-      "amount": "1316.70"
+      "amount": "1316.70",
+      "discount_percent": null
      }
     ]
    }
@@ -598,31 +636,36 @@
       "description": "Website maintenance, monthly retainer",
       "quantity": "1",
       "unit_price": "1077.79",
-      "amount": "1077.79"
+      "amount": "1077.79",
+      "discount_percent": null
      },
      {
       "description": "On-site support visit incl. travel within zone 2",
       "quantity": "2",
       "unit_price": "145.97",
-      "amount": "291.94"
+      "amount": "291.94",
+      "discount_percent": null
      },
      {
       "description": "Shipping and handling",
       "quantity": "1",
       "unit_price": "11.35",
-      "amount": "11.35"
+      "amount": "11.35",
+      "discount_percent": null
      },
      {
       "description": "Design review and accessibility audit of checkout flow",
       "quantity": "1",
       "unit_price": "900.94",
-      "amount": "900.94"
+      "amount": "900.94",
+      "discount_percent": null
      },
      {
       "description": "Copywriting: product descriptions for 25 SKUs",
       "quantity": "1",
       "unit_price": "376.78",
-      "amount": "376.78"
+      "amount": "376.78",
+      "discount_percent": null
      }
     ]
    }
@@ -653,31 +696,36 @@
       "description": "USB-C docking station 12-in-1",
       "quantity": "3",
       "unit_price": "224.17",
-      "amount": "672.51"
+      "amount": "672.51",
+      "discount_percent": null
      },
      {
       "description": "Copywriting: product descriptions for 25 SKUs",
       "quantity": "1",
       "unit_price": "398.43",
-      "amount": "398.43"
+      "amount": "398.43",
+      "discount_percent": null
      },
      {
       "description": "Printer toner cartridge, black, high yield",
       "quantity": "10",
       "unit_price": "45.08",
-      "amount": "450.80"
+      "amount": "450.80",
+      "discount_percent": null
      },
      {
       "description": "Consulting - data migration workshop",
       "quantity": "4",
       "unit_price": "147.19",
-      "amount": "588.76"
+      "amount": "588.76",
+      "discount_percent": null
      },
      {
       "description": "Design review and accessibility audit of checkout flow",
       "quantity": "1",
       "unit_price": "818.31",
-      "amount": "818.31"
+      "amount": "818.31",
+      "discount_percent": null
      }
     ]
    }
@@ -710,13 +758,15 @@
       "description": "Licenza software annuale, 5 postazioni",
       "quantity": "1",
       "unit_price": "1297.58",
-      "amount": "1297.58"
+      "amount": "1297.58",
+      "discount_percent": null
      },
      {
       "description": "Spese di spedizione",
       "quantity": "1",
       "unit_price": "16.70",
-      "amount": "16.70"
+      "amount": "16.70",
+      "discount_percent": null
      }
     ]
    }
@@ -747,31 +797,36 @@
       "description": "Annual software licence - 5 seats",
       "quantity": "2",
       "unit_price": "1378.10",
-      "amount": "2756.20"
+      "amount": "2756.20",
+      "discount_percent": null
      },
      {
       "description": "Design review and accessibility audit of checkout flow",
       "quantity": "1",
       "unit_price": "1010.77",
-      "amount": "1010.77"
+      "amount": "1010.77",
+      "discount_percent": null
      },
      {
       "description": "Consulting - data migration workshop",
       "quantity": "13",
       "unit_price": "88.73",
-      "amount": "1153.49"
+      "amount": "1153.49",
+      "discount_percent": null
      },
      {
       "description": "USB-C docking station 12-in-1",
       "quantity": "7",
       "unit_price": "92.33",
-      "amount": "646.31"
+      "amount": "646.31",
+      "discount_percent": null
      },
      {
       "description": "Printer toner cartridge, black, high yield",
       "quantity": "6",
       "unit_price": "51.01",
-      "amount": "306.06"
+      "amount": "306.06",
+      "discount_percent": null
      }
     ]
    }
@@ -802,25 +857,29 @@
       "description": "Consulenza migrazione dati, workshop in sede",
       "quantity": "13",
       "unit_price": "140.99",
-      "amount": "1832.87"
+      "amount": "1832.87",
+      "discount_percent": null
      },
      {
       "description": "Canone manutenzione sito web, mensile",
       "quantity": "1",
       "unit_price": "788.48",
-      "amount": "788.48"
+      "amount": "788.48",
+      "discount_percent": null
      },
      {
       "description": "Docking station USB-C 12-in-1",
       "quantity": "6",
       "unit_price": "220.97",
-      "amount": "1325.82"
+      "amount": "1325.82",
+      "discount_percent": null
      },
      {
       "description": "Toner stampante nero, alta capacità",
       "quantity": "2",
       "unit_price": "68.85",
-      "amount": "137.70"
+      "amount": "137.70",
+      "discount_percent": null
      }
     ]
    }
@@ -851,31 +910,36 @@
       "description": "On-site support visit incl. travel within zone 2",
       "quantity": "1",
       "unit_price": "258.20",
-      "amount": "258.20"
+      "amount": "258.20",
+      "discount_percent": null
      },
      {
       "description": "Website maintenance, monthly retainer",
       "quantity": "1",
       "unit_price": "919.78",
-      "amount": "919.78"
+      "amount": "919.78",
+      "discount_percent": null
      },
      {
       "description": "Laptop stand, aluminium",
       "quantity": "2",
       "unit_price": "31.35",
-      "amount": "62.70"
+      "amount": "62.70",
+      "discount_percent": null
      },
      {
       "description": "Design review and accessibility audit of checkout flow",
       "quantity": "1",
       "unit_price": "772.69",
-      "amount": "772.69"
+      "amount": "772.69",
+      "discount_percent": null
      },
      {
       "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
       "quantity": "1",
       "unit_price": "143.09",
-      "amount": "143.09"
+      "amount": "143.09",
+      "discount_percent": null
      }
     ]
    }
@@ -908,37 +972,43 @@
       "description": "Websitemaintenance,monthlyretainer",
       "quantity": "1",
       "unit_price": "797.37",
-      "amount": "797.37"
+      "amount": "797.37",
+      "discount_percent": null
      },
      {
       "description": "Printertonercartridge,black,highyld",
       "quantity": "8",
       "unit_price": "48.82",
-      "amount": "390.56"
+      "amount": "390.56",
+      "discount_percent": null
      },
      {
       "description": "On-sitesupportvisit incl.travel withinzone2",
       "quantity": "2",
       "unit_price": "220.30",
-      "amount": "440.60"
+      "amount": "440.60",
+      "discount_percent": null
      },
      {
       "description": "Annualsoftwarelicence-5seats",
       "quantity": "1",
       "unit_price": "1368.81",
-      "amount": "1368.81"
+      "amount": "1368.81",
+      "discount_percent": null
      },
      {
       "description": "Consulting-data migrationworkshop",
       "quantity": "12",
       "unit_price": "98.09",
-      "amount": "1177.08"
+      "amount": "1177.08",
+      "discount_percent": null
      },
      {
       "description": "Hours-backend development(sprint14) %6",
       "quantity": "20.75",
       "unit_price": "115.09",
-      "amount": "2388.12"
+      "amount": "2388.12",
+      "discount_percent": null
      }
     ]
    }
@@ -971,13 +1041,15 @@
       "description": "Hours-backend development(sprint14)",
       "quantity": "16.5",
       "unit_price": "108.36",
-      "amount": "1787.94"
+      "amount": "1787.94",
+      "discount_percent": null
      },
      {
       "description": "Cloudhostingplan(Business,3vCPU/8GB) %6",
       "quantity": "3",
       "unit_price": "150.14",
-      "amount": "450.42"
+      "amount": "450.42",
+      "discount_percent": null
      }
     ]
    }
@@ -1010,13 +1082,15 @@
       "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
       "quantity": "3",
       "unit_price": "94.75",
-      "amount": "284.25"
+      "amount": "284.25",
+      "discount_percent": null
      },
      {
       "description": "Copywriting: product descriptions for 25 SKUs",
       "quantity": "2",
       "unit_price": "423.92",
-      "amount": "857.84"
+      "amount": "857.84",
+      "discount_percent": null
      }
     ]
    }
@@ -1047,19 +1121,22 @@
       "description": "Docking stationUSB-C12-in-1",
       "quantity": "5",
       "unit_price": "90.66",
-      "amount": "453.30"
+      "amount": "453.30",
+      "discount_percent": null
      },
      {
       "description": "Tonerstampantenero,alta capacita",
       "quantity": "11",
       "unit_price": "81.44",
-      "amount": "895.84"
+      "amount": "895.84",
+      "discount_percent": null
      },
      {
       "description": "Licenzasoftwareannuale,5postazioni",
       "quantity": "2",
       "unit_price": "914.43",
-      "amount": "1828.86"
+      "amount": "1828.86",
+      "discount_percent": null
      }
     ]
    }
@@ -1092,19 +1169,22 @@
       "description": "Laptop stand,aluminium",
       "quantity": "3",
       "unit_price": "60.09",
-      "amount": "190.27"
+      "amount": "190.27",
+      "discount_percent": null
      },
      {
       "description": "USB-Cdocking station12-in-1",
       "quantity": "1",
       "unit_price": "147.79",
-      "amount": "147.79"
+      "amount": "147.79",
+      "discount_percent": null
      },
      {
       "description": "Designreviewandaccessibility auditofcheckout flow",
       "quantity": "1",
       "unit_price": "1766.34",
-      "amount": "1766.34"
+      "amount": "1766.34",
+      "discount_percent": null
      }
     ]
    }
@@ -1137,37 +1217,43 @@
       "description": "Websitemaintenance,monthlyretainer %6",
       "quantity": "1",
       "unit_price": "1001.64",
-      "amount": "1001.64"
+      "amount": "1001.64",
+      "discount_percent": null
      },
      {
       "description": "On-sitesupportvisit incl.travel withinzone2 %6",
       "quantity": "2",
       "unit_price": "211.47",
-      "amount": "422.94"
+      "amount": "422.94",
+      "discount_percent": null
      },
      {
       "description": "Consulting-datamigrationworkshop %6",
       "quantity": "10",
       "unit_price": "147.88",
-      "amount": "1478.80"
+      "amount": "1478.80",
+      "discount_percent": null
      },
      {
       "description": "Hours-backend development(sprint14) %6",
       "quantity": "22.75",
       "unit_price": "81.79",
-      "amount": "1860.72"
+      "amount": "1860.72",
+      "discount_percent": null
      },
      {
       "description": "Designreviewandaccessibility auditofcheckout %6 flow",
       "quantity": "1",
       "unit_price": "1659.58",
-      "amount": "1659.58"
+      "amount": "1659.58",
+      "discount_percent": null
      },
      {
       "description": "Copywriting:productdescriptionsfor25SKUs %6",
       "quantity": "1",
       "unit_price": "479.09",
-      "amount": "479.09"
+      "amount": "479.09",
+      "discount_percent": null
      }
     ]
    }
@@ -1198,31 +1284,36 @@
       "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
       "quantity": "3",
       "unit_price": "161.84",
-      "amount": "485.52"
+      "amount": "485.52",
+      "discount_percent": null
      },
      {
       "description": "Consulenza migrazione dati, workshop in sede",
       "quantity": "8",
       "unit_price": "91.35",
-      "amount": "730.80"
+      "amount": "730.80",
+      "discount_percent": null
      },
      {
       "description": "Toner stampante nero, alta capacità",
       "quantity": "8",
       "unit_price": "47.99",
-      "amount": "383.92"
+      "amount": "383.92",
+      "discount_percent": null
      },
      {
       "description": "Licenza software annuale, 5 postazioni",
       "quantity": "1",
       "unit_price": "1140.02",
-      "amount": "1140.02"
+      "amount": "1140.02",
+      "discount_percent": null
      },
      {
       "description": "Canone manutenzione sito web, mensile",
       "quantity": "1",
       "unit_price": "928.76",
-      "amount": "928.76"
+      "amount": "928.76",
+      "discount_percent": null
      }
     ]
    }
@@ -1253,31 +1344,36 @@
       "description": "Consulenzamigrazione datiworkshopinsede",
       "quantity": "13",
       "unit_price": "107.91",
-      "amount": "1402.83"
+      "amount": "1402.83",
+      "discount_percent": null
      },
      {
       "description": "Docking stationUSB-C12-in-1",
       "quantity": "8",
       "unit_price": "210.68",
-      "amount": "1685.44"
+      "amount": "1685.44",
+      "discount_percent": null
      },
      {
       "description": "HostingcloudpianoBusiness(3vCPU/8GB)",
       "quantity": "2",
       "unit_price": "95.45",
-      "amount": "190.90"
+      "amount": "190.90",
+      "discount_percent": null
      },
      {
       "description": "Toner stampantenero,alta capacita",
       "quantity": "11",
       "unit_price": "44.97",
-      "amount": "494.67"
+      "amount": "494.67",
+      "discount_percent": null
      },
      {
       "description": "Canonemanutenzionesitoweb,mensile",
       "quantity": "1",
       "unit_price": "412.33",
-      "amount": "412.33"
+      "amount": "412.33",
+      "discount_percent": null
      }
     ]
    }
@@ -1308,25 +1404,29 @@
       "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
       "quantity": "1",
       "unit_price": "155.61",
-      "amount": "155.61"
+      "amount": "155.61",
+      "discount_percent": null
      },
      {
       "description": "USB-C docking station 12-in-1",
       "quantity": "7",
       "unit_price": "106.15",
-      "amount": "743.05"
+      "amount": "743.05",
+      "discount_percent": null
      },
      {
       "description": "Hours - backend development (sprint 14)",
       "quantity": "25.75",
       "unit_price": "70.13",
-      "amount": "1805.85"
+      "amount": "1805.85",
+      "discount_percent": null
      },
      {
       "description": "Shipping and handling",
       "quantity": "1",
       "unit_price": "24.81",
-      "amount": "24.81"
+      "amount": "24.81",
+      "discount_percent": null
      }
     ]
    }
@@ -1357,13 +1457,15 @@
       "description": "Ore di sviluppo backend (sprint 14)",
       "quantity": "13.75",
       "unit_price": "57.87",
-      "amount": "795.71"
+      "amount": "795.71",
+      "discount_percent": null
      },
      {
       "description": "Licenza software annuale, 5 postazioni",
       "quantity": "1",
       "unit_price": "1057.49",
-      "amount": "1057.49"
+      "amount": "1057.49",
+      "discount_percent": null
      }
     ]
    }
@@ -1396,19 +1498,22 @@
       "description": "Tonerstampantenero,altacapacita",
       "quantity": "6",
       "unit_price": "89.97",
-      "amount": "539.82"
+      "amount": "539.82",
+      "discount_percent": null
      },
      {
       "description": "Docking stationUSB-C12-in-1",
       "quantity": "3",
       "unit_price": "164.27",
-      "amount": "492.81"
+      "amount": "492.81",
+      "discount_percent": null
      },
      {
       "description": "Oredisviluppobackend(sprint14)",
       "quantity": "24",
       "unit_price": "67.20",
-      "amount": "1612.80"
+      "amount": "1612.80",
+      "discount_percent": null
      }
     ]
    }
@@ -1439,13 +1544,15 @@
       "description": "Canonemanutenzionesitoweb,mensile",
       "quantity": "1",
       "unit_price": "1111.16",
-      "amount": "1111.16"
+      "amount": "1111.16",
+      "discount_percent": null
      },
      {
       "description": "Docking stationUSB-C12-in-1",
       "quantity": "2",
       "unit_price": "90.72",
-      "amount": "181.44"
+      "amount": "181.44",
+      "discount_percent": null
      }
     ]
    }
@@ -1481,13 +1588,15 @@
       "description": "Consulting-datamigrationworkshop %6",
       "quantity": "15",
       "unit_price": "106.12",
-      "amount": "1591.80"
+      "amount": "1591.80",
+      "discount_percent": null
      },
      {
       "description": "USB-Cdocking station12-in-1",
       "quantity": "5",
       "unit_price": "117.38",
-      "amount": "586.90"
+      "amount": "586.90",
+      "discount_percent": null
      }
     ]
    }
@@ -1518,31 +1627,36 @@
       "description": "Websitemaintenance,monthlyretainer",
       "quantity": "1",
       "unit_price": "806.27",
-      "amount": "806.27"
+      "amount": "806.27",
+      "discount_percent": null
      },
      {
       "description": "Annualsoftwarelicence-5seats",
       "quantity": "1",
       "unit_price": "512.76",
-      "amount": "512.76"
+      "amount": "512.76",
+      "discount_percent": null
      },
      {
       "description": "Cloudhostingplan(Business,3vCPU/8GB)",
       "quantity": "3",
       "unit_price": "93.26",
-      "amount": "279.78"
+      "amount": "279.78",
+      "discount_percent": null
      },
      {
       "description": "Hours-backenddevelopment(sprint14)",
       "quantity": "20.75",
       "unit_price": "72.09",
-      "amount": "1495.87"
+      "amount": "1495.87",
+      "discount_percent": null
      },
      {
       "description": "Copywriting:productdescriptionsfor25SKUs",
       "quantity": "2",
       "unit_price": "770.78",
-      "amount": "1541.56"
+      "amount": "1541.56",
+      "discount_percent": null
      }
     ]
    }
@@ -1573,7 +1687,8 @@
       "description": "Printer toner cartridge, black, high yield",
       "quantity": "7",
       "unit_price": "93.18",
-      "amount": "652.26"
+      "amount": "652.26",
+      "discount_percent": null
      }
     ]
    }
@@ -1604,7 +1719,8 @@
       "description": "Ore di sviluppo backend(sprint 14)",
       "quantity": "8",
       "unit_price": "109.71",
-      "amount": "877.68"
+      "amount": "877.68",
+      "discount_percent": null
      }
     ]
    }
@@ -1637,31 +1753,36 @@
       "description": "Spese di spedizione",
       "quantity": "1",
       "unit_price": "17.34",
-      "amount": "17.34"
+      "amount": "17.34",
+      "discount_percent": null
      },
      {
       "description": "Docking station USB-C 12-in-1",
       "quantity": "6",
       "unit_price": "111.05",
-      "amount": "666.30"
+      "amount": "666.30",
+      "discount_percent": null
      },
      {
       "description": "Ore di sviluppo backend (sprint 14)",
       "quantity": "10",
       "unit_price": "76.44",
-      "amount": "764.40"
+      "amount": "764.40",
+      "discount_percent": null
      },
      {
       "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
       "quantity": "3",
       "unit_price": "56.15",
-      "amount": "168.45"
+      "amount": "168.45",
+      "discount_percent": null
      },
      {
       "description": "Toner stampante nero, alta capacità",
       "quantity": "2",
       "unit_price": "68.12",
-      "amount": "236.24"
+      "amount": "236.24",
+      "discount_percent": null
      }
     ]
    }
@@ -1694,13 +1815,15 @@
       "description": "Hours - backend development (sprint 14)",
       "quantity": "24.25",
       "unit_price": "112.46",
-      "amount": "2727.16"
+      "amount": "2727.16",
+      "discount_percent": null
      },
      {
       "description": "USB-C docking station 12-in-1",
       "quantity": "1",
       "unit_price": "178.80",
-      "amount": "178.80"
+      "amount": "178.80",
+      "discount_percent": null
      }
     ]
    }
@@ -1731,37 +1854,43 @@
       "description": "Spese di spedizione",
       "quantity": "1",
       "unit_price": "35.67",
-      "amount": "35.67"
+      "amount": "35.67",
+      "discount_percent": null
      },
      {
       "description": "Canone manutenzione sito web, mensile",
       "quantity": "1",
       "unit_price": "1005.08",
-      "amount": "1005.08"
+      "amount": "1005.08",
+      "discount_percent": null
      },
      {
       "description": "Docking station USB-C 12-in-1",
       "quantity": "5",
       "unit_price": "128.59",
-      "amount": "642.95"
+      "amount": "642.95",
+      "discount_percent": null
      },
      {
       "description": "Toner stampante nero, alta capacità",
       "quantity": "10",
       "unit_price": "41.10",
-      "amount": "411.00"
+      "amount": "411.00",
+      "discount_percent": null
      },
      {
       "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
       "quantity": "1",
       "unit_price": "114.33",
-      "amount": "114.33"
+      "amount": "114.33",
+      "discount_percent": null
      },
      {
       "description": "Ore di sviluppo backend (sprint 14)",
       "quantity": "10.25",
       "unit_price": "84.08",
-      "amount": "861.82"
+      "amount": "861.82",
+      "discount_percent": null
      }
     ]
    }
@@ -1792,7 +1921,8 @@
       "description": "Website maintenance, monthly retainer",
       "quantity": "1",
       "unit_price": "370.44",
-      "amount": "370.44"
+      "amount": "370.44",
+      "discount_percent": null
      }
     ]
    }
@@ -1823,13 +1953,15 @@
       "description": "Shipping and handling",
       "quantity": "1",
       "unit_price": "15.37",
-      "amount": "15.37"
+      "amount": "15.37",
+      "discount_percent": null
      },
      {
       "description": "Website maintenance, monthly retainer",
       "quantity": "1",
       "unit_price": "591.76",
-      "amount": "591.76"
+      "amount": "591.76",
+      "discount_percent": null
      }
     ]
    }
@@ -1864,37 +1996,43 @@
       "description": "Websitemaintenance,monthlyretainer",
       "quantity": "1",
       "unit_price": "836.82",
-      "amount": "836.82"
+      "amount": "836.82",
+      "discount_percent": null
      },
      {
       "description": "Cloudhostingplan(Business,3vCPU/8GB)",
       "quantity": "2",
       "unit_price": "165.22",
-      "amount": "330.44"
+      "amount": "330.44",
+      "discount_percent": null
      },
      {
       "description": "Shipping andhandling",
       "quantity": "1",
       "unit_price": "20.64",
-      "amount": "20.64"
+      "amount": "20.64",
+      "discount_percent": null
      },
      {
       "description": "Designreview and accessibiltyaudit of checkout flow",
       "quantity": "1",
       "unit_price": "1514.26",
-      "amount": "1514.26"
+      "amount": "1514.26",
+      "discount_percent": null
      },
      {
       "description": "Laptop stand,aluminium",
       "quantity": "4",
       "unit_price": "31.61",
-      "amount": "126.44"
+      "amount": "126.44",
+      "discount_percent": null
      },
      {
       "description": "Hours-backenddevelopment(sprint14)",
       "quantity": "27",
       "unit_price": "102.18",
-      "amount": "2758.86"
+      "amount": "2758.86",
+      "discount_percent": null
      }
     ]
    }
@@ -1925,37 +2063,43 @@
       "description": "Oredisviluppobackend(sprint14)",
       "quantity": "17",
       "unit_price": "118.10",
-      "amount": "2007.70"
+      "amount": "2007.70",
+      "discount_percent": null
      },
      {
       "description": "Toner stampantenero,alta capacita",
       "quantity": "2",
       "unit_price": "58.48",
-      "amount": "116.96"
+      "amount": "116.96",
+      "discount_percent": null
      },
      {
       "description": "Docking station USB-C12-in-1",
       "quantity": "4",
       "unit_price": "117.32",
-      "amount": "469.28"
+      "amount": "469.28",
+      "discount_percent": null
      },
      {
       "description": "Hosting cloudpianoBusiness(3vCPU/8GB)",
       "quantity": "3",
       "unit_price": "156.67",
-      "amount": "470.01"
+      "amount": "470.01",
+      "discount_percent": null
      },
      {
       "description": "Canonemanutenzionesitoweb,mensile",
       "quantity": "1",
       "unit_price": "558.95",
-      "amount": "558.95"
+      "amount": "558.95",
+      "discount_percent": null
      },
      {
       "description": "Licenza softwareannuale,5postazioni",
       "quantity": "1",
       "unit_price": "1185.78",
-      "amount": "1185.78"
+      "amount": "1185.78",
+      "discount_percent": null
      }
     ]
    }
@@ -1988,19 +2132,22 @@
       "description": "Docking station USB-C 12-in-1",
       "quantity": "3",
       "unit_price": "202.17",
-      "amount": "606.51"
+      "amount": "606.51",
+      "discount_percent": null
      },
      {
       "description": "Toner stampante nero, alta capacità",
       "quantity": "11",
       "unit_price": "41.95",
-      "amount": "461.45"
+      "amount": "461.45",
+      "discount_percent": null
      },
      {
       "description": "Ore di sviluppo backend (sprint 14)",
       "quantity": "38",
       "unit_price": "87.68",
-      "amount": "3332.74"
+      "amount": "3332.74",
+      "discount_percent": null
      }
     ]
    }
@@ -2031,19 +2178,22 @@
       "description": "Licenza software annuale, 5 postazioni",
       "quantity": "1",
       "unit_price": "634.60",
-      "amount": "634.60"
+      "amount": "634.60",
+      "discount_percent": null
      },
      {
       "description": "Consulenza migrazione dati, workshop in sede",
       "quantity": "7",
       "unit_price": "136.50",
-      "amount": "955.50"
+      "amount": "955.50",
+      "discount_percent": null
      },
      {
       "description": "Toner stampante nero, alta capacità",
       "quantity": "5",
       "unit_price": "69.67",
-      "amount": "348.35"
+      "amount": "348.35",
+      "discount_percent": null
      }
     ]
    }
@@ -2076,7 +2226,8 @@
       "description": "Shipping and handling",
       "quantity": "1",
       "unit_price": "12.52",
-      "amount": "12.52"
+      "amount": "12.52",
+      "discount_percent": null
      }
     ]
    }
@@ -2107,37 +2258,43 @@
       "description": "USB-C docking station 12-in-1",
       "quantity": "3",
       "unit_price": "168.21",
-      "amount": "504.63"
+      "amount": "504.63",
+      "discount_percent": null
      },
      {
       "description": "Design review and accessibility audit of checkout flow",
       "quantity": "1",
       "unit_price": "1208.28",
-      "amount": "1208.28"
+      "amount": "1208.28",
+      "discount_percent": null
      },
      {
       "description": "Shipping and handling",
       "quantity": "1",
       "unit_price": "27.62",
-      "amount": "27.62"
+      "amount": "27.62",
+      "discount_percent": null
      },
      {
       "description": "Annual software licence - 5 seats",
       "quantity": "2",
       "unit_price": "1964.87",
-      "amount": "3929.74"
+      "amount": "3929.74",
+      "discount_percent": null
      },
      {
       "description": "Copywriting: product descriptions for 25 SKUs",
       "quantity": "2",
       "unit_price": "651.11",
-      "amount": "1302.22"
+      "amount": "1302.22",
+      "discount_percent": null
      },
      {
       "description": "Printer toner cartridge, black, high yield",
       "quantity": "9",
       "unit_price": "88.35",
-      "amount": "795.15"
+      "amount": "795.15",
+      "discount_percent": null
      }
     ]
    }
@@ -2168,13 +2325,15 @@
       "description": "Consulenzamigrazione dati,workshop insede",
       "quantity": "11",
       "unit_price": "85.95",
-      "amount": "945.45"
+      "amount": "945.45",
+      "discount_percent": null
      },
      {
       "description": "Docking stationUSB-C12-in-1",
       "quantity": "7",
       "unit_price": "160.42",
-      "amount": "1122.94"
+      "amount": "1122.94",
+      "discount_percent": null
      }
     ]
    }
@@ -2205,7 +2364,8 @@
       "description": "USB-C docking station 12-in-1",
       "quantity": "4",
       "unit_price": "110.92",
-      "amount": "443.68"
+      "amount": "443.68",
+      "discount_percent": null
      }
     ]
    }
@@ -2238,13 +2398,15 @@
       "description": "Website maintenance, monthly retainer",
       "quantity": "1",
       "unit_price": "1140.81",
-      "amount": "1140.81"
+      "amount": "1140.81",
+      "discount_percent": null
      },
      {
       "description": "Laptop stand, aluminium",
       "quantity": "5",
       "unit_price": "46.47",
-      "amount": "232.35"
+      "amount": "232.35",
+      "discount_percent": null
      }
     ]
    }
@@ -2275,13 +2437,15 @@
       "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
       "quantity": "3",
       "unit_price": "114.03",
-      "amount": "342.09"
+      "amount": "342.09",
+      "discount_percent": null
      },
      {
       "description": "Website maintenance, monthly retainer",
       "quantity": "1",
       "unit_price": "569.44",
-      "amount": "569.44"
+      "amount": "569.44",
+      "discount_percent": null
      }
     ]
    }
@@ -2314,19 +2478,22 @@
       "description": "Licenza software annuale, 5 postazioni",
       "quantity": "2",
       "unit_price": "1276.29",
-      "amount": "2552.58"
+      "amount": "2552.58",
+      "discount_percent": null
      },
      {
       "description": "Docking station USB-C 12-in-1",
       "quantity": "5",
       "unit_price": "217.97",
-      "amount": "1089.85"
+      "amount": "1089.85",
+      "discount_percent": null
      },
      {
       "description": "Consulenza migrazione dati, workshop in sede",
       "quantity": "14",
       "unit_price": "124.32",
-      "amount": "1740.48"
+      "amount": "1740.48",
+      "discount_percent": null
      }
     ]
    }
@@ -2359,25 +2526,29 @@
       "description": "Shipping and handling",
       "quantity": "1",
       "unit_price": "23.70",
-      "amount": "23.70"
+      "amount": "23.70",
+      "discount_percent": null
      },
      {
       "description": "Copywriting: product descriptions for 25 SKUs",
       "quantity": "2",
       "unit_price": "686.38",
-      "amount": "1372.76"
+      "amount": "1372.76",
+      "discount_percent": null
      },
      {
       "description": "Website maintenance, monthly retainer",
       "quantity": "1",
       "unit_price": "703.34",
-      "amount": "703.34"
+      "amount": "703.34",
+      "discount_percent": null
      },
      {
       "description": "USB-C docking station 12-in-1",
       "quantity": "6",
       "unit_price": "239.36",
-      "amount": "1436.16"
+      "amount": "1436.16",
+      "discount_percent": null
      }
     ]
    }
@@ -2408,7 +2579,8 @@
       "description": "Consulenzamigrazione dati,workshop in sede",
       "quantity": "14",
       "unit_price": "124.46",
-      "amount": "1742.44"
+      "amount": "1742.44",
+      "discount_percent": null
      }
     ]
    }
@@ -2439,19 +2611,22 @@
       "description": "Spese dispedizione",
       "quantity": "1",
       "unit_price": "44.63",
-      "amount": "44.63"
+      "amount": "44.63",
+      "discount_percent": null
      },
      {
       "description": "Consulenzamigrazione datiworkshopinsede",
       "quantity": "9",
       "unit_price": "110.75",
-      "amount": "996.75"
+      "amount": "996.75",
+      "discount_percent": null
      },
      {
       "description": "Licenza software annuale,5postazioni",
       "quantity": "1",
       "unit_price": "1388.39",
-      "amount": "1388.39"
+      "amount": "1388.39",
+      "discount_percent": null
      }
     ]
    }
@@ -2482,7 +2657,8 @@
       "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
       "quantity": "2",
       "unit_price": "116.89",
-      "amount": "233.78"
+      "amount": "233.78",
+      "discount_percent": null
      }
     ]
    }
@@ -2513,13 +2689,15 @@
       "description": "Website maintenance, monthly retainer",
       "quantity": "1",
       "unit_price": "915.70",
-      "amount": "915.70"
+      "amount": "915.70",
+      "discount_percent": null
      },
      {
       "description": "Laptop stand, aluminium",
       "quantity": "3",
       "unit_price": "35.87",
-      "amount": "107.61"
+      "amount": "107.61",
+      "discount_percent": null
      }
     ]
    }
@@ -2550,19 +2728,22 @@
       "description": "Docking station USB-C 12-in-1",
       "quantity": "4",
       "unit_price": "159.14",
-      "amount": "636.56"
+      "amount": "636.56",
+      "discount_percent": null
      },
      {
       "description": "Ore di sviluppo backend (sprint 14)",
       "quantity": "38.5",
       "unit_price": "92.16",
-      "amount": "3548.16"
+      "amount": "3548.16",
+      "discount_percent": null
      },
      {
       "description": "Consulenza migrazione dati, workshop in sede",
       "quantity": "8",
       "unit_price": "119.10",
-      "amount": "952.80"
+      "amount": "952.80",
+      "discount_percent": null
      }
     ]
    }
@@ -2593,13 +2774,15 @@
       "description": "Consulenza migrazione dati, workshop in sede",
       "quantity": "15",
       "unit_price": "143.79",
-      "amount": "2156.85"
+      "amount": "2156.85",
+      "discount_percent": null
      },
      {
       "description": "Ore di sviluppo backend (sprint 14)",
       "quantity": "8.25",
       "unit_price": "69.31",
-      "amount": "571.81"
+      "amount": "571.81",
+      "discount_percent": null
      }
     ]
    }
@@ -2632,7 +2815,8 @@
       "description": "Laptop stand, aluminium",
       "quantity": "3",
       "unit_price": "39.10",
-      "amount": "117.30"
+      "amount": "117.30",
+      "discount_percent": null
      }
     ]
    }
@@ -2663,13 +2847,15 @@
       "description": "Annualsoftware licence-5seats",
       "quantity": "1",
       "unit_price": "1522.90",
-      "amount": "1522.90"
+      "amount": "1522.90",
+      "discount_percent": null
      },
      {
       "description": "On-site support visitincl.travel withinzone2",
       "quantity": "1",
       "unit_price": "196.86",
-      "amount": "196.86"
+      "amount": "196.86",
+      "discount_percent": null
      }
     ]
    }
@@ -2700,13 +2886,15 @@
       "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
       "quantity": "3",
       "unit_price": "130.35",
-      "amount": "391.05"
+      "amount": "391.05",
+      "discount_percent": null
      },
      {
       "description": "Canone manutenzione sito web, mensile",
       "quantity": "1",
       "unit_price": "658.54",
-      "amount": "658.54"
+      "amount": "658.54",
+      "discount_percent": null
      }
     ]
    }
@@ -2739,13 +2927,15 @@
       "description": "Annualsoftwarelicence-5seats",
       "quantity": "1",
       "unit_price": "928.88",
-      "amount": "928.88"
+      "amount": "928.88",
+      "discount_percent": null
      },
      {
       "description": "Consulting-data migrationworkshop",
       "quantity": "6",
       "unit_price": "99.02",
-      "amount": "594.12"
+      "amount": "594.12",
+      "discount_percent": null
      }
     ]
    }
@@ -2776,37 +2966,43 @@
       "description": "Toner stampante nero, alta capacità",
       "quantity": "9",
       "unit_price": "48.64",
-      "amount": "437.76"
+      "amount": "437.76",
+      "discount_percent": null
      },
      {
       "description": "Ore di sviluppo backend (sprint 14)",
       "quantity": "35.5",
       "unit_price": "99.01",
-      "amount": "3514.86"
+      "amount": "3514.86",
+      "discount_percent": null
      },
      {
       "description": "Docking station USB-C 12-in-1",
       "quantity": "6",
       "unit_price": "212.20",
-      "amount": "1273.20"
+      "amount": "1273.20",
+      "discount_percent": null
      },
      {
       "description": "Spese di spedizione",
       "quantity": "1",
       "unit_price": "39.74",
-      "amount": "39.74"
+      "amount": "39.74",
+      "discount_percent": null
      },
      {
       "description": "Licenza software annuale, 5 postazioni",
       "quantity": "1",
       "unit_price": "2478.55",
-      "amount": "2478.55"
+      "amount": "2478.55",
+      "discount_percent": null
      },
      {
       "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
       "quantity": "3",
       "unit_price": "139.59",
-      "amount": "418.77"
+      "amount": "418.77",
+      "discount_percent": null
      }
     ]
    }
@@ -2837,31 +3033,36 @@
       "description": "USB-C docking station 12-in-1",
       "quantity": "1",
       "unit_price": "135.20",
-      "amount": "135.20"
+      "amount": "135.20",
+      "discount_percent": null
      },
      {
       "description": "Printer toner cartridge, black, high yield",
       "quantity": "8",
       "unit_price": "53.21",
-      "amount": "425.68"
+      "amount": "425.68",
+      "discount_percent": null
      },
      {
       "description": "Design review and accessibility audit of checkout flow",
       "quantity": "1",
       "unit_price": "1751.11",
-      "amount": "1751.11"
+      "amount": "1751.11",
+      "discount_percent": null
      },
      {
       "description": "On-site support visit incl. travel within zone 2",
       "quantity": "3",
       "unit_price": "128.56",
-      "amount": "385.68"
+      "amount": "385.68",
+      "discount_percent": null
      },
      {
       "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
       "quantity": "1",
       "unit_price": "138.35",
-      "amount": "138.35"
+      "amount": "138.35",
+      "discount_percent": null
      }
     ]
    }
@@ -2892,25 +3093,29 @@
       "description": "Licenza software annuale, 5 postazioni",
       "quantity": "2",
       "unit_price": "1376.66",
-      "amount": "2753.32"
+      "amount": "2753.32",
+      "discount_percent": null
      },
      {
       "description": "Ore di sviluppo backend (sprint 14)",
       "quantity": "21.5",
       "unit_price": "72.18",
-      "amount": "1551.87"
+      "amount": "1551.87",
+      "discount_percent": null
      },
      {
       "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
       "quantity": "3",
       "unit_price": "85.57",
-      "amount": "256.71"
+      "amount": "256.71",
+      "discount_percent": null
      },
      {
       "description": "Consulenza migrazione dati, workshop in sede",
       "quantity": "8",
       "unit_price": "103.18",
-      "amount": "825.44"
+      "amount": "825.44",
+      "discount_percent": null
      }
     ]
    }
@@ -2941,19 +3146,22 @@
       "description": "Toner stampantenero,altacapacita",
       "quantity": "5",
       "unit_price": "88.99",
-      "amount": "444.95"
+      "amount": "444.95",
+      "discount_percent": null
      },
      {
       "description": "Spese dispedizione",
       "quantity": "1",
       "unit_price": "39.77",
-      "amount": "39.77"
+      "amount": "39.77",
+      "discount_percent": null
      },
      {
       "description": "Consulenzamigrazione dati,workshop insede",
       "quantity": "4",
       "unit_price": "127.74",
-      "amount": "510.96"
+      "amount": "510.96",
+      "discount_percent": null
      }
     ]
    }
@@ -2984,31 +3192,36 @@
       "description": "Consulting - data migration workshop",
       "quantity": "12",
       "unit_price": "115.47",
-      "amount": "1385.64"
+      "amount": "1385.64",
+      "discount_percent": null
      },
      {
       "description": "USB-C docking station 12-in-1",
       "quantity": "4",
       "unit_price": "114.57",
-      "amount": "458.28"
+      "amount": "458.28",
+      "discount_percent": null
      },
      {
       "description": "On-site support visit incl. travel within zone 2",
       "quantity": "1",
       "unit_price": "250.09",
-      "amount": "250.09"
+      "amount": "250.09",
+      "discount_percent": null
      },
      {
       "description": "Printer toner cartridge, black, high yield",
       "quantity": "10",
       "unit_price": "46.43",
-      "amount": "464.30"
+      "amount": "464.30",
+      "discount_percent": null
      },
      {
       "description": "Hours - backend development (sprint 14)",
       "quantity": "36.75",
       "unit_price": "63.57",
-      "amount": "2336.20"
+      "amount": "2336.20",
+      "discount_percent": null
      }
     ]
    }
@@ -3039,31 +3252,36 @@
       "description": "Toner stampante nero, alta capacità",
       "quantity": "11",
       "unit_price": "86.15",
-      "amount": "947.65"
+      "amount": "947.65",
+      "discount_percent": null
      },
      {
       "description": "Canone manutenzione sito web, mensile",
       "quantity": "1",
       "unit_price": "670.14",
-      "amount": "670.14"
+      "amount": "670.14",
+      "discount_percent": null
      },
      {
       "description": "Ore di sviluppo backend (sprint 14)",
       "quantity": "28",
       "unit_price": "81.52",
-      "amount": "2282.56"
+      "amount": "2282.56",
+      "discount_percent": null
      },
      {
       "description": "Spese di spedizione",
       "quantity": "1",
       "unit_price": "37.25",
-      "amount": "37.25"
+      "amount": "37.25",
+      "discount_percent": null
      },
      {
       "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
       "quantity": "3",
       "unit_price": "44.05",
-      "amount": "132.15"
+      "amount": "132.15",
+      "discount_percent": null
      }
     ]
    }
@@ -3094,13 +3312,15 @@
       "description": "Design review and accessibility audit of checkout flow",
       "quantity": "1",
       "unit_price": "1005.02",
-      "amount": "1005.02"
+      "amount": "1005.02",
+      "discount_percent": null
      },
      {
       "description": "Annual software licence - 5 seats",
       "quantity": "1",
       "unit_price": "1403.46",
-      "amount": "1403.46"
+      "amount": "1403.46",
+      "discount_percent": null
      }
     ]
    }
@@ -3136,31 +3356,36 @@
       "description": "Consulting-datamigrationworkshop",
       "quantity": "15",
       "unit_price": "136.08",
-      "amount": "2041.20"
+      "amount": "2041.20",
+      "discount_percent": null
      },
      {
       "description": "Shipping and handling",
       "quantity": "1",
       "unit_price": "17.57",
-      "amount": "17.57"
+      "amount": "17.57",
+      "discount_percent": null
      },
      {
       "description": "On-sitesupportvisit incl.travel withinzone2",
       "quantity": "3",
       "unit_price": "190.03",
-      "amount": "570.09"
+      "amount": "570.09",
+      "discount_percent": null
      },
      {
       "description": "USB-Cdocking station 12-in-1",
       "quantity": "5",
       "unit_price": "221.65",
-      "amount": "1108.25"
+      "amount": "1108.25",
+      "discount_percent": null
      },
      {
       "description": "Designreviewandaccessibility auditofcheckout flow",
       "quantity": "1",
       "unit_price": "709.32",
-      "amount": "709.32"
+      "amount": "709.32",
+      "discount_percent": null
      }
     ]
    }
@@ -3191,31 +3416,36 @@
       "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
       "quantity": "3",
       "unit_price": "110.73",
-      "amount": "332.19"
+      "amount": "332.19",
+      "discount_percent": null
      },
      {
       "description": "Annual software licence - 5 seats",
       "quantity": "2",
       "unit_price": "2319.75",
-      "amount": "4639.50"
+      "amount": "4639.50",
+      "discount_percent": null
      },
      {
       "description": "Laptop stand, aluminium",
       "quantity": "4",
       "unit_price": "65.74",
-      "amount": "262.96"
+      "amount": "262.96",
+      "discount_percent": null
      },
      {
       "description": "Printer toner cartridge, black, high yield",
       "quantity": "4",
       "unit_price": "56.89",
-      "amount": "227.56"
+      "amount": "227.56",
+      "discount_percent": null
      },
      {
       "description": "Copywriting: product descriptions for 25 SKUs",
       "quantity": "1",
       "unit_price": "567.41",
-      "amount": "567.41"
+      "amount": "567.41",
+      "discount_percent": null
      }
     ]
    }
@@ -3248,31 +3478,36 @@
       "description": "Canone manutenzione sitoweb,mensile",
       "quantity": "1",
       "unit_price": "909.36",
-      "amount": "909.36"
+      "amount": "909.36",
+      "discount_percent": null
      },
      {
       "description": "Consulenzamigrazionedati,workshopinsede",
       "quantity": "12",
       "unit_price": "89.67",
-      "amount": "1076.94"
+      "amount": "1076.94",
+      "discount_percent": null
      },
      {
       "description": "HostingcloudpianoBusiness(3vCPU/8GB)",
       "quantity": "3",
       "unit_price": "75.83",
-      "amount": "227.49"
+      "amount": "227.49",
+      "discount_percent": null
      },
      {
       "description": "Oredisviluppobackend(sprint14)",
       "quantity": "11.75",
       "unit_price": "91.18",
-      "amount": "1071.37"
+      "amount": "1071.37",
+      "discount_percent": null
      },
      {
       "description": "Tonerstampantenero,altacapacita",
       "quantity": "11",
       "unit_price": "89.34",
-      "amount": "982.74"
+      "amount": "982.74",
+      "discount_percent": null
      }
     ]
    }
@@ -3303,37 +3538,43 @@
       "description": "Licenza software annuale, 5 postazioni",
       "quantity": "1",
       "unit_price": "1482.17",
-      "amount": "1482.17"
+      "amount": "1482.17",
+      "discount_percent": null
      },
      {
       "description": "Toner stampante nero, alta capacità",
       "quantity": "10",
       "unit_price": "71.08",
-      "amount": "710.80"
+      "amount": "710.80",
+      "discount_percent": null
      },
      {
       "description": "Canone manutenzione sito web, mensile",
       "quantity": "1",
       "unit_price": "363.26",
-      "amount": "363.26"
+      "amount": "363.26",
+      "discount_percent": null
      },
      {
       "description": "Ore di sviluppo backend (sprint 14)",
       "quantity": "26",
       "unit_price": "98.96",
-      "amount": "2572.96"
+      "amount": "2572.96",
+      "discount_percent": null
      },
      {
       "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
       "quantity": "2",
       "unit_price": "71.93",
-      "amount": "143.86"
+      "amount": "143.86",
+      "discount_percent": null
      },
      {
       "description": "Spese di spedizione",
       "quantity": "1",
       "unit_price": "23.92",
-      "amount": "23.92"
+      "amount": "23.92",
+      "discount_percent": null
      }
     ]
    }
@@ -3366,37 +3607,43 @@
       "description": "Docking station USB-C 12-in-1",
       "quantity": "6",
       "unit_price": "171.07",
-      "amount": "1026.42"
+      "amount": "1026.42",
+      "discount_percent": null
      },
      {
       "description": "Canone manutenzione sito web, mensile",
       "quantity": "1",
       "unit_price": "957.09",
-      "amount": "957.09"
+      "amount": "957.09",
+      "discount_percent": null
      },
      {
       "description": "Spese di spedizione",
       "quantity": "1",
       "unit_price": "43.93",
-      "amount": "43.93"
+      "amount": "43.93",
+      "discount_percent": null
      },
      {
       "description": "Ore di sviluppo backend (sprint 14)",
       "quantity": "8.75",
       "unit_price": "93.71",
-      "amount": "819.96"
+      "amount": "819.96",
+      "discount_percent": null
      },
      {
       "description": "Licenza software annuale, 5 postazioni",
       "quantity": "1",
       "unit_price": "810.73",
-      "amount": "810.73"
+      "amount": "810.73",
+      "discount_percent": null
      },
      {
       "description": "Toner stampante nero, alta capacità",
       "quantity": "6",
       "unit_price": "89.91",
-      "amount": "539.46"
+      "amount": "539.46",
+      "discount_percent": null
      }
     ]
    }
@@ -3429,7 +3676,8 @@
       "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
       "quantity": "3",
       "unit_price": "54.30",
-      "amount": "162.90"
+      "amount": "162.90",
+      "discount_percent": null
      }
     ]
    }
@@ -3460,31 +3708,36 @@
       "description": "Consulenza migrazione dati, workshop in sede",
       "quantity": "4",
       "unit_price": "146.54",
-      "amount": "586.16"
+      "amount": "586.16",
+      "discount_percent": null
      },
      {
       "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
       "quantity": "3",
       "unit_price": "65.28",
-      "amount": "195.84"
+      "amount": "195.84",
+      "discount_percent": null
      },
      {
       "description": "Licenza software annuale, 5 postazioni",
       "quantity": "2",
       "unit_price": "1000.66",
-      "amount": "2001.32"
+      "amount": "2001.32",
+      "discount_percent": null
      },
      {
       "description": "Ore di sviluppo backend (sprint 14)",
       "quantity": "20.25",
       "unit_price": "75.80",
-      "amount": "1534.95"
+      "amount": "1534.95",
+      "discount_percent": null
      },
      {
       "description": "Toner stampante nero, alta capacità",
       "quantity": "4",
       "unit_price": "90.43",
-      "amount": "361.72"
+      "amount": "361.72",
+      "discount_percent": null
      }
     ]
    }
@@ -3515,31 +3768,36 @@
       "description": "Ore di sviluppo backend (sprint 14)",
       "quantity": "29.5",
       "unit_price": "73.57",
-      "amount": "2170.32"
+      "amount": "2170.32",
+      "discount_percent": null
      },
      {
       "description": "Canone manutenzione sito web, mensile",
       "quantity": "1",
       "unit_price": "767.54",
-      "amount": "767.54"
+      "amount": "767.54",
+      "discount_percent": null
      },
      {
       "description": "Toner stampante nero, alta capacità",
       "quantity": "2",
       "unit_price": "38.00",
-      "amount": "76.00"
+      "amount": "76.00",
+      "discount_percent": null
      },
      {
       "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
       "quantity": "3",
       "unit_price": "61.74",
-      "amount": "185.22"
+      "amount": "185.22",
+      "discount_percent": null
      },
      {
       "description": "Spese di spedizione",
       "quantity": "1",
       "unit_price": "30.00",
-      "amount": "30.00"
+      "amount": "30.00",
+      "discount_percent": null
      }
     ]
    }
@@ -3570,19 +3828,22 @@
       "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
       "quantity": "1",
       "unit_price": "96.52",
-      "amount": "96.52"
+      "amount": "96.52",
+      "discount_percent": null
      },
      {
       "description": "Spese di spedizione",
       "quantity": "1",
       "unit_price": "34.26",
-      "amount": "34.26"
+      "amount": "34.26",
+      "discount_percent": null
      },
      {
       "description": "Licenza software annuale, 5 postazioni",
       "quantity": "1",
       "unit_price": "2398.43",
-      "amount": "2398.43"
+      "amount": "2398.43",
+      "discount_percent": null
      }
     ]
    }
@@ -3613,19 +3874,22 @@
       "description": "USB-C docking station 12-in-1",
       "quantity": "1",
       "unit_price": "135.92",
-      "amount": "135.92"
+      "amount": "135.92",
+      "discount_percent": null
      },
      {
       "description": "Consulting - data migration workshop",
       "quantity": "5",
       "unit_price": "128.57",
-      "amount": "642.85"
+      "amount": "642.85",
+      "discount_percent": null
      },
      {
       "description": "Laptop stand, aluminium",
       "quantity": "3",
       "unit_price": "64.80",
-      "amount": "194.40"
+      "amount": "194.40",
+      "discount_percent": null
      }
     ]
    }
@@ -3656,37 +3920,43 @@
       "description": "USB-C docking station 12-in-1",
       "quantity": "7",
       "unit_price": "100.70",
-      "amount": "704.90"
+      "amount": "704.90",
+      "discount_percent": null
      },
      {
       "description": "Copywriting: product descriptions for 25 SKUs",
       "quantity": "1",
       "unit_price": "876.38",
-      "amount": "876.38"
+      "amount": "876.38",
+      "discount_percent": null
      },
      {
       "description": "Consulting - data migration workshop",
       "quantity": "13",
       "unit_price": "147.52",
-      "amount": "1917.76"
+      "amount": "1917.76",
+      "discount_percent": null
      },
      {
       "description": "Hours - backend development (sprint 14)",
       "quantity": "37.25",
       "unit_price": "111.68",
-      "amount": "4160.08"
+      "amount": "4160.08",
+      "discount_percent": null
      },
      {
       "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
       "quantity": "1",
       "unit_price": "96.32",
-      "amount": "96.32"
+      "amount": "96.32",
+      "discount_percent": null
      },
      {
       "description": "On-site support visit incl. travel within zone 2",
       "quantity": "3",
       "unit_price": "236.47",
-      "amount": "709.41"
+      "amount": "709.41",
+      "discount_percent": null
      }
     ]
    }
@@ -3717,31 +3987,36 @@
       "description": "Website maintenance, monthly retainer",
       "quantity": "1",
       "unit_price": "801.38",
-      "amount": "801.38"
+      "amount": "801.38",
+      "discount_percent": null
      },
      {
       "description": "USB-C docking station 12-in-1",
       "quantity": "8",
       "unit_price": "175.09",
-      "amount": "1400.72"
+      "amount": "1400.72",
+      "discount_percent": null
      },
      {
       "description": "Design review and accessibility audit of checkout flow",
       "quantity": "1",
       "unit_price": "1764.32",
-      "amount": "1764.32"
+      "amount": "1764.32",
+      "discount_percent": null
      },
      {
       "description": "Shipping and handling",
       "quantity": "1",
       "unit_price": "37.81",
-      "amount": "37.81"
+      "amount": "37.81",
+      "discount_percent": null
      },
      {
       "description": "Consulting - data migration workshop",
       "quantity": "11",
       "unit_price": "99.40",
-      "amount": "1093.40"
+      "amount": "1093.40",
+      "discount_percent": null
      }
     ]
    }
@@ -3774,7 +4049,8 @@
       "description": "Design review and accessibility audit of checkout flow",
       "quantity": "1",
       "unit_price": "1044.68",
-      "amount": "1044.68"
+      "amount": "1044.68",
+      "discount_percent": null
      }
     ]
    }
@@ -3807,19 +4083,22 @@
       "description": "Design review and accessibility audit of checkout flow",
       "quantity": "1",
       "unit_price": "838.06",
-      "amount": "838.06"
+      "amount": "838.06",
+      "discount_percent": null
      },
      {
       "description": "Copywriting: product descriptions for 25 SKUs",
       "quantity": "1",
       "unit_price": "767.08",
-      "amount": "767.08"
+      "amount": "767.08",
+      "discount_percent": null
      },
      {
       "description": "Shipping and handling",
       "quantity": "1",
       "unit_price": "16.04",
-      "amount": "16.04"
+      "amount": "16.04",
+      "discount_percent": null
      }
     ]
    }
@@ -3850,19 +4129,22 @@
       "description": "Licenzasoftwareannuale,5postazioni",
       "quantity": "1",
       "unit_price": "2439.74",
-      "amount": "2439.74"
+      "amount": "2439.74",
+      "discount_percent": null
      },
      {
       "description": "Consulenzamigrazionedatiworkshopinsede",
       "quantity": "10",
       "unit_price": "105.30",
-      "amount": "1053.00"
+      "amount": "1053.00",
+      "discount_percent": null
      },
      {
       "description": "Oredisviluppobackend(sprint14)",
       "quantity": "23.5",
       "unit_price": "109.66",
-      "amount": "2577.01"
+      "amount": "2577.01",
+      "discount_percent": null
      }
     ]
    }

@@ -73,8 +73,9 @@ def _group_lines(cells: list[Cell]) -> list[Line]:
     return lines
 
 
-def _merge_words(words: list[Cell], gap_factor: float = 0.9) -> list[Cell]:
-    """Join words on one line into cells: a gap wider than ~one space-width ends a cell."""
+def _merge_words(words: list[Cell], gap_factor: float = 0.6) -> list[Cell]:
+    """Join words on one line into cells. A single space (~0.28 x font size) joins; a run of spaces
+    or a real column gap ends the cell, so "Datum: 21.08.2026   Zahlbar bis: 20.09.2026" is two."""
     cells: list[Cell] = []
     for w in sorted(words, key=lambda c: c.x0):
         if cells:
