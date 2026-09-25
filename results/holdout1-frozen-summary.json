@@ -1,0 +1,121 @@
+{
+ "note": "frozen rules (tag rules-frozen) on unseen holdout layouts nl/it, before any fix",
+ "summary": {
+  "files": 80,
+  "seconds": 140.6,
+  "fields": {
+   "vendor_name": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "vendor_tax_id": {
+    "scan_ok": 12,
+    "scan_n": 24,
+    "text_ok": 23,
+    "text_n": 56
+   },
+   "invoice_number": {
+    "scan_ok": 13,
+    "scan_n": 24,
+    "text_ok": 34,
+    "text_n": 56
+   },
+   "issue_date": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "due_date": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "currency": {
+    "scan_ok": 12,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "subtotal": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "tax_rate": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "tax_amount": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "total": {
+    "scan_ok": 23,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "line_items": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "line_descriptions": {
+    "scan_ok": 12,
+    "scan_n": 24,
+    "text_ok": 23,
+    "text_n": 56
+   }
+  },
+  "defects": {
+   "due_before_issue": {
+    "planted": 3,
+    "caught": 3
+   },
+   "future_date": {
+    "planted": 4,
+    "caught": 4
+   },
+   "line_amount": {
+    "planted": 5,
+    "caught": 5
+   },
+   "missing_number": {
+    "planted": 3,
+    "caught": 3
+   },
+   "tax": {
+    "planted": 1,
+    "caught": 1
+   },
+   "tax_id": {
+    "planted": 1,
+    "caught": 1
+   },
+   "total": {
+    "planted": 4,
+    "caught": 4
+   }
+  },
+  "clean": {
+   "total": 59,
+   "flagged": 59
+  },
+  "false_alarm_codes": {
+   "INVALID_TAX_ID": 45,
+   "MISSING_INVOICE_NUMBER": 33,
+   "LOW_CONFIDENCE": 11,
+   "MISSING_TOTAL": 1
+  }
+ }
+}
