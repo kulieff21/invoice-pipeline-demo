@@ -29,10 +29,12 @@ def test_repeated_crashes_converge_to_the_clean_result(text_inbox, tmp_path):
         proc = _worker(inbox, tmp_path, -1)
         try:
             proc.wait(timeout=delay)
+            print(f"run  kill -9 after {delay}s   finished first (exit {proc.returncode})")
         except subprocess.TimeoutExpired:
             proc.kill()  # SIGKILL: no finally blocks, no flush
             proc.wait()
             kills += 1
+            print(f"run  kill -9 after {delay}s   killed")
 
     # phase 2: die right after the N-th sink write is applied, before it is marked as synced
     crashes_after_write = 0
@@ -40,10 +42,13 @@ def test_repeated_crashes_converge_to_the_clean_result(text_inbox, tmp_path):
         proc = _worker(inbox, tmp_path, crash_after)
         proc.wait(timeout=120)
         crashes_after_write += proc.returncode == 137
+        print(f"run  die after sheet write #{crash_after}   exit {proc.returncode}"
+              + ("   (write applied, not recorded)" if proc.returncode == 137 else ""))
         assert proc.returncode in (0, 137), proc.stderr.read().decode()
 
     proc = _worker(inbox, tmp_path, -1)
     assert proc.wait(timeout=120) == 0, proc.stderr.read().decode()
+    print("run  no fault                exit 0")
 
     assert kills >= 2 and crashes_after_write >= 4, (kills, crashes_after_write)
     for name in (INVOICE_SHEET, LINE_SHEET):
@@ -52,4 +57,5 @@ def test_repeated_crashes_converge_to_the_clean_result(text_inbox, tmp_path):
         assert sorted(got[1:]) == sorted(ref[1:]), name
         keys = [r[0] for r in got[1:]]
         assert len(keys) == len(set(keys))
+        print(f"check {name}: {len(keys)} rows, {len(set(keys))} unique keys, equal to a clean run")
     print(f"kills={kills} crashes_after_write={crashes_after_write}")

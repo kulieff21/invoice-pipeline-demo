@@ -3,383 +3,638 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Invoice PDFs to Google Sheets · case study</title>
-<meta name="description" content="A Python pipeline that reads invoice PDFs and scans, validates them against business rules and tax-ID check digits, and writes crash-safe rows to Google Sheets. Demo with synthetic data.">
+<meta name="color-scheme" content="light">
+<title>Invoice pipeline · case study · Elmar Guliyev</title>
+<meta name="description" content="A Python pipeline that reads invoice PDFs and scans, checks them against business rules and tax-ID check digits, and writes crash-safe rows to Google Sheets. Demo with synthetic data.">
 <meta name="author" content="Elmar Guliyev">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316202c'/%3E%3Cpath d='M9 8h14v16H9z' fill='%23fffdf8'/%3E%3Cpath d='M12 13h8M12 17h8M12 21h5' stroke='%231d7a4f' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%23f3efe6'/%3E%3Cpath d='M8 5h16v22H8z' fill='%23fffdf7' stroke='%231c1b19'/%3E%3Cpath d='M11 11h10M11 15h10M11 19h6' stroke='%23b8402a' stroke-width='1.6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#f6f4ee; --card:#fffdf8; --ink:#16202c; --muted:#5b6673; --line:#dcd6c8;
-  --accent:#1f5f8b; --ok:#1d7a4f; --ok-bg:#e3f2e9; --review:#a86408; --review-bg:#fbeed7; --bad:#b3372c; --bad-bg:#f8e3e0;
-  --shadow:0 1px 2px rgba(22,32,44,.06),0 8px 24px rgba(22,32,44,.07);
-}
-@media (prefers-color-scheme: dark){
-  :root{--paper:#11161d;--card:#18202a;--ink:#e6e9ee;--muted:#9aa5b3;--line:#2a3441;--accent:#6fb0e0;
-    --ok:#5cc497;--ok-bg:#15372a;--review:#e7a64a;--review-bg:#3a2c14;--bad:#ef7d72;--bad-bg:#3d1c19;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35)}
+  --paper:#f3efe6; --sheet:#fffdf7; --ink:#1c1b19; --ink2:#46433d; --muted:#7a7468; --rule:#d8d0bf; --rule2:#e8e1d2;
+  --blue:#2446a6; --blue-soft:rgba(36,70,166,.12); --marker:rgba(255,205,40,.42);
+  --ok:#2b7a4b; --red:#b8402a; --amber:#a86b0c;
+  --serif:"Fraunces",Georgia,serif; --sans:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --col:min(1180px,calc(100vw - 40px));
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,sans-serif;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 32px;background-attachment:fixed}
-body::before{content:"";position:fixed;inset:0;background:var(--paper);opacity:.93;z-index:-1}
-a{color:var(--accent)}
-code,.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.9em}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:20}
-header.top{position:sticky;top:0;z-index:10;backdrop-filter:blur(8px);background:color-mix(in srgb,var(--paper) 85%,transparent);border-bottom:1px solid var(--line)}
-header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
-.brand{font-weight:700;letter-spacing:-.01em}
-.brand small{font-weight:400;color:var(--muted);margin-left:6px}
-nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-size:.93rem}
-nav a:hover{color:var(--ink)}
-@media (max-width:720px){nav{display:none}}
+body{margin:0;background:var(--paper);color:var(--ink);font:16.5px/1.65 var(--sans);
+  background-image:radial-gradient(rgba(28,27,25,.035) 1px,transparent 1px);background-size:3px 3px}
+a{color:var(--blue);text-underline-offset:3px}
+.mono,code{font-family:var(--mono);font-variant-numeric:tabular-nums}
+code{font-size:.86em;background:var(--rule2);padding:1px 5px;border-radius:3px;white-space:nowrap}
+.wrap{width:var(--col);margin:0 auto}
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--red);z-index:40}
 
-.hero{padding-top:72px;padding-bottom:40px}
-.eyebrow{display:inline-block;font:600 .78rem/1 "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:7px 12px;background:var(--card)}
-h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.08;letter-spacing:-.025em;margin:18px 0 16px;max-width:17ch}
-h1 em{font-style:normal;color:var(--ok)}
-.lede{font-size:1.15rem;color:var(--muted);max-width:62ch;margin:0}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
-@media (max-width:860px){.stats{grid-template-columns:repeat(2,1fr)}}
-.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow);
-  transition:transform .25s ease,box-shadow .25s ease}
-.stat:hover{transform:translateY(-3px)}
-.stat .num{font:700 2.1rem/1 "IBM Plex Mono",monospace;letter-spacing:-.03em}
-.stat .num.zero{color:var(--ok)}
-.stat p{margin:8px 0 0;color:var(--muted);font-size:.9rem;line-height:1.4}
+.mast{border-bottom:2px solid var(--ink);position:sticky;top:0;background:rgba(243,239,230,.92);backdrop-filter:blur(6px);z-index:30}
+.mast .wrap{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:12px 0 10px}
+.mast .t{font:600 .78rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.mast nav{display:flex;gap:18px;font-size:.86rem}
+.mast nav a{color:var(--ink2);text-decoration:none}
+.mast nav a:hover{color:var(--red)}
+@media (max-width:760px){.mast nav a:not(.code){display:none}}
 
-section{padding:56px 0;border-top:1px solid var(--line)}
-h2{font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.02em;margin:0 0 10px}
-.sub{color:var(--muted);max-width:66ch;margin:0 0 28px}
+.hero{display:grid;grid-template-columns:5fr 7fr;gap:56px;padding:56px 0 64px;align-items:start}
+@media (max-width:980px){.hero{grid-template-columns:1fr;gap:36px}}
+.hero>*{min-width:0}
+.kicker{font:500 .74rem/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+h1{font:600 clamp(2.4rem,4.6vw,3.9rem)/1.02 var(--serif);letter-spacing:-.02em;margin:14px 0 20px;font-variation-settings:"opsz" 144}
+h1 em{font-style:italic;font-weight:400;color:var(--blue)}
+.lede{color:var(--ink2);font-size:1.08rem;margin:0 0 28px;max-width:46ch}
+.ledger{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:6px 0}
+.ledger-row{display:flex;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px dashed var(--rule)}
+.ledger-row:last-child{border-bottom:0}
+.ledger-row .k{font-size:.92rem;color:var(--ink2)}
+.ledger-row .lead{flex:1;border-bottom:1px dotted var(--muted);transform:translateY(-4px);min-width:20px}
+.ledger-row .v{font:600 1.35rem/1 var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ledger-row .v.zero{color:var(--ok)}
+.ledger-note{font-size:.8rem;color:var(--muted);margin-top:10px}
+.odo{display:inline-flex;overflow:hidden;height:1em;line-height:1;vertical-align:-.08em}
+.odo .d{display:inline-block;height:1em;overflow:hidden}
+.odo .strip{display:flex;flex-direction:column;transition:transform 1.6s cubic-bezier(.2,.9,.1,1)}
+.odo .strip span{height:1em;line-height:1;display:block}
 
-/* pipeline */
-.flow{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-items:stretch}
-@media (max-width:860px){.flow{grid-template-columns:repeat(2,1fr)}}
-.step{position:relative;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;box-shadow:var(--shadow);
-  transition:transform .25s ease,border-color .25s}
-.step:hover{transform:translateY(-4px);border-color:var(--accent)}
-.step b{display:block;font-size:.95rem}
-.step span{display:block;color:var(--muted);font-size:.82rem;line-height:1.35;margin-top:4px}
-.step .n{font:600 .72rem "IBM Plex Mono",monospace;color:var(--accent)}
-.lane{position:relative;height:34px;margin:14px 0 4px;border-radius:999px;background:var(--card);border:1px dashed var(--line);overflow:hidden}
-.doc{position:absolute;top:6px;left:-60px;height:20px;padding:0 8px;border-radius:5px;font:600 .7rem/20px "IBM Plex Mono",monospace;
-  background:var(--ok-bg);color:var(--ok);white-space:nowrap}
-.doc.r{background:var(--review-bg);color:var(--review)}
-.doc.d{background:var(--bad-bg);color:var(--bad)}
-.js .doc{animation:travel 9s linear infinite}
-.js .doc:nth-child(2){animation-delay:-3s}
-.js .doc:nth-child(3){animation-delay:-6s}
-@keyframes travel{from{left:-80px}to{left:100%}}
-.lane-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.82rem;color:var(--muted)}
+.desk{position:relative}
+.desk-tabs{display:flex;border-bottom:1px solid var(--ink);margin-bottom:14px;overflow-x:auto}
+.dtab{position:relative;background:none;border:0;font:500 .8rem/1.2 var(--sans);color:var(--muted);padding:9px 12px 11px;cursor:pointer;white-space:nowrap;text-align:left}
+.dtab b{display:block;font:600 .68rem var(--mono);letter-spacing:.08em;color:var(--muted)}
+.dtab[aria-selected="true"]{color:var(--ink)}
+.dtab[aria-selected="true"] b{color:var(--red)}
+.dtab .bar{position:absolute;left:0;bottom:-1px;height:3px;width:0;background:var(--ink)}
+.dtab[aria-selected="true"] .bar{width:var(--p,100%)}
+.page{position:relative;background:#fff;box-shadow:0 1px 0 var(--rule),0 18px 40px -18px rgba(28,27,25,.35),0 2px 6px rgba(28,27,25,.08);
+  aspect-ratio:var(--ar);overflow:hidden}
+.page img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity .35s}
+.page .view{position:absolute;inset:0}
+.scanline{position:absolute;left:0;right:0;height:60px;top:-60px;pointer-events:none;
+  background:linear-gradient(to bottom,transparent,rgba(36,70,166,.10) 70%,rgba(36,70,166,.55) 96%,transparent)}
+.scanline.run{animation:scan 1.3s cubic-bezier(.4,0,.6,1) forwards}
+@keyframes scan{from{top:-60px}to{top:100%}}
+.mk{position:absolute;border-radius:2px;opacity:0;transform:scale(.96);transition:opacity .3s,transform .3s}
+.mk.on{opacity:1;transform:none}
+.mk.key{outline:1.5px solid var(--blue);background:var(--blue-soft)}
+.mk.val{background:var(--marker);outline:1.5px solid rgba(168,107,12,.55)}
+.mk.tbl{outline:1.5px dashed var(--blue);background:rgba(36,70,166,.04)}
+.mk .lbl{position:absolute;left:-1px;top:-17px;font:600 .58rem/1 var(--mono);background:var(--ink);color:#fff;padding:3px 4px;white-space:nowrap;border-radius:2px;opacity:0;transition:opacity .25s}
+.mk.active .lbl{opacity:1}
+.mk.active{box-shadow:0 0 0 3px rgba(255,205,40,.35)}
+.stamp{position:absolute;left:5%;bottom:7%;font:700 clamp(1.1rem,2.6vw,1.9rem)/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  padding:10px 16px;border:4px double currentColor;border-radius:6px;opacity:0;transform:rotate(-9deg) scale(1.9);pointer-events:none;
+  mix-blend-mode:multiply;background:rgba(255,255,255,.25)}
+.stamp.ok{color:var(--ok)} .stamp.review{color:var(--red)}
+.stamp.on{animation:slam .42s cubic-bezier(.3,1.6,.5,1) forwards}
+@keyframes slam{0%{opacity:0;transform:rotate(-9deg) scale(1.9)}100%{opacity:.9;transform:rotate(-6deg) scale(1)}}
+.row{margin-top:16px;background:var(--sheet);border:1px solid var(--rule);font:500 .8rem/1.3 var(--mono)}
+.row .hd,.row .rw{display:grid;grid-template-columns:1.6fr 1.1fr 1.05fr .95fr .5fr .9fr .95fr}
+.row .hd>div{background:#ede7da;color:var(--muted);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 8px;border-right:1px solid var(--rule)}
+.row .rw>div{padding:8px;border-right:1px solid var(--rule2);border-top:1px solid var(--rule);min-height:34px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .rw>div.fill{background:rgba(255,205,40,.18)}
+.row .rw>div.llm{background:var(--blue-soft)}
+.row .rw .st{font-weight:600}
+.row .rw .st.ok{color:var(--ok)} .row .rw .st.review{color:var(--red)}
+@media (max-width:640px){.stamp{font-size:.78rem;padding:5px 8px;border-width:3px}.row .hd,.row .rw{grid-template-columns:1.4fr 1fr 1fr 1fr}.row .c-date,.row .c-cur,.row .c-tax{display:none}}
+.row .foot{border-top:1px solid var(--rule);padding:8px;font-family:var(--sans);font-size:.82rem;color:var(--ink2);min-height:38px}
+.row .foot .code{font-family:var(--mono);font-weight:600;color:var(--red);margin-right:6px}
+.row .foot .code.llmtag{color:var(--blue)}
+.desk-cap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:.84rem;color:var(--muted)}
+.desk-cap .src{font-family:var(--mono);font-size:.76rem}
 
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
-@media (max-width:860px){.cards{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow);transition:transform .25s ease}
-.card:hover{transform:translateY(-3px)}
-.card h3{margin:0 0 8px;font-size:1.05rem}
-.card p{margin:0;color:var(--muted);font-size:.93rem}
-.card code{background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:1px 5px}
+section{border-top:2px solid var(--ink);padding:52px 0 60px}
+.sec{display:grid;grid-template-columns:150px 1fr;gap:36px}
+.sec>*{min-width:0}
+@media (max-width:860px){.sec{grid-template-columns:1fr;gap:6px}}
+.num{font:400 3.4rem/1 var(--serif);color:var(--red);font-variation-settings:"opsz" 144}
+.num small{display:block;font:500 .7rem/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+h2{font:600 clamp(1.7rem,3vw,2.4rem)/1.1 var(--serif);letter-spacing:-.015em;margin:0 0 14px}
+h2 em{font-style:italic;font-weight:400}
+.body p{max-width:66ch;color:var(--ink2)}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);margin-top:26px;border-top:1px solid var(--rule)}
+.cols3>div{padding:18px 22px 4px 0;border-right:1px solid var(--rule);margin-right:22px}
+.cols3>div:last-child{border-right:0;margin-right:0}
+@media (max-width:860px){.cols3{grid-template-columns:1fr}.cols3>div{border-right:0;margin-right:0;border-bottom:1px solid var(--rule)}}
+.cols3 h3{font:600 1.08rem/1.25 var(--serif);margin:0 0 8px}
+.cols3 p{font-size:.93rem;margin:0 0 14px}
+.margin-note{font:italic .9rem/1.5 var(--serif);color:var(--muted);border-left:2px solid var(--red);padding-left:12px;margin:18px 0}
 
-/* gallery */
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-@media (max-width:860px){.gallery{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:520px){.gallery{grid-template-columns:1fr}}
-.thumb{margin:0;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);
-  transition:transform .3s ease,box-shadow .3s ease;outline:none}
-.thumb:hover,.thumb:focus{transform:translateY(-4px) rotate(-.4deg);box-shadow:0 14px 34px rgba(22,32,44,.16)}
-.thumb-img{aspect-ratio:1.28;overflow:hidden;background:#fff;border-bottom:1px solid var(--line)}
-.thumb img{display:block;width:100%;height:auto;transform-origin:top left;transition:transform .5s ease}
-.thumb:hover img,.thumb:focus img{transform:scale(1.35)}
-.thumb figcaption{padding:10px 12px;font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:8px}
-.tag{font:600 .66rem "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.04em;padding:3px 7px;border-radius:5px;white-space:nowrap}
-.tag-development{background:var(--ok-bg);color:var(--ok)}
-.tag-holdout1,.tag-holdout2{background:var(--review-bg);color:var(--review)}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
-.chip{font:500 .8rem "IBM Plex Mono",monospace;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 11px;
-  transition:background .2s,color .2s}
-.chip:hover{background:var(--bad-bg);color:var(--bad)}
+.order{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ink);background:var(--sheet);margin-top:22px}
+@media (max-width:700px){.order{grid-template-columns:1fr}}
+.order>div{padding:16px 18px}
+.order>div+div{border-left:1px solid var(--ink)}
+@media (max-width:700px){.order>div+div{border-left:0;border-top:1px solid var(--ink)}}
+.order h4{font:600 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px;color:var(--muted)}
+.order ul{margin:0;padding-left:18px;font-size:.93rem}
+.order li{margin:4px 0}
 
-/* results */
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.grid2>*,.cards>*,.flow>*,.gallery>*{min-width:0}
-.tablewrap{overflow-x:auto;border-radius:12px}
-@media (max-width:860px){.grid2{grid-template-columns:1fr}}
-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:.92rem}
-th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-th{font-weight:600;background:color-mix(in srgb,var(--line) 35%,var(--card))}
-td.num{font-family:"IBM Plex Mono",monospace;white-space:nowrap}
-tr:last-child td{border-bottom:0}
-tbody tr{transition:background .2s}
-tbody tr:hover{background:color-mix(in srgb,var(--accent) 7%,var(--card))}
-.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:8px 0 26px;counter-reset:t}
-@media (max-width:860px){.timeline{grid-template-columns:1fr}}
-.tl{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:.88rem;position:relative}
-.tl b{display:block;font-size:.92rem;margin-bottom:3px}
-.tl .mono{color:var(--muted)}
-.tl.freeze{border-color:var(--accent)}
-.tl.test{border-color:var(--review)}
-.bargroup{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:14px;box-shadow:var(--shadow)}
-.bargroup-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px;font-size:.93rem}
-.bargroup-head span{color:var(--muted)}
-b.zero{color:var(--ok)}
-.bar{display:grid;grid-template-columns:210px 1fr 76px;align-items:center;gap:12px;margin:7px 0;font-size:.86rem}
-@media (max-width:620px){.bar{grid-template-columns:1fr 64px}.bar-label{grid-column:1/-1}td.num{white-space:normal}}
-.bar-label{color:var(--muted)}
-.track{height:12px;background:var(--paper);border:1px solid var(--line);border-radius:999px;overflow:hidden}
-.fill{display:block;height:100%;border-radius:999px;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
-.fill-bad{background:var(--bad)}.fill-mid{background:var(--review)}.fill-good{background:var(--ok)}
-.bar-val{font-family:"IBM Plex Mono",monospace;text-align:right}
-.callout{background:var(--ok-bg);border:1px solid color-mix(in srgb,var(--ok) 40%,transparent);border-radius:14px;padding:20px 22px;margin-top:20px}
-.callout .big{font:700 2.4rem/1 "IBM Plex Mono",monospace;color:var(--ok)}
-.callout p{margin:6px 0 0}
-.broke{margin:16px 0 0;padding-left:18px;color:var(--muted);font-size:.93rem}
-.broke li{margin:4px 0}
+.conveyor{position:relative;margin:34px 0 8px;padding-top:30px}
+.track{position:relative;height:2px;background:var(--ink);margin-right:calc(100% / 6 - 10px)}
+.token{position:absolute;top:-30px;left:0;width:22px;height:28px;background:#fff;border:1.5px solid var(--ink);box-shadow:2px 2px 0 var(--rule);transform:translateX(-4px)}
+.token::before,.token::after{content:"";position:absolute;left:4px;right:4px;height:1.5px;background:var(--red)}
+.token::before{top:8px}.token::after{top:14px;right:8px}
+.stations{display:grid;grid-template-columns:repeat(6,1fr)}
+.station{position:relative;padding:18px 10px 0 0;font-size:.85rem;color:var(--muted);transition:color .3s}
+.station::before{content:"";position:absolute;top:-6px;left:0;width:10px;height:10px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);transition:background .3s,border-color .3s}
+.station b{display:block;font:600 .98rem/1.2 var(--serif);color:var(--ink2);margin-bottom:3px}
+.station.lit{color:var(--ink)} .station.lit::before{background:var(--red);border-color:var(--red)}
+@media (max-width:760px){.stations{grid-template-columns:repeat(2,1fr);row-gap:16px;padding-left:18px}.track,.token{display:none}.station::before{top:4px;left:-18px}}
 
-.conflict{font-family:"IBM Plex Mono",monospace;font-size:.85rem;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--review);
-  border-radius:8px;padding:12px 14px;margin:14px 0;overflow-wrap:anywhere}
-.conflict .k{color:var(--review);font-weight:600}
+.contact{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 30px;margin-top:30px;padding:34px 30px;background:#e9e3d5;border:1px solid var(--rule)}
+@media (max-width:860px){.contact{grid-template-columns:repeat(2,1fr);padding:22px 18px;gap:26px}}
+@media (max-width:520px){.contact{grid-template-columns:1fr}}
+.print{position:relative;display:block;padding:8px 8px 36px;background:#fff;border:0;cursor:zoom-in;transform:rotate(var(--tilt));
+  box-shadow:0 1px 2px rgba(0,0,0,.12),0 10px 22px -12px rgba(0,0,0,.35);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;text-align:left}
+.print:hover,.print:focus-visible{transform:rotate(0) translateY(-6px) scale(1.03);box-shadow:0 2px 4px rgba(0,0,0,.12),0 24px 40px -16px rgba(0,0,0,.45);outline:none;z-index:2}
+.print img{display:block;width:100%;height:auto;border:1px solid var(--rule2)}
+.print::after{content:"";position:absolute;top:-9px;left:50%;width:64px;height:18px;transform:translateX(-50%) rotate(-2deg);background:rgba(255,236,170,.75);box-shadow:0 1px 1px rgba(0,0,0,.08)}
+.print-cap{position:absolute;left:10px;right:10px;bottom:9px;font:italic .92rem/1.2 var(--serif);color:var(--ink2);display:flex;gap:8px;align-items:center}
+.set{font:600 .6rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:3px 5px;border:1.5px solid currentColor;border-radius:2px;font-style:normal}
+.set-dev{color:var(--ok)} .set-holdout1,.set-holdout2{color:var(--red)}
+.defects{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.defects span{font:600 .72rem/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--red);border:1.5px solid var(--red);padding:6px 8px;border-radius:3px;
+  transform:rotate(var(--r,0deg));background:rgba(255,255,255,.4);transition:transform .25s}
+.defects span:hover{transform:rotate(0) scale(1.06)}
+.lightbox{position:fixed;inset:0;background:rgba(28,27,25,.72);display:none;align-items:center;justify-content:center;z-index:60;padding:24px;cursor:zoom-out}
+.lightbox.on{display:flex;animation:fade .25s}
+.lightbox img{max-width:min(860px,100%);max-height:100%;box-shadow:0 30px 60px rgba(0,0,0,.4);background:#fff}
+@keyframes fade{from{opacity:0}to{opacity:1}}
 
-/* sheet viewer */
-.viewer{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
-.tabs{display:flex;gap:4px;padding:8px 8px 0;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--line) 30%,var(--card));flex-wrap:wrap}
-.tab{font:500 .85rem "IBM Plex Sans",sans-serif;border:1px solid transparent;border-bottom:0;background:none;color:var(--muted);padding:8px 14px;
-  border-radius:8px 8px 0 0;cursor:pointer}
-.tab[aria-selected="true"]{background:var(--card);color:var(--ink);border-color:var(--line)}
-.panes{background:#fff;overflow-x:auto}
-.pane{display:block;max-width:100%;height:auto}
-.js .pane{display:none}.js .pane.on{display:block;animation:fadein .35s ease}
-@keyframes fadein{from{opacity:0}to{opacity:1}}
-.caption{font-size:.84rem;color:var(--muted);padding:10px 14px;border-top:1px solid var(--line)}
+.ltable{width:100%;border-collapse:collapse;font-size:.92rem;background:var(--sheet);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.ltable th{font:600 .68rem/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:1px solid var(--ink)}
+.ltable td{padding:10px 12px;border-bottom:1px dashed var(--rule);vertical-align:top}
+.ltable tr:last-child td{border-bottom:0}
+.ltable td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ltable tbody tr{transition:background .2s}
+.ltable tbody tr:hover{background:rgba(255,205,40,.12)}
+@media (max-width:640px){.ltable td.n{white-space:normal}}
+.tw{overflow-x:auto}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:26px}
+@media (max-width:900px){.grid-2{grid-template-columns:1fr!important}}
+.grid-2>*{min-width:0}
 
-.limits{columns:2;column-gap:28px;color:var(--muted);font-size:.95rem;padding-left:18px}
-@media (max-width:720px){.limits{columns:1}}
-.limits li{break-inside:avoid;margin:0 0 8px}
+.zero-block{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;margin:40px 0 10px;padding:30px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+@media (max-width:700px){.zero-block{grid-template-columns:1fr;gap:20px}}
+.bigstamp{font:700 7.5rem/1 var(--mono);color:var(--ok);border:7px double var(--ok);border-radius:14px;padding:6px 34px 12px;transform:rotate(-5deg);
+  mix-blend-mode:multiply;display:inline-block;justify-self:start}
+.js .bigstamp{opacity:0;transform:rotate(-12deg) scale(2)}
+.js .zero-block.in .bigstamp{animation:slam2 .5s cubic-bezier(.3,1.6,.5,1) .15s forwards}
+@keyframes slam2{to{opacity:.92;transform:rotate(-5deg) scale(1)}}
+.zero-block p{margin:0;max-width:54ch;color:var(--ink2)}
+.zero-block p b{font:600 1.3rem/1.3 var(--serif);color:var(--ink);display:block;margin-bottom:8px}
 
-footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
-footer .row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.btn{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;padding:10px 16px;border-radius:10px;font-weight:600;
-  transition:transform .2s}
-.btn:hover{transform:translateY(-2px)}
+.gitlog{list-style:none;margin:22px 0 0;padding:0;position:relative}
+.gitlog::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--rule)}
+.gl{position:relative;display:grid;grid-template-columns:22px 1fr;gap:14px;padding:10px 0}
+.gl .dot{width:16px;height:16px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);margin-top:4px;position:relative;z-index:1}
+.gl-freeze .dot{background:var(--blue);border-color:var(--blue)}
+.gl-measure .dot{background:var(--red);border-color:var(--red)}
+.gl .hash{font:600 .82rem var(--mono);color:var(--amber);margin-right:8px}
+.gl .ref{font:600 .72rem var(--mono);color:var(--blue);border:1px solid var(--blue);border-radius:10px;padding:1px 7px;margin-right:8px;white-space:nowrap}
+.gl .msg{font:.86rem var(--mono);color:var(--ink);overflow-wrap:anywhere}
+.gl .note{display:block;font:italic .95rem/1.4 var(--serif);color:var(--muted);margin-top:3px}
+.gl-res{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:8px;font-size:.84rem}
+.gl-bar{display:inline-block;width:220px;max-width:50vw;height:10px;border:1px solid var(--ink);background:var(--sheet)}
+.gl-bar .fill{display:block;height:100%;width:0;transition:width 1.3s cubic-bezier(.2,.8,.2,1) .2s}
+.fill.bad{background:var(--red)} .fill.mid{background:var(--amber)}
+.gl-res .ok{color:var(--ok);font-weight:600}
 
-.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.diff{width:100%;border-collapse:collapse;font:.84rem/1.4 var(--mono);background:var(--sheet);border:1px solid var(--rule)}
+.diff th{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);background:#ede7da}
+.diff td{padding:9px 10px;border-bottom:1px solid var(--rule2);vertical-align:top}
+.diff .keep{color:var(--ok);font-weight:600}
+.diff .drop{color:var(--red);text-decoration:line-through;text-decoration-thickness:1px}
+.diff .held{color:var(--amber);font-weight:600}
+.diff .dec{font-family:var(--sans);font-size:.84rem;color:var(--ink2)}
+
+.term{background:#1d1c1a;color:#e9e4d8;border-radius:6px;box-shadow:0 18px 40px -18px rgba(0,0,0,.5);overflow:hidden}
+.term .bar{display:flex;gap:6px;padding:10px 12px;background:#2a2926}
+.term .bar i{width:10px;height:10px;border-radius:50%;background:#5a5750}
+.term pre{margin:0;padding:16px 18px 20px;font:.76rem/1.65 var(--mono);min-height:380px;white-space:pre-wrap;overflow-wrap:anywhere}
+.term .p{color:#9fc7ff} .term .k{color:#ff9d86} .term .x{color:#f3c969} .term .g{color:#8fd19e}
+.term .cursor{display:inline-block;width:8px;height:1em;background:#e9e4d8;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:22px 0 10px}
+.fbtn{font:500 .8rem var(--sans);border:1px solid var(--ink);background:var(--sheet);padding:6px 12px;cursor:pointer;border-radius:2px;color:var(--ink)}
+.fbtn[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.search{flex:1;min-width:180px;max-width:320px;font:.86rem var(--sans);padding:7px 10px;border:1px solid var(--rule);background:var(--sheet)}
+.sheet{max-height:460px;overflow:auto;border:1px solid var(--rule);background:var(--sheet)}
+.sheet table{width:100%;border-collapse:collapse;font:.8rem/1.3 var(--mono)}
+.sheet th{position:sticky;top:0;background:#ede7da;text-align:left;font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:7px 9px;border-bottom:1px solid var(--rule);z-index:1}
+.sheet td{padding:6px 9px;border-bottom:1px solid var(--rule2);white-space:nowrap}
+.sheet td.r{text-align:right}
+.sheet tr.review td{background:rgba(184,64,42,.045)}
+.sheet .pill{font-weight:600}
+.sheet .pill.ok{color:var(--ok)} .sheet .pill.needs_review{color:var(--red)}
+.sheet tbody tr:hover td{background:rgba(255,205,40,.18)}
+.sheet-meta{font-size:.8rem;color:var(--muted);margin-top:8px}
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+@media (max-width:760px){.shots{grid-template-columns:1fr}}
+.shot{margin:0;background:#fff;padding:6px;box-shadow:0 8px 20px -12px rgba(0,0,0,.35);transition:transform .3s}
+.shot:hover{transform:translateY(-4px)}
+.shot img{display:block;width:100%;height:auto}
+.shot figcaption{font:italic .86rem var(--serif);color:var(--muted);padding:6px 2px 0}
+
+.foot-notes{counter-reset:fn;list-style:none;padding:0;margin:20px 0 0;columns:2;column-gap:40px}
+@media (max-width:760px){.foot-notes{columns:1}}
+.foot-notes li{counter-increment:fn;break-inside:avoid;padding-left:26px;position:relative;margin-bottom:12px;font-size:.92rem;color:var(--ink2)}
+.foot-notes li::before{content:counter(fn);position:absolute;left:0;top:0;font:600 .75rem var(--mono);color:var(--red)}
+footer{border-top:2px solid var(--ink);padding:26px 0 60px;font-size:.86rem;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a.btn{font:600 .85rem var(--sans);color:var(--paper);background:var(--ink);padding:10px 16px;text-decoration:none;border-radius:2px}
+
+.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
 .js .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .js .reveal{opacity:1;transform:none;transition:none}
-  .js .doc{animation:none}
-  .doc:nth-child(1){left:8%}.doc:nth-child(2){left:40%}.doc:nth-child(3){left:72%}
-  .fill,.thumb,.thumb img,.stat,.card,.step{transition:none}
-  .thumb:hover img{transform:none}
+  .odo .strip,.gl-bar .fill,.print,.mk,.shot{transition:none}
+  .scanline{display:none}
+  .stamp.on,.js .zero-block.in .bigstamp{animation:none;opacity:.9;transform:rotate(-6deg)}
+  .js .bigstamp{opacity:.92;transform:rotate(-5deg)}
+  .term .cursor{animation:none}
 }
 </style>
 <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
 <div id="progress" aria-hidden="true"></div>
-<header class="top"><div class="wrap">
-  <div class="brand">Invoice pipeline<small>case study · Elmar Guliyev</small></div>
-  <nav><a href="#how">How it works</a><a href="#data">Test data</a><a href="#results">Results</a><a href="#robust">Robustness</a><a href="#sheet">Live sheet</a></nav>
+<header class="mast"><div class="wrap">
+  <span class="t">Invoice pipeline · case study</span>
+  <nav><a href="#reads">How it reads</a><a href="#results">Results</a><a href="#crashes">Crashes</a><a href="#sheet">The sheet</a><a class="code" href="https://github.com/kulieff21/invoice-pipeline-demo">Code ↗</a></nav>
 </div></header>
 
 <main>
 <div class="wrap hero">
-  <span class="eyebrow">Python automation · demo with synthetic data</span>
-  <h1>Invoice PDFs to Google&nbsp;Sheets, <em>without silent errors</em></h1>
-  <p class="lede">Reads generated PDFs and scans in six languages, checks every invoice against business rules and the vendor's tax-ID check digit, and writes rows that survive crashes, retries and re-runs. When it cannot read something with certainty, it says so and leaves the invoice to a person.</p>
-  <div class="stats">
-    <div class="stat reveal"><div class="num zero" data-count="{{passed_total}}">{{passed_total}}</div><p>defective invoices reached the sheet as “ok”, across {{evaluated}} test invoices, including layouts it had never seen</p></div>
-    <div class="stat reveal"><div class="num"><span data-count="{{text_pct}}">{{text_pct}}</span>%</div><p>of fields exact on {{text_n}} generated PDFs, every line item to the cent</p></div>
-    <div class="stat reveal"><div class="num" data-count="{{tests}}">{{tests}}</div><p>automated tests, including a chaos test that kills the process {{kills}} + {{crashes}} times per run</p></div>
-    <div class="stat reveal"><div class="num">$<span data-count="{{per_page_num}}" data-dec="4">{{per_page}}</span></div><p>per scanned page for the LLM second reader ({{llm_calls}} calls, ${{llm_usd}} measured)</p></div>
+  <div>
+    <div class="kicker">Python · accounts-payable automation · synthetic data</div>
+    <h1>Reads the invoice. Checks the maths. <em>Says when it isn’t sure.</em></h1>
+    <p class="lede">Invoice PDFs and office scans go in; rows in Google Sheets come out, each with a status a person can trust. Built to survive crashes, retries and re-runs without writing a row twice.</p>
+    <div class="ledger">
+      <div class="ledger-row"><span class="k">Test invoices, incl. unseen layouts</span><span class="lead"></span><span class="v"><span data-odo>{{evaluated}}</span></span></div>
+      <div class="ledger-row"><span class="k">Defective invoices that reached the sheet as “ok”</span><span class="lead"></span><span class="v zero"><span data-odo>{{passed_total}}</span></span></div>
+      <div class="ledger-row"><span class="k">Fields exact on generated PDFs</span><span class="lead"></span><span class="v"><span data-odo>{{text_pct}}</span>%</span></div>
+      <div class="ledger-row"><span class="k">Automated tests, incl. kill -9</span><span class="lead"></span><span class="v"><span data-odo>{{tests}}</span></span></div>
+      <div class="ledger-row"><span class="k">LLM cost per scanned page</span><span class="lead"></span><span class="v">$<span data-odo>{{per_page}}</span></span></div>
+    </div>
+    <div class="ledger-note">Every figure on this page is generated from measurement files and runs in the repository.</div>
+  </div>
+
+  <div class="desk" id="desk" aria-label="Demonstration: the pipeline reading four real test invoices">
+    <div class="desk-tabs" role="tablist"></div>
+    <div class="page" style="--ar:{{hero_first_w}}/{{hero_first_h}}">
+      <img src="{{hero_first_img}}" alt="Synthetic invoice being read" width="{{hero_first_w}}" height="{{hero_first_h}}">
+      <div class="view"></div>
+      <div class="scanline"></div>
+      <div class="stamp"></div>
+    </div>
+    <div class="row" aria-live="polite">
+      <div class="hd"><div>vendor</div><div class="c-tax">tax ID</div><div>number</div><div class="c-date">date</div><div class="c-cur">cur.</div><div>total</div><div>status</div></div>
+      <div class="rw"><div data-c="vendor"></div><div class="c-tax" data-c="tax ID"></div><div data-c="number"></div><div class="c-date" data-c="date"></div><div class="c-cur" data-c="cur."></div><div data-c="total"></div><div class="st" data-c="status"></div></div>
+      <div class="foot"></div>
+    </div>
+    <div class="desk-cap"><span class="cap"></span><span class="src"></span></div>
   </div>
 </div>
 
-<section id="brief"><div class="wrap grid2">
-  <div class="reveal">
-    <h2>The job</h2>
-    <p class="sub">Supplier invoices arrive as PDFs: some generated by an accounting system, some scanned on an office copier. Accounts payable wants them as rows in a spreadsheet, and above all wants to know which ones not to pay yet.</p>
+<section id="job"><div class="wrap sec">
+  <div class="num reveal">§1<small>The job</small></div>
+  <div class="body reveal">
+    <h2>Pay what is right, <em>hold what is not</em></h2>
+    <p>Supplier invoices arrive as PDFs: some generated by an accounting system, some scanned on an office copier. Accounts payable wants them as rows in a spreadsheet, and above all wants to know which ones not to pay yet.</p>
+    <div class="order">
+      <div><h4>Received</h4><ul><li>A folder of invoice PDFs, any layout, in six languages</li><li>Scans with skew, noise and lost characters</li><li>Re-sent copies, typos, sums that do not add up</li></ul></div>
+      <div><h4>Delivered</h4><ul><li>Google Sheet <code>invoices</code>: one row each, with <code>status</code>, <code>issues</code>, <code>notes</code></li><li>Google Sheet <code>line_items</code></li><li>A run report and a review queue (CSV)</li></ul></div>
+    </div>
   </div>
-  <div class="reveal">
-    <div class="tablewrap"><table>
-      <thead><tr><th>Input</th><th>Output</th></tr></thead>
+</div></section>
+
+<section id="reads"><div class="wrap sec">
+  <div class="num reveal">§2<small>How it reads</small></div>
+  <div class="body">
+    <h2 class="reveal">Six stations, <em>one transaction per file</em></h2>
+    <p class="reveal">The pipeline can be stopped at any moment and started again: files already read are skipped by their bytes, and every sheet write is an upsert by key.</p>
+    <div class="conveyor reveal" id="conveyor">
+      <div class="track"><span class="token" aria-hidden="true"></span></div>
+      <div class="stations">
+        <div class="station"><b>Inbox</b>Same bytes twice: skipped.</div>
+        <div class="station"><b>Read</b>Text layer, or OCR with deskew.</div>
+        <div class="station"><b>Extract</b>Labels in six languages.</div>
+        <div class="station"><b>Validate</b>Arithmetic, dates, check digits.</div>
+        <div class="station"><b>Record</b>SQLite, one transaction.</div>
+        <div class="station"><b>Sheet</b>Keyed upserts, retried.</div>
+      </div>
+    </div>
+    <div class="cols3 reveal">
+      <div><h3>Labels, not coordinates</h3><p>A value is found to the right of its label, below it, or inside the same run of text (<code>Fattura n. 2026/0147</code>). Line items are read from the right, so descriptions may contain numbers and wrap.</p></div>
+      <div><h3>The invoice checks itself</h3><p>When a scan loses a decimal separator (<code>15843</code>), the value is repaired only if <code>qty × price = amount</code> then holds exactly, and the repair is noted in the row. A vendor’s own error is never corrected, only reported.</p></div>
+      <div><h3>Two readers for scans</h3><p>OCR and an LLM read the same page. Agreement is taken, a check digit or the arithmetic settles disagreement, and anything left goes to a person as <code>READERS_DISAGREE</code>.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="data"><div class="wrap sec">
+  <div class="num reveal">§3<small>Test data</small></div>
+  <div class="body">
+    <h2 class="reveal">Nine layouts, <em>none of them real</em></h2>
+    <p class="reveal">Fictional companies, generated tax IDs with real check digits, a seeded generator in the repository. A quarter of the pages are rasterised like an office scanner. Some carry exactly one planted defect, so every detection can be scored. Click a page to read it.</p>
+    <div class="contact reveal">{{contact}}</div>
+    <div class="defects reveal" aria-label="Planted defects">
+      <span style="--r:-2deg">qty × price ≠ amount</span><span style="--r:1.5deg">tax ≠ rate × subtotal</span><span style="--r:-1deg">total ≠ subtotal + tax</span><span style="--r:2deg">due before issue</span><span style="--r:-1.5deg">no invoice number</span><span style="--r:1deg">invalid tax ID</span><span style="--r:-2.5deg">dated in the future</span><span style="--r:1.8deg">re-sent copy</span>
+    </div>
+  </div>
+</div></section>
+
+<section id="results"><div class="wrap sec">
+  <div class="num reveal">§4<small>Results</small></div>
+  <div class="body">
+    <h2 class="reveal">Measured against the labels, <em>scored to the cent</em></h2>
+    <div class="tw reveal"><table class="ltable">
+      <thead><tr><th>Development set</th><th>Generated PDFs</th><th>Scans</th></tr></thead>
       <tbody>
-        <tr><td>A folder of invoice PDFs, any layout, some scanned</td><td>Google Sheet <code>invoices</code>: one row per invoice with <code>status</code>, <code>issues</code>, <code>notes</code></td></tr>
-        <tr><td>Re-sent copies, typos, arithmetic that does not add up</td><td>Google Sheet <code>line_items</code>, a run report and a review queue (CSV)</td></tr>
+        <tr><td>Vendor, tax ID, number, dates, amounts, every line item</td><td class="n">{{text_n}}/{{text_n}}</td><td class="n">{{scan_n}}/{{scan_n}}</td></tr>
+        <tr><td>Currency (OCR cannot read £ or €)</td><td class="n">{{text_n}}/{{text_n}}</td><td class="n">{{scan_currency}} → {{scan_currency_llm}} with LLM</td></tr>
+        <tr><td>Planted defects caught</td><td class="n" colspan="2">{{dev_defects}}</td></tr>
+        <tr><td>Clean invoices sent to review</td><td class="n" colspan="2">{{dev_clean}} → {{dev_clean_llm}} with LLM</td></tr>
       </tbody>
     </table></div>
-  </div>
-</div></section>
 
-<section id="how"><div class="wrap">
-  <h2 class="reveal">How it works</h2>
-  <p class="sub reveal">Six stages. Every file is processed in one database transaction, and every sheet write is a keyed upsert, so the whole thing can be stopped at any moment and run again.</p>
-  <div class="flow">
-    <div class="step reveal"><span class="n">01</span><b>Inbox</b><span>Same bytes twice: skipped.</span></div>
-    <div class="step reveal"><span class="n">02</span><b>Read</b><span>Text layer, or OCR with deskew for scans.</span></div>
-    <div class="step reveal"><span class="n">03</span><b>Extract</b><span>Labels in six languages, not template coordinates.</span></div>
-    <div class="step reveal"><span class="n">04</span><b>Validate</b><span>Arithmetic, dates, tax-ID check digits, duplicates.</span></div>
-    <div class="step reveal"><span class="n">05</span><b>State + outbox</b><span>SQLite, one transaction per file.</span></div>
-    <div class="step reveal"><span class="n">06</span><b>Google Sheets</b><span>Keyed upserts with retry.</span></div>
-  </div>
-  <div class="lane" aria-hidden="true"><span class="doc">inv_0015 · ok</span><span class="doc r">inv_0013 · FUTURE_DATE</span><span class="doc d">inv_0098 · INVALID_TAX_ID</span></div>
-  <div class="lane-legend"><span>Rows go to the sheet either way. The <code>status</code> column decides what gets paid.</span></div>
-
-  <div class="cards">
-    <div class="card reveal"><h3>Labels, not coordinates</h3><p>A value is found right of its label, below it, or inside the same text run (<code>Fattura n. 2026/0147</code>). Line items are read from the right, so descriptions may contain numbers and wrap onto a second line.</p></div>
-    <div class="card reveal"><h3>The invoice checks itself</h3><p>When a scan loses a decimal separator (<code>15843</code>), the value is repaired only if <code>qty × price = amount</code> then holds exactly, and the repair is written into the row's notes. A vendor's own arithmetic error is never corrected, only reported.</p></div>
-    <div class="card reveal"><h3>Two readers for scans</h3><p>OCR and an LLM read the same page independently. Agreement is taken; disagreement is settled by the tax ID's check digit or the invoice's arithmetic; anything else goes to review as <code>READERS_DISAGREE</code>.</p></div>
-  </div>
-</div></section>
-
-<section id="data"><div class="wrap">
-  <h2 class="reveal">Test data</h2>
-  <p class="sub reveal">Every invoice is synthetic: fictional companies, generated tax IDs with real check digits, a seeded generator in the repo. A quarter of the documents are rasterised like an office scanner (150&nbsp;dpi, skew, noise, JPEG). Some carry exactly one planted defect, so every detection can be scored. Hover to zoom.</p>
-  <div class="gallery">{{gallery}}
-  </div>
-  <div class="chips reveal" aria-label="planted defects">
-    <span class="chip">line amount ≠ qty × price</span><span class="chip">tax ≠ rate × subtotal</span><span class="chip">total ≠ subtotal + tax</span>
-    <span class="chip">due before issue</span><span class="chip">missing invoice number</span><span class="chip">invalid tax ID</span><span class="chip">issue date in the future</span><span class="chip">re-sent copy</span>
-  </div>
-</div></section>
-
-<section id="results"><div class="wrap">
-  <h2 class="reveal">Results</h2>
-  <p class="sub reveal">Measured against the generator's labels; every number on this page is generated from the measurement files in the repo.</p>
-
-  <div class="grid2">
-    <div class="reveal">
-      <h3>Development set</h3>
-      <div class="tablewrap"><table>
-        <thead><tr><th></th><th>Generated PDFs</th><th>Scans</th></tr></thead>
-        <tbody>
-          <tr><td>Vendor, tax ID, number, dates, amounts, line items</td><td class="num">{{text_n}}&nbsp;/&nbsp;{{text_n}}</td><td class="num">{{scan_core_ok}}&nbsp;/&nbsp;{{scan_n}}</td></tr>
-          <tr><td>Currency (OCR cannot read £ and €)</td><td class="num">{{text_n}}&nbsp;/&nbsp;{{text_n}}</td><td class="num">{{scan_currency}} → {{scan_currency_llm}} with LLM</td></tr>
-          <tr><td>Planted defects caught</td><td class="num" colspan="2">{{dev_defects}}</td></tr>
-          <tr><td>Clean invoices sent to review</td><td class="num" colspan="2">{{dev_clean}} → {{dev_clean_llm}} with LLM</td></tr>
-        </tbody>
-      </table></div>
+    <div class="zero-block reveal">
+      <div class="bigstamp" aria-hidden="true">{{passed_total}}</div>
+      <p><b>defective invoices reached the sheet as “ok”: in the final runs, and on first sight of layouts the rules had never seen.</b>When reading failed, invoices went to review. {{silent_total}} “ok” rows carried a misread value in the final runs. One defective invoice did get through along the way, in the first version of the LLM reconciliation; §5 shows how, and the test that now stops it.</p>
     </div>
-    <div class="reveal">
-      <h3>Layouts it had never seen</h3>
-      <p class="sub" style="margin-bottom:12px">The extraction rules were frozen with a git tag before each holdout layout was written; the history shows the order. The holdouts were built to hit known weak spots, not to pass.</p>
-      <div class="timeline" style="grid-template-columns:1fr">
-        <div class="tl freeze"><b>Tag <span class="mono">rules-frozen</span></b>then NL and IT layouts are written: <span class="mono">{{h1f_clean}}</span> clean invoices to review</div>
-        <div class="tl freeze"><b>Tag <span class="mono">rules-frozen-v2</span></b>then ES and CH layouts are written: <span class="mono">{{h2f_clean}}</span> to review, <span class="mono">{{h2f_defects}}</span> defects caught</div>
+
+    <h3 class="reveal" style="font:600 1.3rem var(--serif);margin:34px 0 0">Layouts it had never seen, in the order it happened</h3>
+    <p class="reveal" style="margin-top:6px">The git history is the evidence: the rules were tagged before each holdout layout was written. The holdouts were built to hit known weak spots.</p>
+    <ol class="gitlog">{{timeline}}</ol>
+    <p class="margin-note reveal">Holdout 1 broke on a label and value in one run without a colon, a VAT-% column inside the table, and an ID search that glued two ISO dates into a fake US tax number. Holdout 2 broke on <code>Rechnungsbetrag CHF</code>, two label/value pairs on one line, the Swiss UID and a discount column.</p>
+  </div>
+</div></section>
+
+<section id="llm"><div class="wrap sec">
+  <div class="num reveal">§5<small>Second reader</small></div>
+  <div class="body">
+    <h2 class="reveal">An LLM that is <em>not trusted alone</em></h2>
+    <p class="reveal">{{llm_pages}} scan pages that failed validation went to <code>{{llm_model}}</code> through OpenRouter. It read the currency symbols the OCR could not, and it dropped repeated digits: <code>10597</code> became <code>1059</code>, and one invoice reached the sheet as “ok” with the wrong number. So the two readings are reconciled, never replaced. Real disagreements from the run written to the live sheet:</p>
+    <div class="tw reveal" style="margin-top:22px">{{diff}}</div>
+    <div class="grid-2">
+      <div class="reveal">
+        <div class="tw"><table class="ltable">
+          <thead><tr><th>Clean invoices to review</th><th>Rules</th><th>+ LLM</th></tr></thead>
+          <tbody>
+            <tr><td>Development</td><td class="n">{{dev_clean}}</td><td class="n">{{dev_clean_llm}}</td></tr>
+            <tr><td>Holdout 1 (seen)</td><td class="n">{{h1_clean}}</td><td class="n">{{h1_clean_llm}}</td></tr>
+            <tr><td>Holdout 2 (seen)</td><td class="n">{{h2_clean}}</td><td class="n">{{h2_clean_llm}}</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="reveal">
+        <p class="margin-note" style="margin-top:0">A generic “two letters and digits” match is not evidence. That loophole once let the model’s <code>CH76950391</code> overrule a correctly flagged vendor typo; a test keeps it closed. Cost from the OpenRouter meter, not from token counts: {{llm_calls}} calls, ${{llm_usd}}.</p>
       </div>
     </div>
   </div>
+</div></section>
 
-  <div style="margin-top:26px">{{bars}}
-  </div>
-  <ul class="broke reveal">
-    <li><b>Holdout 1 broke on</b> a label and value in one run without a colon, a VAT-% column inside the table, and a page-wide ID search that glued two ISO dates into a fake US tax number.</li>
-    <li><b>Holdout 2 broke on</b> a currency code after the label (<code>Rechnungsbetrag CHF</code>), two label/value pairs on one line, the Swiss UID format and a discount column.</li>
-  </ul>
-  <div class="callout reveal">
-    <div class="big" data-count="{{passed_total}}">{{passed_total}}</div>
-    <p><b>defective invoices reached the sheet as “ok” in the final runs and on first sight of both holdouts.</b> When extraction failed, invoices went to review. {{silent_total}} “ok” rows carried a misread value in the final runs. One defective invoice did get through along the way, in the first version of the LLM reconciliation; the next section shows how.</p>
+<section id="crashes"><div class="wrap sec">
+  <div class="num reveal">§6<small>Crashes</small></div>
+  <div class="body">
+    <h2 class="reveal">Kill it. <em>Run it again.</em></h2>
+    <p class="reveal">The dangerous failure is a write that succeeded on the server whose response never arrived: a naive retry appends the rows twice. Every retry here re-reads the sheet’s keys and updates in place. The test below kills the pipeline {{kills}} times at arbitrary moments and makes it die {{crashes}} times right after a write, before it can record it. This is the transcript of a real run.</p>
+    <div class="grid-2" style="grid-template-columns:1.75fr 1fr">
+      <div class="term reveal" id="term"><div class="bar"><i></i><i></i><i></i></div><pre></pre></div>
+      <div class="reveal">
+        <div class="ledger">
+          <div class="ledger-row"><span class="k">Live sheet, first run</span><span class="lead"></span><span class="v" style="font-size:1rem">{{live_first}} + {{live_lines}} rows</span></div>
+          <div class="ledger-row"><span class="k">Second run, same inbox</span><span class="lead"></span><span class="v" style="font-size:1rem">0 written</span></div>
+          <div class="ledger-row"><span class="k">Re-sent through {{live_injected}} injected faults, {{live_lost}} lost after the write</span><span class="lead"></span><span class="v" style="font-size:1rem">0 appended</span></div>
+          <div class="ledger-row"><span class="k">Re-processed with new rules, <code>--prune</code></span><span class="lead"></span><span class="v" style="font-size:1rem">{{live_pruned}} stale removed</span></div>
+        </div>
+        <p class="margin-note">Replacing the upsert with a plain append makes this test fail. A test that cannot fail proves nothing, so that was checked too.</p>
+      </div>
+    </div>
   </div>
 </div></section>
 
-<section id="llm"><div class="wrap grid2">
-  <div class="reveal">
-    <h2>A second reader, kept honest</h2>
-    <p class="sub">{{llm_pages}} scanned pages that failed validation went to an LLM (<code>{{llm_model}}</code> via OpenRouter). On its own it read the currency symbols the OCR could not, and it also dropped a repeated digit from invoice numbers and tax IDs. One such invoice went to the sheet as “ok” with the wrong number: no business rule can see that.</p>
-    <div class="conflict"><span class="k">READERS_DISAGREE</span> invoice_number: OCR read '10597', LLM read '1059'</div>
-    <p class="sub">So the two readings are reconciled instead of replaced. A generic “two letters and digits” format match does not count as evidence: that loophole once let the model's <code>CH76950391</code> beat a correctly flagged vendor typo, and a test now keeps it closed.</p>
-  </div>
-  <div class="reveal">
-    <div class="tablewrap"><table>
-      <thead><tr><th>Clean invoices sent to review</th><th>Rules only</th><th>Rules + LLM</th></tr></thead>
-      <tbody>
-        <tr><td>Development set</td><td class="num">{{dev_clean}}</td><td class="num">{{dev_clean_llm}}</td></tr>
-      </tbody>
-    </table></div>
-    <p class="sub" style="margin-top:14px">Cost measured on the OpenRouter meter, not estimated from tokens: {{llm_calls}} calls, ${{llm_usd}}, about ${{per_page}} per page.</p>
+<section id="sheet"><div class="wrap sec">
+  <div class="num reveal">§7<small>The sheet</small></div>
+  <div class="body">
+    <h2 class="reveal">What the person <em>paying the invoices</em> opens</h2>
+    <p class="reveal">All {{table_n}} rows of the run written to the live Google Sheet: {{table_ok}} ok, {{table_review}} held for review. Filter it, search it, see why each one is held.</p>
+    <div class="filters reveal">
+      <button class="fbtn" data-f="all" aria-pressed="true">All</button><button class="fbtn" data-f="ok" aria-pressed="false">ok</button><button class="fbtn" data-f="needs_review" aria-pressed="false">needs review</button>
+      <input class="search" type="search" placeholder="Search vendor, number, issue…" aria-label="Search rows">
+    </div>
+    <div class="sheet reveal"><table><thead><tr><th>file</th><th>status</th><th>vendor</th><th>number</th><th>date</th><th class="r">total</th><th>cur.</th><th>read by</th><th>issues</th></tr></thead><tbody></tbody></table></div>
+    <div class="sheet-meta"><span id="shown"></span></div>
+    <div class="shots reveal">{{shots}}</div>
+    <p class="sheet-meta">Screenshots of the same Google Sheet, first run, 25 September 2026, rows 1–21, in a viewer with Turkish number formatting.</p>
   </div>
 </div></section>
 
-<section id="robust"><div class="wrap">
-  <h2 class="reveal">Crashes, retries, re-runs</h2>
-  <p class="sub reveal">The dangerous failure is not an error. It is a write that succeeded on the server whose response never arrived: a naive retry appends the rows twice. Here every retry re-reads the sheet's keys and updates in place.</p>
-  <div class="cards">
-    <div class="card reveal"><h3>Chaos test</h3><p>The pipeline is killed with SIGKILL {{kills}} times at arbitrary moments and made to die {{crashes}} times right after a sheet write, before it can record it. The final sheets must equal a clean run, row for row. Replacing the upsert with a plain append makes the test fail.</p></div>
-    <div class="card reveal"><h3>Live Google Sheet</h3><p>{{live_first}} invoices and {{live_lines}} line items written; a second run wrote nothing; every row re-sent through {{live_injected}} injected failures, {{live_lost}} of them lost responses after the write: all rows updated in place, none appended.</p></div>
-    <div class="card reveal"><h3>Re-processing</h3><p>After a rules change the inbox can be processed again from scratch. Rows are updated by key; <code>--prune</code> removed the {{live_pruned}} rows whose key had changed, so the sheet never keeps a stale copy.</p></div>
+<section id="limits"><div class="wrap sec">
+  <div class="num reveal">§8<small>Limits</small></div>
+  <div class="body">
+    <h2 class="reveal">What this does <em>not</em> prove</h2>
+    <ol class="foot-notes reveal">
+      <li>The layouts are synthetic and written by the same person as the rules. Real vendors bring logos, stamps, handwriting and multi-page tables.</li>
+      <li>After a holdout was measured and fixed, its numbers are on seen data. Only the first-sight numbers are a test.</li>
+      <li>One page per invoice, one writer per spreadsheet.</li>
+      <li>Tax IDs are checked by check digit or format, not looked up in a registry such as VIES.</li>
+      <li>OCR runs on CPU, about six seconds per page, and drops £, €, some umlauts and many spaces.</li>
+      <li>The LLM cost is for this data, this model and one day's prices.</li>
+    </ol>
   </div>
-</div></section>
-
-<section id="sheet"><div class="wrap">
-  <h2 class="reveal">The live sheet</h2>
-  <p class="sub reveal">What the accounts-payable person opens. Amounts are written as numbers and dates as ISO text, so the spreadsheet's locale cannot turn <code>1.234</code> into a date.</p>
-  <div class="viewer reveal">
-    <div class="tabs" role="tablist">{{tabs}}</div>
-    <div class="panes">{{panes}}</div>
-    <div class="caption">Screenshots of the live Google Sheet from the first run, 25 September 2026, rows 1–21 (Turkish locale formatting in the viewer).</div>
-  </div>
-</div></section>
-
-<section id="limits"><div class="wrap">
-  <h2 class="reveal">Limits</h2>
-  <ul class="limits reveal">
-    <li>Synthetic layouts, written by the same person as the rules. Real vendors bring logos, stamps, handwriting and multi-page tables.</li>
-    <li>One page per invoice; multi-page line tables are not handled.</li>
-    <li>One writer per spreadsheet.</li>
-    <li>Tax IDs are checked by check digit or format, not looked up in a registry such as VIES.</li>
-    <li>OCR runs on CPU, about six seconds per page, and drops £, €, some umlauts and many spaces.</li>
-    <li>The holdout numbers after fixes are on seen data; only the first-sight numbers are a test.</li>
-  </ul>
 </div></section>
 </main>
 
-<footer><div class="wrap row">
-  <div>Demo with synthetic data: every company and invoice here is generated.<br>Built with AI assistance; every change was reviewed, tested and measured by me. © 2026 Elmar Guliyev, MIT License.</div>
+<footer><div class="wrap">
+  <div>Demo with synthetic data: every company and invoice here is generated.<br>Built with AI assistance; every change was reviewed, tested and measured by me. © 2026 Elmar Guliyev · MIT License</div>
   <div><a class="btn" href="https://github.com/kulieff21/invoice-pipeline-demo">Code and README</a></div>
 </div></footer>
 
+<div class="lightbox" role="dialog" aria-label="Invoice page" tabindex="-1"><img alt=""></div>
+
+<script id="hero-data" type="application/json">{{hero_json}}</script>
+<script id="table-data" type="application/json">{{table_json}}</script>
+<script id="term-data" type="application/json">{{transcript_json}}</script>
 <script>
 (function(){
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var bar = document.getElementById("progress");
-  window.addEventListener("scroll", function(){
-    var h = document.documentElement; var max = h.scrollHeight - h.clientHeight;
-    bar.style.width = (max > 0 ? 100 * h.scrollTop / max : 0) + "%";
-  }, {passive:true});
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $ = function(s, r){ return (r || document).querySelector(s); };
+  var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var sleep = function(ms){ return new Promise(function(r){ setTimeout(r, reduce ? 0 : ms); }); };
 
-  function countUp(el){
-    var target = parseFloat(el.getAttribute("data-count")); var dec = parseInt(el.getAttribute("data-dec") || "0", 10);
-    if (isNaN(target) || reduce) return;
-    var t0 = null, dur = 1100;
-    function step(t){ if (t0 === null) t0 = t; var p = Math.min(1, (t - t0) / dur); var e = 1 - Math.pow(1 - p, 3);
-      el.textContent = (target * e).toFixed(dec); if (p < 1) requestAnimationFrame(step); else el.textContent = target.toFixed(dec); }
-    el.textContent = (0).toFixed(dec); requestAnimationFrame(step);
-  }
-  var fills = document.querySelectorAll(".fill");
-  if (!reduce) fills.forEach(function(f){ f.style.width = "0"; });
+  var prog = $("#progress");
+  addEventListener("scroll", function(){ var h = document.documentElement, m = h.scrollHeight - h.clientHeight;
+    prog.style.width = (m > 0 ? 100 * h.scrollTop / m : 0) + "%"; }, {passive: true});
 
-  var io = "IntersectionObserver" in window ? new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if (!e.isIntersecting) return;
-      var el = e.target; el.classList.add("in");
-      el.querySelectorAll("[data-count]").forEach(countUp);
-      if (el.hasAttribute("data-count")) countUp(el);
-      el.querySelectorAll(".fill").forEach(function(f){ f.style.width = f.getAttribute("data-w") + "%"; });
-      io.unobserve(el);
+  // odometers: every digit rolls on its own strip, a little after load so it is actually seen
+  function buildOdo(el){
+    var text = el.textContent.trim(); el.textContent = "";
+    var odo = document.createElement("span"); odo.className = "odo"; el.appendChild(odo);
+    text.split("").forEach(function(ch, i){
+      if (!/[0-9]/.test(ch)){ var s = document.createElement("span"); s.textContent = ch; odo.appendChild(s); return; }
+      var d = document.createElement("span"); d.className = "d";
+      var strip = document.createElement("span"); strip.className = "strip";
+      for (var k = 0; k < 30; k++){ var n = document.createElement("span"); n.textContent = k % 10; strip.appendChild(n); }
+      strip.dataset.to = 20 + parseInt(ch, 10); strip.style.transitionDelay = (i * 110) + "ms";
+      d.appendChild(strip); odo.appendChild(d);
     });
-  }, {threshold: .18}) : null;
-  document.querySelectorAll(".reveal").forEach(function(el){ if (io) io.observe(el); else el.classList.add("in"); });
-  if (!io) fills.forEach(function(f){ f.style.width = f.getAttribute("data-w") + "%"; });
+  }
+  var odos = $$("[data-odo]");
+  if (!reduce){
+    odos.forEach(buildOdo);
+    setTimeout(function(){ $$(".strip").forEach(function(s){ s.style.transform = "translateY(-" + s.dataset.to + "em)"; }); }, 500);
+  }
 
-  var tabs = document.querySelectorAll(".tab"), panes = document.querySelectorAll(".pane");
-  tabs.forEach(function(tab){ tab.addEventListener("click", function(){
-    tabs.forEach(function(t){ t.setAttribute("aria-selected", t === tab ? "true" : "false"); });
-    panes.forEach(function(p){ p.classList.toggle("on", p.getAttribute("data-pane") === tab.getAttribute("data-tab")); });
-  }); });
+  function onShow(el){ el.classList.add("in"); $$(".fill", el).forEach(function(f){ f.style.width = f.dataset.w + "%"; }); }
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (!e.isIntersecting) return; onShow(e.target); io.unobserve(e.target); });
+  }, {threshold: .2}) : null;
+  $$(".reveal").forEach(function(el){ io ? io.observe(el) : onShow(el); });
+  if (reduce || !io) $$(".fill").forEach(function(f){ f.style.width = f.dataset.w + "%"; });
+
+  // ---- the desk: four real invoices being read ---------------------------------------------------------
+  var scen = JSON.parse($("#hero-data").textContent);
+  var desk = $("#desk"), tabs = $(".desk-tabs", desk), page = $(".page", desk), img = $("img", page),
+      view = $(".view", page), scanline = $(".scanline", page), stamp = $(".stamp", page),
+      cells = {}, foot = $(".foot", desk), cap = $(".cap", desk), src = $(".src", desk);
+  $$("[data-c]", desk).forEach(function(c){ cells[c.dataset.c] = c; });
+  scen.forEach(function(s, i){
+    var b = document.createElement("button"); b.className = "dtab"; b.setAttribute("role", "tab");
+    b.innerHTML = "<b>0" + (i + 1) + "</b>" + s.title + '<span class="bar"></span>';
+    b.addEventListener("click", function(){ play(i, true); }); tabs.appendChild(b);
+  });
+  var token = 0, paused = false, userPicked = false;
+  desk.addEventListener("mouseenter", function(){ paused = true; });
+  desk.addEventListener("mouseleave", function(){ paused = false; });
+
+  function typeInto(el, text, my){
+    return new Promise(function(done){
+      if (reduce || !text){ el.textContent = text || ""; return done(); }
+      var i = 0; (function tick(){ if (my !== token) return done(); el.textContent = text.slice(0, ++i); i < text.length ? setTimeout(tick, 22) : done(); })();
+    });
+  }
+  function money(v){ var n = Number(v); return v && isFinite(n) ? n.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}) : (v || ""); }
+  function addMark(b, kind, label){
+    var d = document.createElement("div"); d.className = "mk " + kind; var pad = .5;
+    d.style.left = (b[0] - pad) + "%"; d.style.top = (b[1] - pad * .7) + "%"; d.style.width = (b[2] + 2 * pad) + "%"; d.style.height = (b[3] + pad * 1.4) + "%";
+    if (label){ var l = document.createElement("span"); l.className = "lbl"; l.textContent = label; d.appendChild(l);
+      $$(".mk.active", view).forEach(function(x){ x.classList.remove("active"); }); d.classList.add("active"); }
+    view.appendChild(d); requestAnimationFrame(function(){ d.classList.add("on"); });
+  }
+
+  async function play(i, byUser){
+    var my = ++token; if (byUser) userPicked = true;
+    var s = scen[i];
+    $$(".dtab", tabs).forEach(function(t, k){ t.setAttribute("aria-selected", k === i ? "true" : "false"); t.style.removeProperty("--p"); });
+    img.style.opacity = 0; await sleep(200); if (my !== token) return;
+    page.style.setProperty("--ar", s.w + "/" + s.h);
+    img.src = s.img; img.width = s.w; img.height = s.h; img.style.opacity = 1;
+    view.innerHTML = ""; stamp.className = "stamp"; stamp.textContent = "";
+    Object.keys(cells).forEach(function(k){ cells[k].textContent = ""; cells[k].classList.remove("fill", "llm", "ok", "review"); });
+    foot.innerHTML = ""; cap.textContent = s.caption; src.textContent = s.file + " · " + s.source;
+    scanline.classList.remove("run"); void scanline.offsetWidth; if (!reduce) scanline.classList.add("run");
+    await sleep(700);
+    for (var k = 0; k < s.marks.length; k++){
+      if (my !== token) return;
+      var m = s.marks[k];
+      if (m.key) addMark(m.key, "key", null);
+      await sleep(170);
+      addMark(m.value, m.field === "line_items" ? "tbl" : "val", m.label);
+      var cell = cells[m.label];
+      if (cell){ cell.classList.add("fill"); await typeInto(cell, m.label === "total" ? money(s.row[m.label]) : s.row[m.label], my); }
+      await sleep(250);
+    }
+    for (var j = 0; j < s.llm.length; j++){
+      var c = cells[s.llm[j]]; if (!c) continue; c.classList.add("llm"); await typeInto(c, s.row[s.llm[j]], my);
+      foot.innerHTML += '<span class="code llmtag">LLM</span>' + s.llm[j] + " not legible to OCR, read by the second reader.<br>";
+    }
+    await sleep(350); if (my !== token) return;
+    $$(".mk.active", view).forEach(function(x){ x.classList.remove("active"); });
+    var ok = s.status === "ok";
+    stamp.textContent = ok ? "OK · synced" : "Needs review"; stamp.className = "stamp " + (ok ? "ok" : "review");
+    void stamp.offsetWidth; stamp.classList.add("on");
+    cells.status.textContent = ok ? "ok" : "needs_review"; cells.status.classList.add(ok ? "ok" : "review");
+    var lines = s.issues.map(function(t){ var p = t.split(": "); return '<span class="code">' + p[0] + "</span>" + p.slice(1).join(": "); });
+    s.notes.forEach(function(n){ lines.push('<span class="code llmtag">note</span>' + n); });
+    if (lines.length) foot.innerHTML += lines.join("<br>");
+    else if (!foot.innerHTML) foot.innerHTML = "No issues. Every check passed.";
+    if (reduce || userPicked) return;
+    var hold = 4500, t0 = performance.now(), tab = $$(".dtab", tabs)[i];
+    while (true){
+      await new Promise(function(r){ setTimeout(r, 100); });
+      if (my !== token) return;
+      if (paused){ t0 += 100; continue; }
+      var p = Math.min(1, (performance.now() - t0) / hold); tab.style.setProperty("--p", (100 * p) + "%");
+      if (p >= 1) break;
+    }
+    play((i + 1) % scen.length, false);
+  }
+  var started = false;
+  if ("IntersectionObserver" in window){
+    new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting && !started){ started = true; play(0, false); } }); }, {threshold: .25}).observe(desk);
+  } else play(0, false);
+
+  // ---- conveyor --------------------------------------------------------------------------------------
+  var conv = $("#conveyor"), tok = $(".token", conv), st = $$(".station", conv), convOn = false, convTimer = null;
+  function convStep(i){
+    if (!convOn) return;
+    st.forEach(function(s, k){ s.classList.toggle("lit", k <= i); });
+    tok.style.transition = i === 0 ? "none" : "left .9s cubic-bezier(.5,0,.3,1)";
+    tok.style.left = (100 * i / (st.length - 1)) + "%";
+    convTimer = setTimeout(function(){ convStep(i === st.length - 1 ? 0 : i + 1); }, i === st.length - 1 ? 1800 : 1050);
+  }
+  if (reduce) st.forEach(function(s){ s.classList.add("lit"); });
+  else if ("IntersectionObserver" in window){
+    new IntersectionObserver(function(es){ es.forEach(function(e){ var was = convOn; convOn = e.isIntersecting;
+      if (convOn && !was){ clearTimeout(convTimer); convStep(0); } }); }, {threshold: .4}).observe(conv);
+  }
+
+  // ---- contact sheet lightbox ------------------------------------------------------------------------
+  var lb = $(".lightbox"), lbImg = $("img", lb);
+  $$(".print").forEach(function(p){ p.addEventListener("click", function(){ lbImg.src = p.dataset.full; lbImg.alt = p.getAttribute("aria-label"); lb.classList.add("on"); lb.focus(); }); });
+  lb.addEventListener("click", function(){ lb.classList.remove("on"); });
+  addEventListener("keydown", function(e){ if (e.key === "Escape") lb.classList.remove("on"); });
+
+  // ---- terminal replay of a real chaos-test run --------------------------------------------------------
+  var term = $("#term"), pre = $("pre", term), tlines = JSON.parse($("#term-data").textContent), termDone = false;
+  function colour(l){
+    return l.replace(/(killed)/, '<span class="k">$1</span>').replace(/(exit 137)/, '<span class="x">$1</span>')
+            .replace(/(exit 0|equal to a clean run)/, '<span class="g">$1</span>');
+  }
+  async function replay(){
+    if (termDone) return; termDone = true;
+    var out = '<span class="p">$</span> pytest -s tests/test_chaos.py\n';
+    pre.innerHTML = out + '<span class="cursor"></span>';
+    for (var i = 0; i < tlines.length; i++){
+      await sleep(tlines[i].indexOf("kill -9") > -1 ? 520 : 320);
+      out += colour(tlines[i].replace(/</g, "&lt;")) + "\n"; pre.innerHTML = out + '<span class="cursor"></span>';
+    }
+    out += '<span class="g">1 passed</span>\n'; pre.innerHTML = out + '<span class="cursor"></span>';
+  }
+  if ("IntersectionObserver" in window) new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) replay(); }); }, {threshold: .35}).observe(term);
+  else replay();
+
+  // ---- the sheet -------------------------------------------------------------------------------------
+  var rows = JSON.parse($("#table-data").textContent), tbody = $("#sheet tbody"), filt = "all", q = "";
+  function draw(){
+    var html = "", n = 0;
+    rows.forEach(function(r){
+      if (filt !== "all" && r.s !== filt) return;
+      var hay = (r.f + " " + r.v + " " + r.n + " " + r.i).toLowerCase(); if (q && hay.indexOf(q) < 0) return;
+      n++;
+      html += '<tr class="' + (r.s === "ok" ? "" : "review") + '"><td>' + r.f + '</td><td><span class="pill ' + r.s + '">' + r.s + "</span></td><td>" +
+        r.v.replace(/</g, "&lt;") + "</td><td>" + r.n + "</td><td>" + r.d + '</td><td class="r">' + (r.t ? Number(r.t).toFixed(2) : "") + "</td><td>" + r.c +
+        "</td><td>" + (r.m === "text" ? "text" : r.m === "ocr" ? "OCR" : "OCR + LLM") + "</td><td>" + r.i + "</td></tr>";
+    });
+    tbody.innerHTML = html; $("#shown").textContent = n + " of " + rows.length + " rows shown";
+  }
+  $$(".fbtn").forEach(function(b){ b.addEventListener("click", function(){ filt = b.dataset.f;
+    $$(".fbtn").forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); }); draw(); }); });
+  $(".search").addEventListener("input", function(e){ q = e.target.value.trim().toLowerCase(); draw(); });
+  draw();
 })();
 </script>
 </body>

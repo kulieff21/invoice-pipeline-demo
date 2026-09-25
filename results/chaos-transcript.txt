@@ -1,0 +1,15 @@
+run  kill -9 after 2.0s   killed
+run  kill -9 after 2.5s   killed
+run  kill -9 after 3.0s   killed
+run  kill -9 after 3.5s   killed
+run  kill -9 after 4.5s   killed
+run  die after sheet write #1   exit 137   (write applied, not recorded)
+run  die after sheet write #2   exit 137   (write applied, not recorded)
+run  die after sheet write #1   exit 137   (write applied, not recorded)
+run  die after sheet write #3   exit 137   (write applied, not recorded)
+run  die after sheet write #2   exit 137   (write applied, not recorded)
+run  die after sheet write #5   exit 137   (write applied, not recorded)
+run  no fault                exit 0
+check invoices: 40 rows, 40 unique keys, equal to a clean run
+check line_items: 167 rows, 167 unique keys, equal to a clean run
+kills=5 crashes_after_write=6
