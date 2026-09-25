@@ -8,3 +8,5 @@ state/
 secrets/
 *.json.key
 service-account*.json
+out/
+reports/
