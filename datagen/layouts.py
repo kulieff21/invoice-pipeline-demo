@@ -40,6 +40,7 @@ class Doc:
     tax_rate: Decimal
     tax: Decimal
     total: Decimal
+    discounts: list[Decimal] | None = None  # per-line discount percent (holdout-2 "es" layout)
 
 
 def group(value: Decimal, thousands: str, decimal_sep: str) -> str:

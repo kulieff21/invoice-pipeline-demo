@@ -54,8 +54,24 @@ def make_it(rng: random.Random) -> str:
     return f"IT{rng.randint(0, 99_999_999_999):011d}"
 
 
-MAKERS = {"DE": make_de, "FR": make_fr, "GB": make_gb, "US": make_us, "NL": make_nl, "IT": make_it}
-FORMAT_ONLY = ("NL", "IT")  # no check digit in the validator: a typo must break the format
+def make_es(rng: random.Random) -> str:
+    letters = "ABCDEFGHJNPQRSUVW"
+    return f"ES{rng.choice(letters)}{rng.randint(0, 9_999_999):07d}{rng.randint(0, 9)}"
+
+
+def make_ch(rng: random.Random) -> str:
+    """Swiss UID with its mod-11 check digit: CHE + 9 digits."""
+    while True:
+        body = [rng.randint(0, 9) for _ in range(8)]
+        check = 11 - sum(w * d for w, d in zip([5, 4, 3, 2, 7, 6, 5, 4], body)) % 11
+        if check == 10:
+            continue
+        return "CHE" + "".join(map(str, body)) + str(0 if check == 11 else check)
+
+
+MAKERS = {"DE": make_de, "FR": make_fr, "GB": make_gb, "US": make_us, "NL": make_nl, "IT": make_it,
+          "ES": make_es, "CH": make_ch}
+FORMAT_ONLY = ("NL", "IT", "ES", "CHE")  # no check digit in the validator: a typo must break the format
 
 
 def corrupt(tax_id: str, rng: random.Random) -> str:
@@ -83,6 +99,10 @@ def is_valid(tax_id: str) -> bool:
         return total % 97 == 0 or (total + 55) % 97 == 0
     if tax_id.startswith("NL"):
         return len(tax_id) == 14 and tax_id[2:11].isdigit() and tax_id[11] == "B" and tax_id[12:].isdigit()
+    if tax_id.startswith("CHE"):
+        return len(tax_id) == 12 and tax_id[3:].isdigit()
+    if tax_id.startswith("ES"):
+        return len(tax_id) == 11
     if tax_id.startswith("IT"):
         return len(tax_id) == 13 and tax_id[2:].isdigit()
     return len(tax_id) == 10 and tax_id[2] == "-" and tax_id.replace("-", "").isdigit()

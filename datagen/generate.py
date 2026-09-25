@@ -39,6 +39,9 @@ LOCALES = {
     # holdout
     "nl": dict(faker="nl_NL", country="Netherlands", tax="NL", currency=["EUR"], rates=["21", "21", "9"]),
     "it": dict(faker="it_IT", country="Italia", tax="IT", currency=["EUR"], rates=["22", "22", "10", "4"]),
+    # holdout-2
+    "es": dict(faker="es_ES", country="España", tax="ES", currency=["EUR"], rates=["21", "21", "10"]),
+    "ch": dict(faker="de_CH", country="Schweiz", tax="CH", currency=["CHF"], rates=["8.1", "8.1", "2.6"]),
 }
 
 CATALOG = {
@@ -88,7 +91,16 @@ CATALOG["it"] = [
     ("Spese di spedizione", (1, 1), (9, 45)),
     ("Toner stampante nero, alta capacità", (2, 12), (38, 95)),
 ]
-CATALOG_BY_LAYOUT = {"uk": "en", "us": "en", "de": "de", "fr": "fr", "nl": "en", "it": "it"}
+CATALOG["es"] = [
+    ("Mantenimiento web, cuota mensual", (1, 1), (350, 1200)),
+    ("Consultoría migración de datos, taller presencial", (4, 16), (85, 160)),
+    ("Base de conexión USB-C 12 en 1", (1, 8), (89, 240)),
+    ("Alojamiento cloud plan Business (3 vCPU / 8 GB)", (1, 3), (40, 180)),
+    ("Horas de desarrollo backend (sprint 14)", (6, 40), (55, 120)),
+    ("Licencia de software anual, 5 puestos", (1, 2), (400, 2500)),
+    ("Gastos de envío", (1, 1), (9, 45)),
+]
+CATALOG_BY_LAYOUT = {"uk": "en", "us": "en", "de": "de", "fr": "fr", "nl": "en", "it": "it", "es": "es", "ch": "de"}
 
 NUMBER_STYLES = [
     lambda n: f"INV-2026-{n:04d}",
@@ -133,12 +145,19 @@ def make_doc(vendor: Vendor, rng: random.Random, fake: Faker) -> Doc:
     catalog = CATALOG[CATALOG_BY_LAYOUT[vendor.layout]]
     lines = []
     for desc, (qlo, qhi), (plo, phi) in rng.sample(catalog, rng.randint(1, 6)):
-        if any(w in desc for w in ("Hours", "Stunden", "Heures", "Ore di")):
+        if any(w in desc for w in ("Hours", "Stunden", "Heures", "Ore di", "Horas")):
             qty = Decimal(rng.randint(qlo * 4, qhi * 4)) / 4  # quarter hours
         else:
             qty = Decimal(rng.randint(qlo, qhi))
         unit = money(Decimal(rng.randint(plo * 100, phi * 100)) / 100)
         lines.append((desc, qty, unit, money(qty * unit)))
+    discounts = None
+    if vendor.layout == "es" and rng.random() < 0.35:  # one discounted line, amount after discount
+        discounts = [Decimal(0)] * len(lines)
+        i = rng.randrange(len(lines))
+        discounts[i] = Decimal(rng.choice([5, 10, 15]))
+        desc, qty, unit, _ = lines[i]
+        lines[i] = (desc, qty, unit, money(qty * unit * (100 - discounts[i]) / 100))
     subtotal = money(sum(line[3] for line in lines))
     rate = Decimal(rng.choice(loc["rates"]))
     tax = money(subtotal * rate / 100)
@@ -160,6 +179,7 @@ def make_doc(vendor: Vendor, rng: random.Random, fake: Faker) -> Doc:
         tax_rate=rate,
         tax=tax,
         total=subtotal + tax,
+        discounts=discounts,
     )
 
 
