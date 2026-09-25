@@ -53,6 +53,18 @@ def with_retry(fn: Callable, *, attempts: int = 7, base: float = 0.5, cap: float
             sleep(delay)
 
 
+SUSPICIOUS = {"LOW_CONFIDENCE", "LINE_AMOUNT_MISMATCH", "LINES_SUM_MISMATCH", "TAX_MISMATCH", "TOTAL_MISMATCH",
+              "NO_LINE_ITEMS", "INVALID_TAX_ID"}
+
+
+def needs_fallback(result: ExtractionResult, issues: list[Issue]) -> bool:
+    """Scans whose validation failed in a way a misread could explain. A text layer is read
+    exactly, so its arithmetic errors are the vendor's and never go to the model."""
+    if result.method == "text":
+        return False
+    return any(i.code.startswith("MISSING_") or i.code in SUSPICIOUS for i in issues)
+
+
 def _num(v):
     return None if v is None else float(v)
 
@@ -93,13 +105,6 @@ class Pipeline:
         self.stats = RunStats()
 
     # --- processing -----------------------------------------------------------------------------------
-    def _needs_fallback(self, result: ExtractionResult, issues: list[Issue]) -> bool:
-        if result.method == "text":
-            return False  # a text layer is read exactly; its arithmetic errors are the vendor's
-        suspicious = {"LOW_CONFIDENCE", "LINE_AMOUNT_MISMATCH", "LINES_SUM_MISMATCH", "TAX_MISMATCH",
-                      "TOTAL_MISMATCH", "NO_LINE_ITEMS", "INVALID_TAX_ID"}
-        return any(i.code.startswith("MISSING_") or i.code in suspicious for i in issues)
-
     def process_file(self, path: Path) -> str | None:
         data = path.read_bytes()
         sha = hashlib.sha256(data).hexdigest()
@@ -109,7 +114,7 @@ class Pipeline:
 
         result = extract(read_page(str(path), self.ocr_cache))
         issues = validate(result.invoice, self.as_of, result.confidence)
-        if self.fallback and self._needs_fallback(result, issues):
+        if self.fallback and needs_fallback(result, issues):
             better = self.fallback(str(path), result)
             if better is not None:
                 self.stats.fallback_used += 1

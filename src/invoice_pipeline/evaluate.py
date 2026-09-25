@@ -55,7 +55,7 @@ def compare(truth: Invoice, got: Invoice) -> dict[str, bool]:
     return out
 
 
-def run(split_dir: Path, cache_dir: str | None) -> dict:
+def run(split_dir: Path, cache_dir: str | None, fallback=None) -> dict:
     labels = [json.loads(line) for line in open(split_dir / "labels.jsonl", encoding="utf-8")]
     per_field: dict[str, Counter] = defaultdict(Counter)
     defects = Counter()
@@ -71,6 +71,14 @@ def run(split_dir: Path, cache_dir: str | None) -> dict:
         path = split_dir / "inbox" / rec["file"]
         page = read_page(str(path), cache_dir)
         result = extract(page)
+        used_llm = False
+        if fallback is not None:
+            from invoice_pipeline.pipeline import needs_fallback
+
+            if needs_fallback(result, validate(result.invoice, AS_OF, result.confidence)):
+                better = fallback(str(path), result)
+                if better is not None:
+                    result, used_llm = better, True
         truth = Invoice.model_validate(rec["invoice"])
         cmp = compare(truth, result.invoice)
         kind = "scan" if rec["scanned"] else "text"
@@ -89,7 +97,7 @@ def run(split_dir: Path, cache_dir: str | None) -> dict:
             false_alarms[code] += 1
         rows.append({
             "file": rec["file"], "layout": rec["layout"], "scanned": rec["scanned"], "defect": rec["defect"],
-            "method": result.method, "confidence": result.confidence, "codes": codes,
+            "method": result.method, "llm": used_llm, "confidence": result.confidence, "codes": codes,
             "wrong_fields": [f for f, ok in cmp.items() if not ok],
             "got": json.loads(result.invoice.model_dump_json()),
         })
@@ -125,8 +133,17 @@ def main() -> None:
     ap.add_argument("split_dir", type=Path)
     ap.add_argument("--out", type=Path)
     ap.add_argument("--ocr-cache", default=None)
+    ap.add_argument("--llm", action="store_true", help="apply the LLM fallback where the pipeline would")
     args = ap.parse_args()
-    report = run(args.split_dir, args.ocr_cache)
+    fallback = None
+    if args.llm:
+        from invoice_pipeline.llm import LLMFallback
+
+        fallback = LLMFallback()
+    report = run(args.split_dir, args.ocr_cache, fallback)
+    if fallback is not None:
+        report["summary"]["llm"] = {"model": fallback.model, **fallback.usage}
+        print("llm:", report["summary"]["llm"])
     print_summary(report["summary"])
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)
