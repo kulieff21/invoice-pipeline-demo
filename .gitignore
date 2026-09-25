@@ -10,3 +10,4 @@ secrets/
 service-account*.json
 out/
 reports/
+build/
