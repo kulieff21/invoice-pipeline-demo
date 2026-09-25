@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import html
 import json
+import os
 import re
 import sqlite3
 import subprocess
@@ -37,7 +38,7 @@ from invoice_pipeline.rules import Extractor  # noqa: E402
 SITE = ROOT / "site"
 ASSETS = SITE / "assets"
 RES = ROOT / "results"
-OCR_CACHE = "/mnt/d/ronin-work/py/ocr-cache"
+OCR_CACHE = os.environ.get("INVOICE_OCR_CACHE")  # optional: reuse OCR results between builds
 LIVE_STATE = ROOT / "state" / "live2.sqlite"
 
 
