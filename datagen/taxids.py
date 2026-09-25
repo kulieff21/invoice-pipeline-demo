@@ -46,13 +46,23 @@ def make_us(rng: random.Random) -> str:
     return f"{rng.randint(10, 98):02d}-{rng.randint(0, 9_999_999):07d}"
 
 
-MAKERS = {"DE": make_de, "FR": make_fr, "GB": make_gb, "US": make_us}
+def make_nl(rng: random.Random) -> str:
+    return f"NL{rng.randint(0, 999_999_999):09d}B{rng.randint(1, 99):02d}"
+
+
+def make_it(rng: random.Random) -> str:
+    return f"IT{rng.randint(0, 99_999_999_999):011d}"
+
+
+MAKERS = {"DE": make_de, "FR": make_fr, "GB": make_gb, "US": make_us, "NL": make_nl, "IT": make_it}
+FORMAT_ONLY = ("NL", "IT")  # no check digit in the validator: a typo must break the format
 
 
 def corrupt(tax_id: str, rng: random.Random) -> str:
     """One-digit typo that breaks the check digit (or the EIN length)."""
-    if "-" in tax_id:  # EIN: drop a digit
-        return tax_id[:-1]
+    if "-" in tax_id or tax_id.startswith(FORMAT_ONLY):  # drop a digit
+        i = max(i for i, ch in enumerate(tax_id) if ch.isdigit())
+        return tax_id[:i] + tax_id[i + 1 :]
     positions = [i for i, ch in enumerate(tax_id) if ch.isdigit()]
     while True:
         i = rng.choice(positions)
@@ -71,4 +81,8 @@ def is_valid(tax_id: str) -> bool:
         d = [int(c) for c in tax_id[2:9]]
         total = sum(w * x for w, x in zip(range(8, 1, -1), d)) + int(tax_id[9:11])
         return total % 97 == 0 or (total + 55) % 97 == 0
+    if tax_id.startswith("NL"):
+        return len(tax_id) == 14 and tax_id[2:11].isdigit() and tax_id[11] == "B" and tax_id[12:].isdigit()
+    if tax_id.startswith("IT"):
+        return len(tax_id) == 13 and tax_id[2:].isdigit()
     return len(tax_id) == 10 and tax_id[2] == "-" and tax_id.replace("-", "").isdigit()

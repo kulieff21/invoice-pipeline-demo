@@ -23,9 +23,12 @@ from faker import Faker
 from PIL import Image, ImageFilter
 
 from datagen import taxids
-from datagen.layouts import RENDERERS, Doc, Party
+from datagen.holdout_layouts import RENDERERS as HOLDOUT_RENDERERS
+from datagen.layouts import RENDERERS as DEV_RENDERERS
+from datagen.layouts import Doc, Party
 from invoice_pipeline.models import Invoice, LineItem, Status, money
 
+RENDERERS = {**DEV_RENDERERS, **HOLDOUT_RENDERERS}
 AS_OF = date(2026, 9, 25)  # the "today" the evaluation runs against
 
 LOCALES = {
@@ -33,6 +36,9 @@ LOCALES = {
     "de": dict(faker="de_DE", country="Deutschland", tax="DE", currency=["EUR"], rates=["19", "19", "7"]),
     "us": dict(faker="en_US", country="United States", tax="US", currency=["USD"], rates=["6", "7.25", "8.875", "6.35"]),
     "fr": dict(faker="fr_FR", country="France", tax="FR", currency=["EUR"], rates=["20", "20", "10", "5.5"]),
+    # holdout
+    "nl": dict(faker="nl_NL", country="Netherlands", tax="NL", currency=["EUR"], rates=["21", "21", "9"]),
+    "it": dict(faker="it_IT", country="Italia", tax="IT", currency=["EUR"], rates=["22", "22", "10", "4"]),
 }
 
 CATALOG = {
@@ -72,7 +78,17 @@ CATALOG = {
         ("Cartouche toner noir, haute capacité", (2, 12), (38, 95)),
     ],
 }
-CATALOG_BY_LAYOUT = {"uk": "en", "us": "en", "de": "de", "fr": "fr"}
+CATALOG["it"] = [
+    ("Canone manutenzione sito web, mensile", (1, 1), (350, 1200)),
+    ("Consulenza migrazione dati, workshop in sede", (4, 16), (85, 160)),
+    ("Docking station USB-C 12-in-1", (1, 8), (89, 240)),
+    ("Hosting cloud piano Business (3 vCPU / 8 GB)", (1, 3), (40, 180)),
+    ("Ore di sviluppo backend (sprint 14)", (6, 40), (55, 120)),
+    ("Licenza software annuale, 5 postazioni", (1, 2), (400, 2500)),
+    ("Spese di spedizione", (1, 1), (9, 45)),
+    ("Toner stampante nero, alta capacità", (2, 12), (38, 95)),
+]
+CATALOG_BY_LAYOUT = {"uk": "en", "us": "en", "de": "de", "fr": "fr", "nl": "en", "it": "it"}
 
 NUMBER_STYLES = [
     lambda n: f"INV-2026-{n:04d}",
@@ -117,7 +133,7 @@ def make_doc(vendor: Vendor, rng: random.Random, fake: Faker) -> Doc:
     catalog = CATALOG[CATALOG_BY_LAYOUT[vendor.layout]]
     lines = []
     for desc, (qlo, qhi), (plo, phi) in rng.sample(catalog, rng.randint(1, 6)):
-        if "Hours" in desc or "Stunden" in desc or "Heures" in desc:
+        if any(w in desc for w in ("Hours", "Stunden", "Heures", "Ore di")):
             qty = Decimal(rng.randint(qlo * 4, qhi * 4)) / 4  # quarter hours
         else:
             qty = Decimal(rng.randint(qlo, qhi))
