@@ -1,0 +1,12 @@
+{
+  "date": "2026-09-25",
+  "inbox": "dev (124 files)",
+  "first_run": {"invoices_appended": 120, "line_items_appended": 406},
+  "second_run": {"processed": 0, "rows_written": 0},
+  "lost_response_resync": {"injected": {"rate_limit": 2, "server_error": 1, "lost_response": 3}, "retries": 6,
+                           "invoices_updated": 120, "line_items_updated": 406, "appended": 0},
+  "harsh_resync_gave_up": {"writes_applied_before_give_up": 4, "duplicate_rows": 0},
+  "reprocess_with_prune": {"invoices_updated": 120, "line_items_updated": 406, "appended": 0,
+                           "invoices_pruned": 3, "line_items_pruned": 11, "llm_calls": 17},
+  "llm_cost": {"model": "openai/gpt-6-luna", "calls": 70, "usd": 0.043, "source": "OpenRouter /api/v1/key usage delta"}
+}

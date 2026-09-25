@@ -57,6 +57,8 @@ def main(argv: list[str] | None = None) -> None:
     run.add_argument("--as-of", type=date.fromisoformat, default=None, help="treat this date as today")
     run.add_argument("--llm", action="store_true", help="LLM fallback for scans that fail validation")
     run.add_argument("--ocr-cache", default=None)
+    run.add_argument("--prune", action="store_true",
+                     help="delete sheet rows this state no longer produces (sheet must be written only by this pipeline)")
 
     sync = sub.add_parser("sync", help="push pending rows only (e.g. after a failed sync)")
     sync.add_argument("--state", type=Path, default=Path("state/pipeline.sqlite"))
@@ -73,7 +75,7 @@ def main(argv: list[str] | None = None) -> None:
         if args.cmd == "run":
             p = Pipeline(state, make_sink(args.sink, args.credentials), as_of=args.as_of,
                          fallback=make_fallback(args.llm), ocr_cache=args.ocr_cache)
-            stats = p.run(args.inbox)
+            stats = p.run(args.inbox, prune=args.prune)
             print(f"processed {stats.processed}, skipped {stats.skipped} (already seen), "
                   f"status {stats.by_status}, synced {stats.synced}, retries {stats.retries}, "
                   f"llm fallback {stats.fallback_used}")

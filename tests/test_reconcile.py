@@ -26,6 +26,7 @@ def test_agreement_passes_through():
 def test_dropped_digit_in_invoice_number_is_a_conflict():
     out = reconcile(r(inv()), r(inv(invoice_number="1059"), "llm"))
     assert any("invoice_number" in c for c in out.conflicts)
+    assert out.invoice.invoice_number == "10597"  # the row keeps the OCR reading
 
 
 def test_check_digit_decides_the_tax_id():

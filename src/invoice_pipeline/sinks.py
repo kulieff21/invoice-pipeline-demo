@@ -28,6 +28,8 @@ class Sink(Protocol):
 
     def read(self, sheet: str) -> list[list]: ...
 
+    def prune(self, sheet: str, keep: set[str]) -> int: ...
+
 
 def plan(existing_keys: list[str], rows: list[list]) -> tuple[dict[int, list], list[list]]:
     """Split rows into in-place updates (0-based data index -> row) and appends."""
@@ -80,6 +82,17 @@ class FileSink:
         return {"updated": len(updates), "appended": len(appends)}
 
 
+    def prune(self, sheet: str, keep: set[str]) -> int:
+        table = self.read(sheet)
+        if not table:
+            return 0
+        kept = [table[0]] + [r for r in table[1:] if r[0] in keep]
+        removed = len(table) - len(kept)
+        if removed:
+            self._write(sheet, kept)
+        return removed
+
+
 class FlakySink:
     """Wraps a sink and injects the failures real APIs produce:
     - 'rate_limit' / 'server_error': the call fails before anything is written
@@ -95,6 +108,9 @@ class FlakySink:
 
     def read(self, sheet: str) -> list[list]:
         return self.inner.read(sheet)
+
+    def prune(self, sheet: str, keep: set[str]) -> int:
+        return self.inner.prune(sheet, keep)
 
     def upsert(self, sheet: str, header: list[str], rows: list[list]) -> dict[str, int]:
         roll = self.rng.random()
@@ -177,6 +193,21 @@ class SheetsSink:
         except gspread.WorksheetNotFound:
             return []
         return self._call(ws.get_all_values)
+
+    def prune(self, sheet: str, keep: set[str]) -> int:
+        """Delete rows whose key the pipeline no longer produces (e.g. after re-processing with new
+        rules). Bottom-up, so earlier row numbers stay valid while deleting."""
+        import gspread
+
+        try:
+            ws = self.book.worksheet(sheet)
+        except gspread.WorksheetNotFound:
+            return 0
+        keys = self._call(ws.col_values, 1)[1:]
+        stale = [i + 2 for i, k in enumerate(keys) if k and k not in keep]
+        for row in reversed(stale):
+            self._call(ws.delete_rows, row)
+        return len(stale)
 
     def upsert(self, sheet: str, header: list[str], rows: list[list]) -> dict[str, int]:
         ws = self._ws(sheet, header)

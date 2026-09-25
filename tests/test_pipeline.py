@@ -95,3 +95,16 @@ def test_same_number_different_amount_goes_to_review(tmp_path):
     assert len(rows) == 2
     b = next(r for r in rows if r[15] == "b.pdf")
     assert b[1] == "needs_review" and "DUPLICATE_INVOICE" in b[13] and "#conflict-" in b[0]
+
+
+def test_prune_removes_rows_the_state_no_longer_produces(text_inbox, tmp_path):
+    out = FileSink(tmp_path / "out")
+    run(text_inbox / "inbox", tmp_path / "s.sqlite", out)
+    table = out.read(INVOICE_SHEET)
+    out._write(INVOICE_SHEET, table + [["stale|key"] + [""] * (len(table[0]) - 1)])
+    state = State(tmp_path / "s.sqlite")
+    p = Pipeline(state, out, sleep=lambda _: None, log=lambda _: None)
+    p.sync(prune=True)
+    state.close()
+    assert p.stats.synced[INVOICE_SHEET]["pruned"] == 1
+    assert out.read(INVOICE_SHEET) == table

@@ -133,5 +133,8 @@ class State:
                         [(h, sheet, k) for k, h in done])
         cur.execute("COMMIT")
 
+    def keys(self, sheet: str) -> set[str]:
+        return {r[0] for r in self.db.execute("SELECT row_key FROM outbox WHERE sheet=?", (sheet,))}
+
     def sheets(self) -> list[str]:
         return [r[0] for r in self.db.execute("SELECT DISTINCT sheet FROM outbox ORDER BY sheet")]

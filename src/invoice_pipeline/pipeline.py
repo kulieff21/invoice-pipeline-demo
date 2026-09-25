@@ -175,7 +175,7 @@ class Pipeline:
                 self.log(f"{path.name}: {status}")
 
     # --- sync ------------------------------------------------------------------------------------------
-    def sync(self) -> None:
+    def sync(self, prune: bool = False) -> None:
         if self.sink is None:
             return
         for sheet in (INVOICE_SHEET, LINE_SHEET):
@@ -195,9 +195,12 @@ class Pipeline:
                 self.state.mark_synced(sheet, [(k, h) for k, _, h in batch])
                 for k in totals:
                     totals[k] += result[k]
+            if prune:  # only for a sheet this pipeline writes alone (see README, Limits)
+                totals["pruned"] = with_retry(lambda: self.sink.prune(sheet, self.state.keys(sheet)),
+                                              sleep=self.sleep)
             self.stats.synced[sheet] = totals
 
-    def run(self, inbox: Path) -> RunStats:
+    def run(self, inbox: Path, prune: bool = False) -> RunStats:
         self.process_inbox(inbox)
-        self.sync()
+        self.sync(prune)
         return self.stats

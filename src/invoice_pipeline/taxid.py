@@ -43,10 +43,10 @@ def normalize(tax_id: str) -> str:
 
 
 def check(tax_id: str) -> tuple[bool, str]:
-    """(valid, how) where how is 'checksum', 'format' or 'unknown-country'."""
+    """(valid, how) where how is 'checksum', 'format', 'US EIN format' or 'unknown-country'."""
     t = normalize(tax_id)
-    if re.fullmatch(r"\d{2}-\d{7}", t):
-        return True, "format"
+    if re.fullmatch(r"\d{2}-\d+", t):  # US EIN: NN-NNNNNNN
+        return bool(re.fullmatch(r"\d{2}-\d{7}", t)), "US EIN format"
     if t.startswith("CH"):  # Swiss VAT numbers are UIDs: CHE + 9 digits with a check digit
         return bool(re.fullmatch(r"CHE\d{9}", t)) and _ch_ok(t[3:]), "checksum"
     country, body = t[:2], t[2:]

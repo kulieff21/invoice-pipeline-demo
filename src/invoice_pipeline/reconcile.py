@@ -61,8 +61,8 @@ def reconcile(rules: ExtractionResult, llm: ExtractionResult) -> ExtractionResul
             # "two letters and digits" match is not (an LLM's "CH76950391" once beat the printed,
             # correctly flagged "CHE76950391" that way)
             ca, cb = taxid.check(va), taxid.check(vb)
-            ok_a = ca[0] and ca[1] in ("checksum", "format")
-            ok_b = cb[0] and cb[1] in ("checksum", "format")
+            ok_a = ca[0] and ca[1] != "unknown-country"
+            ok_b = cb[0] and cb[1] != "unknown-country"
             if ok_a != ok_b:
                 setattr(out, field, va if ok_a else vb)
                 notes.append(f"tax ID: readers disagree ({va} / {vb}); kept the one that passes its check")
@@ -70,6 +70,9 @@ def reconcile(rules: ExtractionResult, llm: ExtractionResult) -> ExtractionResul
         if field == "vendor_name":
             notes.append(f"vendor name: readers disagree ('{va}' / '{vb}')")
             continue  # low stakes, the vendor registry may overrule it later
+        # undecided: the row keeps the OCR reading (keys stay stable across re-runs); the LLM's
+        # reading is in the conflict message the reviewer sees
+        setattr(out, field, va)
         conflicts.append(f"{field}: OCR read '{va}', LLM read '{vb}'")
 
     # amounts: pick the reading under which the invoice adds up

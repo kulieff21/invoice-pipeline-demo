@@ -93,7 +93,8 @@ OpenRouter meter, about $0.0006 per page.
 **Live Google Sheets** (`results/live-sheets-2026-09-25.md`): the dev inbox written to a real
 spreadsheet, re-run (0 rows written), then every row re-sent through a fault injector that
 drops responses after the write was applied: all rows updated in place, 0 appended, no duplicate
-keys.
+keys. `--prune` removes rows whose key a re-processing no longer produces (the sheet must be
+written by this pipeline only).
 
 **Crash safety** (`tests/test_chaos.py`): the pipeline is killed with SIGKILL at arbitrary
 moments and made to die right after a sheet write is applied but before it is recorded (5 + 6

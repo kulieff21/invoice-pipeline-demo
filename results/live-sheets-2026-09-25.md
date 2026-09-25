@@ -11,3 +11,4 @@ Service account, one spreadsheet, dev inbox (124 files: 81 text-layer, 43 scans 
 
 The fault injector wraps the real `SheetsSink`: every write it lets through, or applies and then
 reports as a timeout, hits the Google Sheets API.
+| Re-processing the inbox from a fresh state with the final rules and the LLM second reader, `--prune` | 120 + 406 rows updated in place, 0 appended; 3 + 11 rows removed whose key had changed (an earlier run keyed three invoices by the LLM's misread number, since fixed) |
