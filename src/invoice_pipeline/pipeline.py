@@ -17,6 +17,7 @@ from pathlib import Path
 from invoice_pipeline import taxid
 from invoice_pipeline.layout import read_page
 from invoice_pipeline.models import ExtractionResult, Invoice, Issue, Severity, Status
+from invoice_pipeline.reconcile import reconcile
 from invoice_pipeline.rules import extract
 from invoice_pipeline.sinks import RetryableError, Sink
 from invoice_pipeline.state import State
@@ -115,11 +116,11 @@ class Pipeline:
         result = extract(read_page(str(path), self.ocr_cache))
         issues = validate(result.invoice, self.as_of, result.confidence)
         if self.fallback and needs_fallback(result, issues):
-            better = self.fallback(str(path), result)
-            if better is not None:
+            second = self.fallback(str(path), result)
+            if second is not None:
                 self.stats.fallback_used += 1
-                result = better
-                issues = validate(result.invoice, self.as_of, result.confidence)
+                result = reconcile(result, second)
+                issues = validate(result.invoice, self.as_of, result.confidence, conflicts=result.conflicts)
 
         inv, notes = result.invoice, list(result.notes)
         if inv.vendor_tax_id and taxid.check(inv.vendor_tax_id)[0]:

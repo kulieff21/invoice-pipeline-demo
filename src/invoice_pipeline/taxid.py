@@ -47,7 +47,7 @@ def check(tax_id: str) -> tuple[bool, str]:
     t = normalize(tax_id)
     if re.fullmatch(r"\d{2}-\d{7}", t):
         return True, "format"
-    if t.startswith("CHE"):
+    if t.startswith("CH"):  # Swiss VAT numbers are UIDs: CHE + 9 digits with a check digit
         return bool(re.fullmatch(r"CHE\d{9}", t)) and _ch_ok(t[3:]), "checksum"
     country, body = t[:2], t[2:]
     if country == "DE":

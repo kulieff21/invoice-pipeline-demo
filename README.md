@@ -73,6 +73,23 @@ built to hit known weak spots rather than to pass.
 The number that matters for accounts payable is the last bold row: when extraction failed on a
 layout it had never seen, invoices went to review. None went through as `ok` with wrong data.
 
+**Second reader for scans** (`results/*-llm-final.json`, model `openai/gpt-6-luna` via OpenRouter).
+On its own the LLM read the currency the OCR could not, but it also dropped a repeated digit from
+invoice numbers and tax IDs (`10597` → `1059`), and one such invoice went to the sheet as `ok` with
+a wrong number: nothing in the business rules can see that. So the two readers are reconciled
+(`reconcile.py`): agreement is taken, disagreement is decided by the tax ID's check digit or the
+invoice's own arithmetic, and anything undecided goes to review as `READERS_DISAGREE`.
+
+| Clean invoices sent to review | Rules only | Rules + LLM, reconciled |
+|---|---|---|
+| Development set | 8 / 89 | 3 / 89 |
+| Holdout 1 (seen) | 1 / 59 | 0 / 59 |
+| Holdout 2 (seen) | 9 / 60 | 4 / 60 |
+| Defective invoices passed as `ok` / `ok` rows with a misread field | 0 / 0 | 0 / 0 |
+
+35 pages went to the LLM across the three sets; 70 calls over two runs cost $0.043 on the
+OpenRouter meter, about $0.0006 per page.
+
 **Live Google Sheets** (`results/live-sheets-2026-09-25.md`): the dev inbox written to a real
 spreadsheet, re-run (0 rows written), then every row re-sent through a fault injector that
 drops responses after the write was applied: all rows updated in place, 0 appended, no duplicate
@@ -107,9 +124,14 @@ Two worksheets are created: `invoices` (one row per invoice, with `status`, `iss
 and `line_items`. Values are written RAW: amounts as numbers, dates as ISO text, so the sheet's
 locale cannot turn `1.234` into a date.
 
-LLM fallback (optional): `uv sync --extra llm`, set `ANTHROPIC_API_KEY`, add `--llm`. It is used
-only for scans whose validation failed, returns JSON under a strict schema, and its result goes
-through the same validation.
+LLM second reader (optional): `uv sync --extra llm`, add `--llm`. Used only for scans whose
+validation failed; the model reads the PDF and returns JSON under a strict schema, which is then
+reconciled with the OCR reading and validated again.
+
+```bash
+export ANTHROPIC_API_KEY=...                        # Anthropic (default model claude-opus-5), or:
+export INVOICE_LLM_PROVIDER=openrouter OPENROUTER_API_KEY=... INVOICE_LLM_MODEL=openai/gpt-6-luna
+```
 
 ## Layout
 
@@ -121,7 +143,8 @@ src/invoice_pipeline/
   rules.py        field extraction
   validate.py     business rules
   taxid.py        tax ID checks
-  llm.py          optional LLM fallback
+  llm.py          optional LLM second reader (Anthropic API or OpenRouter)
+  reconcile.py    OCR vs LLM: agreement, check digits, arithmetic, else review
   state.py        SQLite: files, vendor registry, outbox
   sinks.py        Google Sheets, local JSON, fault-injecting wrapper
   pipeline.py     orchestration, retry, duplicates

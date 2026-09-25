@@ -1,0 +1,4157 @@
+{
+ "summary": {
+  "files": 80,
+  "seconds": 66.5,
+  "fields": {
+   "vendor_name": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "vendor_tax_id": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "invoice_number": {
+    "scan_ok": 23,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "issue_date": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "due_date": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "currency": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "subtotal": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "tax_rate": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "tax_amount": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "total": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "line_items": {
+    "scan_ok": 24,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   },
+   "line_descriptions": {
+    "scan_ok": 19,
+    "scan_n": 24,
+    "text_ok": 56,
+    "text_n": 56
+   }
+  },
+  "defects": {
+   "due_before_issue": {
+    "planted": 3,
+    "caught": 3
+   },
+   "future_date": {
+    "planted": 4,
+    "caught": 4
+   },
+   "line_amount": {
+    "planted": 5,
+    "caught": 5
+   },
+   "missing_number": {
+    "planted": 3,
+    "caught": 3
+   },
+   "tax": {
+    "planted": 1,
+    "caught": 1
+   },
+   "tax_id": {
+    "planted": 1,
+    "caught": 1
+   },
+   "total": {
+    "planted": 4,
+    "caught": 4
+   }
+  },
+  "clean": {
+   "total": 59,
+   "flagged": 0
+  },
+  "defective_passed_as_ok": [],
+  "ok_with_wrong_fields": [],
+  "false_alarm_codes": {
+   "READERS_DISAGREE": 1
+  },
+  "llm": {
+   "model": "openai/gpt-6-luna",
+   "input_tokens": 18,
+   "output_tokens": 3201,
+   "calls": 6,
+   "refusals": 0
+  }
+ },
+ "rows": [
+  {
+   "file": "inv_0001.pdf",
+   "layout": "nl",
+   "scanned": true,
+   "defect": "tax",
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 1.0,
+   "codes": [
+    "TAX_MISMATCH"
+   ],
+   "wrong_fields": [
+    "line_descriptions"
+   ],
+   "got": {
+    "vendor_name": "Holland Trading",
+    "vendor_tax_id": "NL433768154B49",
+    "invoice_number": "RE-2026-0614",
+    "issue_date": "2026-06-19",
+    "due_date": "2026-07-19",
+    "currency": "EUR",
+    "subtotal": "3464.63",
+    "tax_rate": "21",
+    "tax_amount": "658.28",
+    "total": "4122.91",
+    "line_items": [
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "4",
+      "unit_price": "57.98",
+      "amount": "231.92",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software license - 5 seats",
+      "quantity": "2",
+      "unit_price": "546.32",
+      "amount": "1092.64",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "1",
+      "unit_price": "161.00",
+      "amount": "161.00",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "11",
+      "unit_price": "50.32",
+      "amount": "553.52",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "3",
+      "unit_price": "186.89",
+      "amount": "560.67",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "13.75",
+      "unit_price": "62.90",
+      "amount": "864.88",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0002.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "van de Brink & Köster",
+    "vendor_tax_id": "NL882965198B50",
+    "invoice_number": "RE-2026-0156",
+    "issue_date": "2026-07-19",
+    "due_date": "2026-08-18",
+    "currency": "EUR",
+    "subtotal": "2031.90",
+    "tax_rate": "21",
+    "tax_amount": "426.70",
+    "total": "2458.60",
+    "line_items": [
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "14",
+      "unit_price": "90.93",
+      "amount": "1273.02",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "2",
+      "unit_price": "307.30",
+      "amount": "614.60",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "1",
+      "unit_price": "144.28",
+      "amount": "144.28",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0003.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Havenbedrijf Rotterdam",
+    "vendor_tax_id": "NL339709088B52",
+    "invoice_number": "INV-2026-0276",
+    "issue_date": "2026-06-28",
+    "due_date": "2026-08-12",
+    "currency": "EUR",
+    "subtotal": "4846.35",
+    "tax_rate": "21",
+    "tax_amount": "1017.73",
+    "total": "5864.08",
+    "line_items": [
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "16",
+      "unit_price": "121.37",
+      "amount": "1941.92",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "4",
+      "unit_price": "140.02",
+      "amount": "560.08",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "757.18",
+      "amount": "757.18",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "1",
+      "unit_price": "872.93",
+      "amount": "872.93",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "3",
+      "unit_price": "238.08",
+      "amount": "714.24",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0004.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Stichting van den Nuwenhuysen",
+    "vendor_tax_id": "NL912645326B73",
+    "invoice_number": "10085",
+    "issue_date": "2026-07-03",
+    "due_date": "2026-08-17",
+    "currency": "EUR",
+    "subtotal": "5774.39",
+    "tax_rate": "21",
+    "tax_amount": "1212.62",
+    "total": "6987.01",
+    "line_items": [
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "5",
+      "unit_price": "126.21",
+      "amount": "631.05",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "2",
+      "unit_price": "2195.18",
+      "amount": "4390.36",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "2",
+      "unit_price": "249.13",
+      "amount": "498.26",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "2",
+      "unit_price": "127.36",
+      "amount": "254.72",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0005.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Maderna-Pizzo e figli",
+    "vendor_tax_id": "IT13044082700",
+    "invoice_number": "INV-2026-0176",
+    "issue_date": "2026-07-15",
+    "due_date": "2026-08-29",
+    "currency": "EUR",
+    "subtotal": "2601.98",
+    "tax_rate": "22",
+    "tax_amount": "572.44",
+    "total": "3174.42",
+    "line_items": [
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "34",
+      "unit_price": "70.93",
+      "amount": "2411.62",
+      "discount_percent": null
+     },
+     {
+      "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
+      "quantity": "2",
+      "unit_price": "95.18",
+      "amount": "190.36",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0006.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "van de Brink & Köster",
+    "vendor_tax_id": "NL882965198B50",
+    "invoice_number": "RE-2026-0169",
+    "issue_date": "2026-06-22",
+    "due_date": "2026-07-22",
+    "currency": "EUR",
+    "subtotal": "8722.99",
+    "tax_rate": "9",
+    "tax_amount": "785.07",
+    "total": "9508.06",
+    "line_items": [
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "28",
+      "unit_price": "108.78",
+      "amount": "3045.84",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "7",
+      "unit_price": "89.59",
+      "amount": "627.13",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "1",
+      "unit_price": "122.19",
+      "amount": "122.19",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "3",
+      "unit_price": "153.17",
+      "amount": "459.51",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "2",
+      "unit_price": "71.77",
+      "amount": "143.54",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "2",
+      "unit_price": "2162.39",
+      "amount": "4324.78",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0007.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Argan SPA",
+    "vendor_tax_id": "IT44586319683",
+    "invoice_number": "RE-2026-0536",
+    "issue_date": "2026-09-19",
+    "due_date": "2026-10-19",
+    "currency": "EUR",
+    "subtotal": "4653.62",
+    "tax_rate": "22",
+    "tax_amount": "1023.80",
+    "total": "5677.42",
+    "line_items": [
+     {
+      "description": "Spese di spedizione",
+      "quantity": "1",
+      "unit_price": "13.30",
+      "amount": "13.30",
+      "discount_percent": null
+     },
+     {
+      "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
+      "quantity": "2",
+      "unit_price": "52.38",
+      "amount": "104.76",
+      "discount_percent": null
+     },
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "8",
+      "unit_price": "59.77",
+      "amount": "478.16",
+      "discount_percent": null
+     },
+     {
+      "description": "Licenza software annuale, 5 postazioni",
+      "quantity": "2",
+      "unit_price": "1185.69",
+      "amount": "2371.38",
+      "discount_percent": null
+     },
+     {
+      "description": "Docking station USB-C 12-in-1",
+      "quantity": "6",
+      "unit_price": "180.29",
+      "amount": "1081.74",
+      "discount_percent": null
+     },
+     {
+      "description": "Canone manutenzione sito web, mensile",
+      "quantity": "1",
+      "unit_price": "604.28",
+      "amount": "604.28",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0008.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Havenbedrijf Rotterdam",
+    "vendor_tax_id": "NL339709088B52",
+    "invoice_number": "INV-2026-0301",
+    "issue_date": "2026-06-27",
+    "due_date": "2026-08-11",
+    "currency": "EUR",
+    "subtotal": "2445.86",
+    "tax_rate": "21",
+    "tax_amount": "513.63",
+    "total": "2959.49",
+    "line_items": [
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "7",
+      "unit_price": "157.51",
+      "amount": "1102.57",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "1",
+      "unit_price": "1343.29",
+      "amount": "1343.29",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0009.pdf",
+   "layout": "nl",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.9,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "vanBunschotenBV",
+    "vendor_tax_id": "NL669928629B63",
+    "invoice_number": "RE-2026-0432",
+    "issue_date": "2026-06-10",
+    "due_date": "2026-07-10",
+    "currency": "EUR",
+    "subtotal": "5283.91",
+    "tax_rate": "21",
+    "tax_amount": "1109.62",
+    "total": "6393.53",
+    "line_items": [
+     {
+      "description": "Designreviewand accessibilityauditofcheckout flow",
+      "quantity": "1",
+      "unit_price": "1296.86",
+      "amount": "1296.86",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours-backend development(sprint14)",
+      "quantity": "21.25",
+      "unit_price": "92.67",
+      "amount": "1969.24",
+      "discount_percent": null
+     },
+     {
+      "description": "Annualsoftwarelicence-5seats",
+      "quantity": "1",
+      "unit_price": "701.11",
+      "amount": "701.11",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-Cdockingstation12-in-1",
+      "quantity": "6",
+      "unit_price": "219.45",
+      "amount": "1316.70",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0010.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "van Bunschoten BV",
+    "vendor_tax_id": "NL669928629B63",
+    "invoice_number": "RE-2026-0443",
+    "issue_date": "2026-06-22",
+    "due_date": "2026-07-22",
+    "currency": "EUR",
+    "subtotal": "2658.80",
+    "tax_rate": "21",
+    "tax_amount": "558.35",
+    "total": "3217.15",
+    "line_items": [
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "1077.79",
+      "amount": "1077.79",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "2",
+      "unit_price": "145.97",
+      "amount": "291.94",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "11.35",
+      "amount": "11.35",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "900.94",
+      "amount": "900.94",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "1",
+      "unit_price": "376.78",
+      "amount": "376.78",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0011.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "van de Brink & Köster",
+    "vendor_tax_id": "NL882965198B50",
+    "invoice_number": "RE-2026-0186",
+    "issue_date": "2026-09-20",
+    "due_date": "2026-10-20",
+    "currency": "EUR",
+    "subtotal": "2928.81",
+    "tax_rate": "21",
+    "tax_amount": "615.05",
+    "total": "3543.86",
+    "line_items": [
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "3",
+      "unit_price": "224.17",
+      "amount": "672.51",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "1",
+      "unit_price": "398.43",
+      "amount": "398.43",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "10",
+      "unit_price": "45.08",
+      "amount": "450.80",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "4",
+      "unit_price": "147.19",
+      "amount": "588.76",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "818.31",
+      "amount": "818.31",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0012.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": "due_before_issue",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "DUE_BEFORE_ISSUE"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Maderna-Pizzo e figli",
+    "vendor_tax_id": "IT13044082700",
+    "invoice_number": "INV-2026-0177",
+    "issue_date": "2026-06-23",
+    "due_date": "2026-06-04",
+    "currency": "EUR",
+    "subtotal": "1314.28",
+    "tax_rate": "10",
+    "tax_amount": "131.43",
+    "total": "1445.71",
+    "line_items": [
+     {
+      "description": "Licenza software annuale, 5 postazioni",
+      "quantity": "1",
+      "unit_price": "1297.58",
+      "amount": "1297.58",
+      "discount_percent": null
+     },
+     {
+      "description": "Spese di spedizione",
+      "quantity": "1",
+      "unit_price": "16.70",
+      "amount": "16.70",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0014.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "van de Brink & Köster",
+    "vendor_tax_id": "NL882965198B50",
+    "invoice_number": "RE-2026-0212",
+    "issue_date": "2026-06-02",
+    "due_date": "2026-07-02",
+    "currency": "EUR",
+    "subtotal": "5872.83",
+    "tax_rate": "21",
+    "tax_amount": "1233.29",
+    "total": "7106.12",
+    "line_items": [
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "2",
+      "unit_price": "1378.10",
+      "amount": "2756.20",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "1010.77",
+      "amount": "1010.77",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "13",
+      "unit_price": "88.73",
+      "amount": "1153.49",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "7",
+      "unit_price": "92.33",
+      "amount": "646.31",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "6",
+      "unit_price": "51.01",
+      "amount": "306.06",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0015.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Udinesi-Cabibbo e figli",
+    "vendor_tax_id": "IT62730184045",
+    "invoice_number": "INV-2026-0367",
+    "issue_date": "2026-08-18",
+    "due_date": "2026-09-17",
+    "currency": "EUR",
+    "subtotal": "4084.87",
+    "tax_rate": "10",
+    "tax_amount": "408.49",
+    "total": "4493.36",
+    "line_items": [
+     {
+      "description": "Consulenza migrazione dati, workshop in sede",
+      "quantity": "13",
+      "unit_price": "140.99",
+      "amount": "1832.87",
+      "discount_percent": null
+     },
+     {
+      "description": "Canone manutenzione sito web, mensile",
+      "quantity": "1",
+      "unit_price": "788.48",
+      "amount": "788.48",
+      "discount_percent": null
+     },
+     {
+      "description": "Docking station USB-C 12-in-1",
+      "quantity": "6",
+      "unit_price": "220.97",
+      "amount": "1325.82",
+      "discount_percent": null
+     },
+     {
+      "description": "Toner stampante nero, alta capacità",
+      "quantity": "2",
+      "unit_price": "68.85",
+      "amount": "137.70",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0017.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "van Bunschoten BV",
+    "vendor_tax_id": "NL669928629B63",
+    "invoice_number": "RE-2026-0452",
+    "issue_date": "2026-06-08",
+    "due_date": "2026-07-08",
+    "currency": "EUR",
+    "subtotal": "2156.46",
+    "tax_rate": "21",
+    "tax_amount": "452.86",
+    "total": "2609.32",
+    "line_items": [
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "1",
+      "unit_price": "258.20",
+      "amount": "258.20",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "919.78",
+      "amount": "919.78",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "2",
+      "unit_price": "31.35",
+      "amount": "62.70",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "772.69",
+      "amount": "772.69",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "1",
+      "unit_price": "143.09",
+      "amount": "143.09",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0018.pdf",
+   "layout": "nl",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.9,
+   "codes": [],
+   "wrong_fields": [
+    "line_descriptions"
+   ],
+   "got": {
+    "vendor_name": "Holland Trading",
+    "vendor_tax_id": "NL433768154B49",
+    "invoice_number": "RE-2026-0624",
+    "issue_date": "2026-08-02",
+    "due_date": "2026-09-01",
+    "currency": "EUR",
+    "subtotal": "6562.54",
+    "tax_rate": "9",
+    "tax_amount": "590.63",
+    "total": "7153.17",
+    "line_items": [
+     {
+      "description": "Websitemaintenance,monthlyretainer",
+      "quantity": "1",
+      "unit_price": "797.37",
+      "amount": "797.37",
+      "discount_percent": null
+     },
+     {
+      "description": "Printertonercartridge,black,highyld",
+      "quantity": "8",
+      "unit_price": "48.82",
+      "amount": "390.56",
+      "discount_percent": null
+     },
+     {
+      "description": "On-sitesupportvisit incl.travel withinzone2",
+      "quantity": "2",
+      "unit_price": "220.30",
+      "amount": "440.60",
+      "discount_percent": null
+     },
+     {
+      "description": "Annualsoftwarelicence-5seats",
+      "quantity": "1",
+      "unit_price": "1368.81",
+      "amount": "1368.81",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting-data migrationworkshop",
+      "quantity": "12",
+      "unit_price": "98.09",
+      "amount": "1177.08",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours-backend development(sprint14) %6",
+      "quantity": "20.75",
+      "unit_price": "115.09",
+      "amount": "2388.12",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0019.pdf",
+   "layout": "nl",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.9,
+   "codes": [],
+   "wrong_fields": [
+    "line_descriptions"
+   ],
+   "got": {
+    "vendor_name": "van deBrink&Koster",
+    "vendor_tax_id": "NL882965198B50",
+    "invoice_number": "RE-2026-0241",
+    "issue_date": "2026-09-20",
+    "due_date": "2026-10-20",
+    "currency": "EUR",
+    "subtotal": "2238.36",
+    "tax_rate": "9",
+    "tax_amount": "201.45",
+    "total": "2439.81",
+    "line_items": [
+     {
+      "description": "Hours-backend development(sprint14)",
+      "quantity": "16.5",
+      "unit_price": "108.36",
+      "amount": "1787.94",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloudhostingplan(Business,3vCPU/8GB) %6",
+      "quantity": "3",
+      "unit_price": "150.14",
+      "amount": "450.42",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0020.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": "line_amount",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "LINE_AMOUNT_MISMATCH"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "de Bont & de Keijzer",
+    "vendor_tax_id": "NL266751099B18",
+    "invoice_number": "INV-2026-0258",
+    "issue_date": "2026-09-10",
+    "due_date": "2026-09-24",
+    "currency": "EUR",
+    "subtotal": "1142.09",
+    "tax_rate": "21",
+    "tax_amount": "239.84",
+    "total": "1381.93",
+    "line_items": [
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "94.75",
+      "amount": "284.25",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "2",
+      "unit_price": "423.92",
+      "amount": "857.84",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0021.pdf",
+   "layout": "it",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Gulotta,Prati e Gianinazzi s.r.l.",
+    "vendor_tax_id": "IT87726511899",
+    "invoice_number": "INV-2026-0147",
+    "issue_date": "2026-06-15",
+    "due_date": "2026-06-29",
+    "currency": "EUR",
+    "subtotal": "3178.00",
+    "tax_rate": "10",
+    "tax_amount": "317.80",
+    "total": "3495.80",
+    "line_items": [
+     {
+      "description": "Docking stationUSB-C12-in-1",
+      "quantity": "5",
+      "unit_price": "90.66",
+      "amount": "453.30",
+      "discount_percent": null
+     },
+     {
+      "description": "Tonerstampantenero,alta capacita",
+      "quantity": "11",
+      "unit_price": "81.44",
+      "amount": "895.84",
+      "discount_percent": null
+     },
+     {
+      "description": "Licenzasoftwareannuale,5postazioni",
+      "quantity": "2",
+      "unit_price": "914.43",
+      "amount": "1828.86",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0022.pdf",
+   "layout": "nl",
+   "scanned": true,
+   "defect": "line_amount",
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 1.0,
+   "codes": [
+    "LINE_AMOUNT_MISMATCH"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Holland Trading",
+    "vendor_tax_id": "NL433768154B49",
+    "invoice_number": "RE-2026-0631",
+    "issue_date": "2026-07-02",
+    "due_date": "2026-08-01",
+    "currency": "EUR",
+    "subtotal": "2104.40",
+    "tax_rate": "21",
+    "tax_amount": "441.92",
+    "total": "2546.32",
+    "line_items": [
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "3",
+      "unit_price": "60.09",
+      "amount": "190.27",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "1",
+      "unit_price": "147.79",
+      "amount": "147.79",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "1766.34",
+      "amount": "1766.34",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0023.pdf",
+   "layout": "nl",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.9,
+   "codes": [],
+   "wrong_fields": [
+    "line_descriptions"
+   ],
+   "got": {
+    "vendor_name": "deBont&deKeijzer",
+    "vendor_tax_id": "NL266751099B18",
+    "invoice_number": "INV-2026-0279",
+    "issue_date": "2026-07-02",
+    "due_date": "2026-07-16",
+    "currency": "EUR",
+    "subtotal": "6902.77",
+    "tax_rate": "9",
+    "tax_amount": "621.25",
+    "total": "7524.02",
+    "line_items": [
+     {
+      "description": "Websitemaintenance,monthlyretainer %6",
+      "quantity": "1",
+      "unit_price": "1001.64",
+      "amount": "1001.64",
+      "discount_percent": null
+     },
+     {
+      "description": "On-sitesupportvisit incl.travel withinzone2 %6",
+      "quantity": "2",
+      "unit_price": "211.47",
+      "amount": "422.94",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting-datamigrationworkshop %6",
+      "quantity": "10",
+      "unit_price": "147.88",
+      "amount": "1478.80",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours-backend development(sprint14) %6",
+      "quantity": "22.75",
+      "unit_price": "81.79",
+      "amount": "1860.72",
+      "discount_percent": null
+     },
+     {
+      "description": "Designreviewandaccessibility auditofcheckout %6 flow",
+      "quantity": "1",
+      "unit_price": "1659.58",
+      "amount": "1659.58",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting:productdescriptionsfor25SKUs %6",
+      "quantity": "1",
+      "unit_price": "479.09",
+      "amount": "479.09",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0024.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Maderna-Pizzo e figli",
+    "vendor_tax_id": "IT13044082700",
+    "invoice_number": "INV-2026-0201",
+    "issue_date": "2026-09-10",
+    "due_date": "2026-10-25",
+    "currency": "EUR",
+    "subtotal": "3669.02",
+    "tax_rate": "4",
+    "tax_amount": "146.76",
+    "total": "3815.78",
+    "line_items": [
+     {
+      "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "161.84",
+      "amount": "485.52",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulenza migrazione dati, workshop in sede",
+      "quantity": "8",
+      "unit_price": "91.35",
+      "amount": "730.80",
+      "discount_percent": null
+     },
+     {
+      "description": "Toner stampante nero, alta capacità",
+      "quantity": "8",
+      "unit_price": "47.99",
+      "amount": "383.92",
+      "discount_percent": null
+     },
+     {
+      "description": "Licenza software annuale, 5 postazioni",
+      "quantity": "1",
+      "unit_price": "1140.02",
+      "amount": "1140.02",
+      "discount_percent": null
+     },
+     {
+      "description": "Canone manutenzione sito web, mensile",
+      "quantity": "1",
+      "unit_price": "928.76",
+      "amount": "928.76",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0025.pdf",
+   "layout": "it",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Argan SPA",
+    "vendor_tax_id": "IT44586319683",
+    "invoice_number": "RE-2026-0562",
+    "issue_date": "2026-08-21",
+    "due_date": "2026-09-20",
+    "currency": "EUR",
+    "subtotal": "4186.17",
+    "tax_rate": "22",
+    "tax_amount": "920.96",
+    "total": "5107.13",
+    "line_items": [
+     {
+      "description": "Consulenzamigrazione datiworkshopinsede",
+      "quantity": "13",
+      "unit_price": "107.91",
+      "amount": "1402.83",
+      "discount_percent": null
+     },
+     {
+      "description": "Docking stationUSB-C12-in-1",
+      "quantity": "8",
+      "unit_price": "210.68",
+      "amount": "1685.44",
+      "discount_percent": null
+     },
+     {
+      "description": "HostingcloudpianoBusiness(3vCPU/8GB)",
+      "quantity": "2",
+      "unit_price": "95.45",
+      "amount": "190.90",
+      "discount_percent": null
+     },
+     {
+      "description": "Toner stampantenero,alta capacita",
+      "quantity": "11",
+      "unit_price": "44.97",
+      "amount": "494.67",
+      "discount_percent": null
+     },
+     {
+      "description": "Canonemanutenzionesitoweb,mensile",
+      "quantity": "1",
+      "unit_price": "412.33",
+      "amount": "412.33",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0027.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Holland Trading",
+    "vendor_tax_id": "NL433768154B49",
+    "invoice_number": "RE-2026-0649",
+    "issue_date": "2026-06-13",
+    "due_date": "2026-07-13",
+    "currency": "EUR",
+    "subtotal": "2729.32",
+    "tax_rate": "9",
+    "tax_amount": "245.64",
+    "total": "2974.96",
+    "line_items": [
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "1",
+      "unit_price": "155.61",
+      "amount": "155.61",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "7",
+      "unit_price": "106.15",
+      "amount": "743.05",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "25.75",
+      "unit_price": "70.13",
+      "amount": "1805.85",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "24.81",
+      "amount": "24.81",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0028.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Argan SPA",
+    "vendor_tax_id": "IT44586319683",
+    "invoice_number": "RE-2026-0567",
+    "issue_date": "2026-07-21",
+    "due_date": "2026-08-20",
+    "currency": "EUR",
+    "subtotal": "1853.20",
+    "tax_rate": "4",
+    "tax_amount": "74.13",
+    "total": "1927.33",
+    "line_items": [
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "13.75",
+      "unit_price": "57.87",
+      "amount": "795.71",
+      "discount_percent": null
+     },
+     {
+      "description": "Licenza software annuale, 5 postazioni",
+      "quantity": "1",
+      "unit_price": "1057.49",
+      "amount": "1057.49",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0029.pdf",
+   "layout": "it",
+   "scanned": true,
+   "defect": "missing_number",
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 0.833,
+   "codes": [
+    "MISSING_INVOICE_NUMBER"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Greco, Passalacqua e Malatesta s.r.l.",
+    "vendor_tax_id": "IT24546358471",
+    "invoice_number": null,
+    "issue_date": "2026-07-13",
+    "due_date": "2026-08-12",
+    "currency": "EUR",
+    "subtotal": "2645.43",
+    "tax_rate": "22",
+    "tax_amount": "581.99",
+    "total": "3227.42",
+    "line_items": [
+     {
+      "description": "Toner stampante nero, alta capacità",
+      "quantity": "6",
+      "unit_price": "89.97",
+      "amount": "539.82",
+      "discount_percent": null
+     },
+     {
+      "description": "Docking station USB-C 12-in-1",
+      "quantity": "3",
+      "unit_price": "164.27",
+      "amount": "492.81",
+      "discount_percent": null
+     },
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "24",
+      "unit_price": "67.20",
+      "amount": "1612.80",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0030.pdf",
+   "layout": "it",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Opizzi e figli",
+    "vendor_tax_id": "IT48119801756",
+    "invoice_number": "26/00083",
+    "issue_date": "2026-06-12",
+    "due_date": "2026-07-12",
+    "currency": "EUR",
+    "subtotal": "1292.60",
+    "tax_rate": "4",
+    "tax_amount": "51.70",
+    "total": "1344.30",
+    "line_items": [
+     {
+      "description": "Canonemanutenzionesitoweb,mensile",
+      "quantity": "1",
+      "unit_price": "1111.16",
+      "amount": "1111.16",
+      "discount_percent": null
+     },
+     {
+      "description": "Docking stationUSB-C12-in-1",
+      "quantity": "2",
+      "unit_price": "90.72",
+      "amount": "181.44",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0031.pdf",
+   "layout": "nl",
+   "scanned": true,
+   "defect": "missing_number",
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 0.833,
+   "codes": [
+    "MISSING_INVOICE_NUMBER"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Stichting van den Nuwenhuysen",
+    "vendor_tax_id": "NL912645326B73",
+    "invoice_number": null,
+    "issue_date": "2026-08-26",
+    "due_date": "2026-10-10",
+    "currency": "EUR",
+    "subtotal": "2178.70",
+    "tax_rate": "9",
+    "tax_amount": "196.08",
+    "total": "2374.78",
+    "line_items": [
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "15",
+      "unit_price": "106.12",
+      "amount": "1591.80",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "5",
+      "unit_price": "117.38",
+      "amount": "586.90",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0032.pdf",
+   "layout": "nl",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.9,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "HavenbedrijfRotterdam",
+    "vendor_tax_id": "NL339709088B52",
+    "invoice_number": "INV-2026-0310",
+    "issue_date": "2026-06-21",
+    "due_date": "2026-08-05",
+    "currency": "EUR",
+    "subtotal": "4636.24",
+    "tax_rate": "21",
+    "tax_amount": "973.61",
+    "total": "5609.85",
+    "line_items": [
+     {
+      "description": "Websitemaintenance,monthlyretainer",
+      "quantity": "1",
+      "unit_price": "806.27",
+      "amount": "806.27",
+      "discount_percent": null
+     },
+     {
+      "description": "Annualsoftwarelicence-5seats",
+      "quantity": "1",
+      "unit_price": "512.76",
+      "amount": "512.76",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloudhostingplan(Business,3vCPU/8GB)",
+      "quantity": "3",
+      "unit_price": "93.26",
+      "amount": "279.78",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours-backenddevelopment(sprint14)",
+      "quantity": "20.75",
+      "unit_price": "72.09",
+      "amount": "1495.87",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting:productdescriptionsfor25SKUs",
+      "quantity": "2",
+      "unit_price": "770.78",
+      "amount": "1541.56",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0034.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Holland Trading",
+    "vendor_tax_id": "NL433768154B49",
+    "invoice_number": "RE-2026-0652",
+    "issue_date": "2026-07-08",
+    "due_date": "2026-08-07",
+    "currency": "EUR",
+    "subtotal": "652.26",
+    "tax_rate": "9",
+    "tax_amount": "58.70",
+    "total": "710.96",
+    "line_items": [
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "7",
+      "unit_price": "93.18",
+      "amount": "652.26",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0035.pdf",
+   "layout": "it",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Argan SPA",
+    "vendor_tax_id": "IT44586319683",
+    "invoice_number": "RE-2026-0572",
+    "issue_date": "2026-07-25",
+    "due_date": "2026-08-24",
+    "currency": "EUR",
+    "subtotal": "877.68",
+    "tax_rate": "10",
+    "tax_amount": "87.77",
+    "total": "965.45",
+    "line_items": [
+     {
+      "description": "Ore di sviluppo backend(sprint 14)",
+      "quantity": "8",
+      "unit_price": "109.71",
+      "amount": "877.68",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0036.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": "line_amount",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "LINE_AMOUNT_MISMATCH"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Greco, Passalacqua e Malatesta s.r.l.",
+    "vendor_tax_id": "IT24546358471",
+    "invoice_number": "F2026-0627",
+    "issue_date": "2026-07-11",
+    "due_date": "2026-08-10",
+    "currency": "EUR",
+    "subtotal": "1852.73",
+    "tax_rate": "4",
+    "tax_amount": "74.11",
+    "total": "1926.84",
+    "line_items": [
+     {
+      "description": "Spese di spedizione",
+      "quantity": "1",
+      "unit_price": "17.34",
+      "amount": "17.34",
+      "discount_percent": null
+     },
+     {
+      "description": "Docking station USB-C 12-in-1",
+      "quantity": "6",
+      "unit_price": "111.05",
+      "amount": "666.30",
+      "discount_percent": null
+     },
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "10",
+      "unit_price": "76.44",
+      "amount": "764.40",
+      "discount_percent": null
+     },
+     {
+      "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "56.15",
+      "amount": "168.45",
+      "discount_percent": null
+     },
+     {
+      "description": "Toner stampante nero, alta capacità",
+      "quantity": "2",
+      "unit_price": "68.12",
+      "amount": "236.24",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0037.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": "due_before_issue",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "DUE_BEFORE_ISSUE"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "van Bunschoten BV",
+    "vendor_tax_id": "NL669928629B63",
+    "invoice_number": "RE-2026-0481",
+    "issue_date": "2026-08-08",
+    "due_date": "2026-07-20",
+    "currency": "EUR",
+    "subtotal": "2905.96",
+    "tax_rate": "9",
+    "tax_amount": "261.54",
+    "total": "3167.50",
+    "line_items": [
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "24.25",
+      "unit_price": "112.46",
+      "amount": "2727.16",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "1",
+      "unit_price": "178.80",
+      "amount": "178.80",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0038.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Opizzi e figli",
+    "vendor_tax_id": "IT48119801756",
+    "invoice_number": "26/00097",
+    "issue_date": "2026-08-22",
+    "due_date": "2026-09-21",
+    "currency": "EUR",
+    "subtotal": "3070.85",
+    "tax_rate": "22",
+    "tax_amount": "675.59",
+    "total": "3746.44",
+    "line_items": [
+     {
+      "description": "Spese di spedizione",
+      "quantity": "1",
+      "unit_price": "35.67",
+      "amount": "35.67",
+      "discount_percent": null
+     },
+     {
+      "description": "Canone manutenzione sito web, mensile",
+      "quantity": "1",
+      "unit_price": "1005.08",
+      "amount": "1005.08",
+      "discount_percent": null
+     },
+     {
+      "description": "Docking station USB-C 12-in-1",
+      "quantity": "5",
+      "unit_price": "128.59",
+      "amount": "642.95",
+      "discount_percent": null
+     },
+     {
+      "description": "Toner stampante nero, alta capacità",
+      "quantity": "10",
+      "unit_price": "41.10",
+      "amount": "411.00",
+      "discount_percent": null
+     },
+     {
+      "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
+      "quantity": "1",
+      "unit_price": "114.33",
+      "amount": "114.33",
+      "discount_percent": null
+     },
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "10.25",
+      "unit_price": "84.08",
+      "amount": "861.82",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0039.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Holland Trading",
+    "vendor_tax_id": "NL433768154B49",
+    "invoice_number": "RE-2026-0679",
+    "issue_date": "2026-06-26",
+    "due_date": "2026-07-26",
+    "currency": "EUR",
+    "subtotal": "370.44",
+    "tax_rate": "21",
+    "tax_amount": "77.79",
+    "total": "448.23",
+    "line_items": [
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "370.44",
+      "amount": "370.44",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0040.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Holland Trading",
+    "vendor_tax_id": "NL433768154B49",
+    "invoice_number": "RE-2026-0700",
+    "issue_date": "2026-09-19",
+    "due_date": "2026-10-19",
+    "currency": "EUR",
+    "subtotal": "607.13",
+    "tax_rate": "21",
+    "tax_amount": "127.50",
+    "total": "734.63",
+    "line_items": [
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "15.37",
+      "amount": "15.37",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "591.76",
+      "amount": "591.76",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0041.pdf",
+   "layout": "nl",
+   "scanned": true,
+   "defect": "due_before_issue",
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.9,
+   "codes": [
+    "DUE_BEFORE_ISSUE"
+   ],
+   "wrong_fields": [
+    "line_descriptions"
+   ],
+   "got": {
+    "vendor_name": "Holland Trading",
+    "vendor_tax_id": "NL433768154B49",
+    "invoice_number": "RE-2026-0730",
+    "issue_date": "2026-08-08",
+    "due_date": "2026-07-28",
+    "currency": "EUR",
+    "subtotal": "5587.46",
+    "tax_rate": "21",
+    "tax_amount": "1173.37",
+    "total": "6760.83",
+    "line_items": [
+     {
+      "description": "Websitemaintenance,monthlyretainer",
+      "quantity": "1",
+      "unit_price": "836.82",
+      "amount": "836.82",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloudhostingplan(Business,3vCPU/8GB)",
+      "quantity": "2",
+      "unit_price": "165.22",
+      "amount": "330.44",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping andhandling",
+      "quantity": "1",
+      "unit_price": "20.64",
+      "amount": "20.64",
+      "discount_percent": null
+     },
+     {
+      "description": "Designreview and accessibiltyaudit of checkout flow",
+      "quantity": "1",
+      "unit_price": "1514.26",
+      "amount": "1514.26",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand,aluminium",
+      "quantity": "4",
+      "unit_price": "31.61",
+      "amount": "126.44",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours-backenddevelopment(sprint14)",
+      "quantity": "27",
+      "unit_price": "102.18",
+      "amount": "2758.86",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0042.pdf",
+   "layout": "it",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Opizzi e figli",
+    "vendor_tax_id": "IT48119801756",
+    "invoice_number": "26/00127",
+    "issue_date": "2026-07-12",
+    "due_date": "2026-08-11",
+    "currency": "EUR",
+    "subtotal": "4808.68",
+    "tax_rate": "10",
+    "tax_amount": "480.87",
+    "total": "5289.55",
+    "line_items": [
+     {
+      "description": "Oredisviluppobackend(sprint14)",
+      "quantity": "17",
+      "unit_price": "118.10",
+      "amount": "2007.70",
+      "discount_percent": null
+     },
+     {
+      "description": "Toner stampantenero,alta capacita",
+      "quantity": "2",
+      "unit_price": "58.48",
+      "amount": "116.96",
+      "discount_percent": null
+     },
+     {
+      "description": "Docking station USB-C12-in-1",
+      "quantity": "4",
+      "unit_price": "117.32",
+      "amount": "469.28",
+      "discount_percent": null
+     },
+     {
+      "description": "Hosting cloudpianoBusiness(3vCPU/8GB)",
+      "quantity": "3",
+      "unit_price": "156.67",
+      "amount": "470.01",
+      "discount_percent": null
+     },
+     {
+      "description": "Canonemanutenzionesitoweb,mensile",
+      "quantity": "1",
+      "unit_price": "558.95",
+      "amount": "558.95",
+      "discount_percent": null
+     },
+     {
+      "description": "Licenza softwareannuale,5postazioni",
+      "quantity": "1",
+      "unit_price": "1185.78",
+      "amount": "1185.78",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0044.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": "line_amount",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "LINE_AMOUNT_MISMATCH"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Gulotta, Prati e Gianinazzi s.r.l.",
+    "vendor_tax_id": "IT87726511899",
+    "invoice_number": "INV-2026-0153",
+    "issue_date": "2026-09-10",
+    "due_date": "2026-09-24",
+    "currency": "EUR",
+    "subtotal": "4400.70",
+    "tax_rate": "22",
+    "tax_amount": "968.15",
+    "total": "5368.85",
+    "line_items": [
+     {
+      "description": "Docking station USB-C 12-in-1",
+      "quantity": "3",
+      "unit_price": "202.17",
+      "amount": "606.51",
+      "discount_percent": null
+     },
+     {
+      "description": "Toner stampante nero, alta capacità",
+      "quantity": "11",
+      "unit_price": "41.95",
+      "amount": "461.45",
+      "discount_percent": null
+     },
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "38",
+      "unit_price": "87.68",
+      "amount": "3332.74",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0045.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Greco, Passalacqua e Malatesta s.r.l.",
+    "vendor_tax_id": "IT24546358471",
+    "invoice_number": "F2026-0646",
+    "issue_date": "2026-07-02",
+    "due_date": "2026-08-01",
+    "currency": "EUR",
+    "subtotal": "1938.45",
+    "tax_rate": "22",
+    "tax_amount": "426.46",
+    "total": "2364.91",
+    "line_items": [
+     {
+      "description": "Licenza software annuale, 5 postazioni",
+      "quantity": "1",
+      "unit_price": "634.60",
+      "amount": "634.60",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulenza migrazione dati, workshop in sede",
+      "quantity": "7",
+      "unit_price": "136.50",
+      "amount": "955.50",
+      "discount_percent": null
+     },
+     {
+      "description": "Toner stampante nero, alta capacità",
+      "quantity": "5",
+      "unit_price": "69.67",
+      "amount": "348.35",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0046.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": "total",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "TOTAL_MISMATCH"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "van Bunschoten BV",
+    "vendor_tax_id": "NL669928629B63",
+    "invoice_number": "RE-2026-0490",
+    "issue_date": "2026-07-31",
+    "due_date": "2026-08-30",
+    "currency": "EUR",
+    "subtotal": "12.52",
+    "tax_rate": "9",
+    "tax_amount": "1.13",
+    "total": "12.65",
+    "line_items": [
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "12.52",
+      "amount": "12.52",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0048.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Stichting van den Nuwenhuysen",
+    "vendor_tax_id": "NL912645326B73",
+    "invoice_number": "10120",
+    "issue_date": "2026-09-08",
+    "due_date": "2026-10-23",
+    "currency": "EUR",
+    "subtotal": "7767.64",
+    "tax_rate": "21",
+    "tax_amount": "1631.20",
+    "total": "9398.84",
+    "line_items": [
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "3",
+      "unit_price": "168.21",
+      "amount": "504.63",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "1208.28",
+      "amount": "1208.28",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "27.62",
+      "amount": "27.62",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "2",
+      "unit_price": "1964.87",
+      "amount": "3929.74",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "2",
+      "unit_price": "651.11",
+      "amount": "1302.22",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "9",
+      "unit_price": "88.35",
+      "amount": "795.15",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0049.pdf",
+   "layout": "it",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Udinesi-Cabibbo e figli",
+    "vendor_tax_id": "IT62730184045",
+    "invoice_number": "INV-2026-0375",
+    "issue_date": "2026-09-15",
+    "due_date": "2026-10-15",
+    "currency": "EUR",
+    "subtotal": "2068.39",
+    "tax_rate": "10",
+    "tax_amount": "206.84",
+    "total": "2275.23",
+    "line_items": [
+     {
+      "description": "Consulenzamigrazione dati,workshop insede",
+      "quantity": "11",
+      "unit_price": "85.95",
+      "amount": "945.45",
+      "discount_percent": null
+     },
+     {
+      "description": "Docking stationUSB-C12-in-1",
+      "quantity": "7",
+      "unit_price": "160.42",
+      "amount": "1122.94",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0050.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Holland Trading",
+    "vendor_tax_id": "NL433768154B49",
+    "invoice_number": "RE-2026-0757",
+    "issue_date": "2026-09-07",
+    "due_date": "2026-10-07",
+    "currency": "EUR",
+    "subtotal": "443.68",
+    "tax_rate": "21",
+    "tax_amount": "93.17",
+    "total": "536.85",
+    "line_items": [
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "4",
+      "unit_price": "110.92",
+      "amount": "443.68",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0051.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": "total",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "TOTAL_MISMATCH"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Holland Trading",
+    "vendor_tax_id": "NL433768154B49",
+    "invoice_number": "RE-2026-0782",
+    "issue_date": "2026-09-05",
+    "due_date": "2026-10-05",
+    "currency": "EUR",
+    "subtotal": "1373.16",
+    "tax_rate": "9",
+    "tax_amount": "123.58",
+    "total": "1495.74",
+    "line_items": [
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "1140.81",
+      "amount": "1140.81",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "5",
+      "unit_price": "46.47",
+      "amount": "232.35",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0052.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Havenbedrijf Rotterdam",
+    "vendor_tax_id": "NL339709088B52",
+    "invoice_number": "INV-2026-0330",
+    "issue_date": "2026-06-06",
+    "due_date": "2026-07-21",
+    "currency": "EUR",
+    "subtotal": "911.53",
+    "tax_rate": "9",
+    "tax_amount": "82.04",
+    "total": "993.57",
+    "line_items": [
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "114.03",
+      "amount": "342.09",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "569.44",
+      "amount": "569.44",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0053.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": "missing_number",
+   "method": "text",
+   "llm": false,
+   "confidence": 0.833,
+   "codes": [
+    "MISSING_INVOICE_NUMBER"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Opizzi e figli",
+    "vendor_tax_id": "IT48119801756",
+    "invoice_number": null,
+    "issue_date": "2026-06-02",
+    "due_date": "2026-07-02",
+    "currency": "EUR",
+    "subtotal": "5382.91",
+    "tax_rate": "4",
+    "tax_amount": "215.32",
+    "total": "5598.23",
+    "line_items": [
+     {
+      "description": "Licenza software annuale, 5 postazioni",
+      "quantity": "2",
+      "unit_price": "1276.29",
+      "amount": "2552.58",
+      "discount_percent": null
+     },
+     {
+      "description": "Docking station USB-C 12-in-1",
+      "quantity": "5",
+      "unit_price": "217.97",
+      "amount": "1089.85",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulenza migrazione dati, workshop in sede",
+      "quantity": "14",
+      "unit_price": "124.32",
+      "amount": "1740.48",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0054.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": "future_date",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "FUTURE_DATE"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Holland Trading",
+    "vendor_tax_id": "NL433768154B49",
+    "invoice_number": "RE-2026-0783",
+    "issue_date": "2026-10-29",
+    "due_date": "2026-11-28",
+    "currency": "EUR",
+    "subtotal": "3535.96",
+    "tax_rate": "9",
+    "tax_amount": "318.24",
+    "total": "3854.20",
+    "line_items": [
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "23.70",
+      "amount": "23.70",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "2",
+      "unit_price": "686.38",
+      "amount": "1372.76",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "703.34",
+      "amount": "703.34",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "6",
+      "unit_price": "239.36",
+      "amount": "1436.16",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0055.pdf",
+   "layout": "it",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Greco,Passalacqua e Malatesta s.r.l.",
+    "vendor_tax_id": "IT24546358471",
+    "invoice_number": "F2026-0669",
+    "issue_date": "2026-09-09",
+    "due_date": "2026-10-09",
+    "currency": "EUR",
+    "subtotal": "1742.44",
+    "tax_rate": "22",
+    "tax_amount": "383.34",
+    "total": "2125.78",
+    "line_items": [
+     {
+      "description": "Consulenzamigrazione dati,workshop in sede",
+      "quantity": "14",
+      "unit_price": "124.46",
+      "amount": "1742.44",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0056.pdf",
+   "layout": "it",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Greco,Passalacqua e Malatesta s.r.l.",
+    "vendor_tax_id": "IT24546358471",
+    "invoice_number": "F2026-0672",
+    "issue_date": "2026-08-03",
+    "due_date": "2026-09-02",
+    "currency": "EUR",
+    "subtotal": "2429.77",
+    "tax_rate": "10",
+    "tax_amount": "242.98",
+    "total": "2672.75",
+    "line_items": [
+     {
+      "description": "Spese dispedizione",
+      "quantity": "1",
+      "unit_price": "44.63",
+      "amount": "44.63",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulenzamigrazione datiworkshopinsede",
+      "quantity": "9",
+      "unit_price": "110.75",
+      "amount": "996.75",
+      "discount_percent": null
+     },
+     {
+      "description": "Licenza software annuale,5postazioni",
+      "quantity": "1",
+      "unit_price": "1388.39",
+      "amount": "1388.39",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0057.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "van Bunschoten BV",
+    "vendor_tax_id": "NL669928629B63",
+    "invoice_number": "RE-2026-0503",
+    "issue_date": "2026-06-08",
+    "due_date": "2026-07-08",
+    "currency": "EUR",
+    "subtotal": "233.78",
+    "tax_rate": "21",
+    "tax_amount": "49.09",
+    "total": "282.87",
+    "line_items": [
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "2",
+      "unit_price": "116.89",
+      "amount": "233.78",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0058.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Havenbedrijf Rotterdam",
+    "vendor_tax_id": "NL339709088B52",
+    "invoice_number": "INV-2026-0357",
+    "issue_date": "2026-06-23",
+    "due_date": "2026-08-07",
+    "currency": "EUR",
+    "subtotal": "1023.31",
+    "tax_rate": "9",
+    "tax_amount": "92.10",
+    "total": "1115.41",
+    "line_items": [
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "915.70",
+      "amount": "915.70",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "3",
+      "unit_price": "35.87",
+      "amount": "107.61",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0059.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Opizzi e figli",
+    "vendor_tax_id": "IT48119801756",
+    "invoice_number": "26/00156",
+    "issue_date": "2026-07-28",
+    "due_date": "2026-08-27",
+    "currency": "EUR",
+    "subtotal": "5137.52",
+    "tax_rate": "22",
+    "tax_amount": "1130.25",
+    "total": "6267.77",
+    "line_items": [
+     {
+      "description": "Docking station USB-C 12-in-1",
+      "quantity": "4",
+      "unit_price": "159.14",
+      "amount": "636.56",
+      "discount_percent": null
+     },
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "38.5",
+      "unit_price": "92.16",
+      "amount": "3548.16",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulenza migrazione dati, workshop in sede",
+      "quantity": "8",
+      "unit_price": "119.10",
+      "amount": "952.80",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0061.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Argan SPA",
+    "vendor_tax_id": "IT44586319683",
+    "invoice_number": "RE-2026-0579",
+    "issue_date": "2026-06-26",
+    "due_date": "2026-07-26",
+    "currency": "EUR",
+    "subtotal": "2728.66",
+    "tax_rate": "22",
+    "tax_amount": "600.31",
+    "total": "3328.97",
+    "line_items": [
+     {
+      "description": "Consulenza migrazione dati, workshop in sede",
+      "quantity": "15",
+      "unit_price": "143.79",
+      "amount": "2156.85",
+      "discount_percent": null
+     },
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "8.25",
+      "unit_price": "69.31",
+      "amount": "571.81",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0062.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": "future_date",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "FUTURE_DATE"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "van Bunschoten BV",
+    "vendor_tax_id": "NL669928629B63",
+    "invoice_number": "RE-2026-0508",
+    "issue_date": "2026-11-01",
+    "due_date": "2026-12-01",
+    "currency": "EUR",
+    "subtotal": "117.30",
+    "tax_rate": "21",
+    "tax_amount": "24.63",
+    "total": "141.93",
+    "line_items": [
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "3",
+      "unit_price": "39.10",
+      "amount": "117.30",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0063.pdf",
+   "layout": "nl",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.9,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Havenbedrijf Rotterdam",
+    "vendor_tax_id": "NL339709088B52",
+    "invoice_number": "INV-2026-0358",
+    "issue_date": "2026-08-05",
+    "due_date": "2026-09-19",
+    "currency": "EUR",
+    "subtotal": "1719.76",
+    "tax_rate": "21",
+    "tax_amount": "361.15",
+    "total": "2080.91",
+    "line_items": [
+     {
+      "description": "Annualsoftware licence-5seats",
+      "quantity": "1",
+      "unit_price": "1522.90",
+      "amount": "1522.90",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visitincl.travel withinzone2",
+      "quantity": "1",
+      "unit_price": "196.86",
+      "amount": "196.86",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0064.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Gulotta, Prati e Gianinazzi s.r.l.",
+    "vendor_tax_id": "IT87726511899",
+    "invoice_number": "INV-2026-0168",
+    "issue_date": "2026-06-15",
+    "due_date": "2026-06-29",
+    "currency": "EUR",
+    "subtotal": "1049.59",
+    "tax_rate": "4",
+    "tax_amount": "41.98",
+    "total": "1091.57",
+    "line_items": [
+     {
+      "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "130.35",
+      "amount": "391.05",
+      "discount_percent": null
+     },
+     {
+      "description": "Canone manutenzione sito web, mensile",
+      "quantity": "1",
+      "unit_price": "658.54",
+      "amount": "658.54",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0065.pdf",
+   "layout": "nl",
+   "scanned": true,
+   "defect": "future_date",
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.9,
+   "codes": [
+    "FUTURE_DATE"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Holland Trading",
+    "vendor_tax_id": "NL433768154B49",
+    "invoice_number": "RE-2026-0796",
+    "issue_date": "2026-10-31",
+    "due_date": "2026-11-30",
+    "currency": "EUR",
+    "subtotal": "1523.00",
+    "tax_rate": "9",
+    "tax_amount": "137.07",
+    "total": "1660.07",
+    "line_items": [
+     {
+      "description": "Annualsoftwarelicence-5seats",
+      "quantity": "1",
+      "unit_price": "928.88",
+      "amount": "928.88",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting-data migrationworkshop",
+      "quantity": "6",
+      "unit_price": "99.02",
+      "amount": "594.12",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0066.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Udinesi-Cabibbo e figli",
+    "vendor_tax_id": "IT62730184045",
+    "invoice_number": "INV-2026-0377",
+    "issue_date": "2026-06-18",
+    "due_date": "2026-07-18",
+    "currency": "EUR",
+    "subtotal": "8162.88",
+    "tax_rate": "22",
+    "tax_amount": "1795.83",
+    "total": "9958.71",
+    "line_items": [
+     {
+      "description": "Toner stampante nero, alta capacità",
+      "quantity": "9",
+      "unit_price": "48.64",
+      "amount": "437.76",
+      "discount_percent": null
+     },
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "35.5",
+      "unit_price": "99.01",
+      "amount": "3514.86",
+      "discount_percent": null
+     },
+     {
+      "description": "Docking station USB-C 12-in-1",
+      "quantity": "6",
+      "unit_price": "212.20",
+      "amount": "1273.20",
+      "discount_percent": null
+     },
+     {
+      "description": "Spese di spedizione",
+      "quantity": "1",
+      "unit_price": "39.74",
+      "amount": "39.74",
+      "discount_percent": null
+     },
+     {
+      "description": "Licenza software annuale, 5 postazioni",
+      "quantity": "1",
+      "unit_price": "2478.55",
+      "amount": "2478.55",
+      "discount_percent": null
+     },
+     {
+      "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "139.59",
+      "amount": "418.77",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0067.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "van de Brink & Köster",
+    "vendor_tax_id": "NL882965198B50",
+    "invoice_number": "RE-2026-0269",
+    "issue_date": "2026-09-05",
+    "due_date": "2026-10-05",
+    "currency": "EUR",
+    "subtotal": "2836.02",
+    "tax_rate": "21",
+    "tax_amount": "595.56",
+    "total": "3431.58",
+    "line_items": [
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "1",
+      "unit_price": "135.20",
+      "amount": "135.20",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "8",
+      "unit_price": "53.21",
+      "amount": "425.68",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "1751.11",
+      "amount": "1751.11",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "3",
+      "unit_price": "128.56",
+      "amount": "385.68",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "1",
+      "unit_price": "138.35",
+      "amount": "138.35",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0068.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Gulotta, Prati e Gianinazzi s.r.l.",
+    "vendor_tax_id": "IT87726511899",
+    "invoice_number": "INV-2026-0177",
+    "issue_date": "2026-09-02",
+    "due_date": "2026-09-16",
+    "currency": "EUR",
+    "subtotal": "5387.34",
+    "tax_rate": "22",
+    "tax_amount": "1185.21",
+    "total": "6572.55",
+    "line_items": [
+     {
+      "description": "Licenza software annuale, 5 postazioni",
+      "quantity": "2",
+      "unit_price": "1376.66",
+      "amount": "2753.32",
+      "discount_percent": null
+     },
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "21.5",
+      "unit_price": "72.18",
+      "amount": "1551.87",
+      "discount_percent": null
+     },
+     {
+      "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "85.57",
+      "amount": "256.71",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulenza migrazione dati, workshop in sede",
+      "quantity": "8",
+      "unit_price": "103.18",
+      "amount": "825.44",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0069.pdf",
+   "layout": "it",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Gulotta,Pratie Gianinazzi s.r.l.",
+    "vendor_tax_id": "IT87726511899",
+    "invoice_number": "INV-2026-0203",
+    "issue_date": "2026-07-06",
+    "due_date": "2026-07-20",
+    "currency": "EUR",
+    "subtotal": "995.68",
+    "tax_rate": "4",
+    "tax_amount": "39.83",
+    "total": "1035.51",
+    "line_items": [
+     {
+      "description": "Toner stampantenero,altacapacita",
+      "quantity": "5",
+      "unit_price": "88.99",
+      "amount": "444.95",
+      "discount_percent": null
+     },
+     {
+      "description": "Spese dispedizione",
+      "quantity": "1",
+      "unit_price": "39.77",
+      "amount": "39.77",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulenzamigrazione dati,workshop insede",
+      "quantity": "4",
+      "unit_price": "127.74",
+      "amount": "510.96",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0070.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Stichting van den Nuwenhuysen",
+    "vendor_tax_id": "NL912645326B73",
+    "invoice_number": "10124",
+    "issue_date": "2026-07-26",
+    "due_date": "2026-09-09",
+    "currency": "EUR",
+    "subtotal": "4894.51",
+    "tax_rate": "9",
+    "tax_amount": "440.51",
+    "total": "5335.02",
+    "line_items": [
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "12",
+      "unit_price": "115.47",
+      "amount": "1385.64",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "4",
+      "unit_price": "114.57",
+      "amount": "458.28",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "1",
+      "unit_price": "250.09",
+      "amount": "250.09",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "10",
+      "unit_price": "46.43",
+      "amount": "464.30",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "36.75",
+      "unit_price": "63.57",
+      "amount": "2336.20",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0071.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Maderna-Pizzo e figli",
+    "vendor_tax_id": "IT13044082700",
+    "invoice_number": "INV-2026-0231",
+    "issue_date": "2026-09-10",
+    "due_date": "2026-10-25",
+    "currency": "EUR",
+    "subtotal": "4069.75",
+    "tax_rate": "22",
+    "tax_amount": "895.35",
+    "total": "4965.10",
+    "line_items": [
+     {
+      "description": "Toner stampante nero, alta capacità",
+      "quantity": "11",
+      "unit_price": "86.15",
+      "amount": "947.65",
+      "discount_percent": null
+     },
+     {
+      "description": "Canone manutenzione sito web, mensile",
+      "quantity": "1",
+      "unit_price": "670.14",
+      "amount": "670.14",
+      "discount_percent": null
+     },
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "28",
+      "unit_price": "81.52",
+      "amount": "2282.56",
+      "discount_percent": null
+     },
+     {
+      "description": "Spese di spedizione",
+      "quantity": "1",
+      "unit_price": "37.25",
+      "amount": "37.25",
+      "discount_percent": null
+     },
+     {
+      "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "44.05",
+      "amount": "132.15",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0072.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "van de Brink & Köster",
+    "vendor_tax_id": "NL882965198B50",
+    "invoice_number": "RE-2026-0286",
+    "issue_date": "2026-07-30",
+    "due_date": "2026-08-29",
+    "currency": "EUR",
+    "subtotal": "2408.48",
+    "tax_rate": "9",
+    "tax_amount": "216.76",
+    "total": "2625.24",
+    "line_items": [
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "1005.02",
+      "amount": "1005.02",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "1",
+      "unit_price": "1403.46",
+      "amount": "1403.46",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0073.pdf",
+   "layout": "nl",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "van de Brink & Köster",
+    "vendor_tax_id": "NL882965198B50",
+    "invoice_number": "RE-2026-0313",
+    "issue_date": "2026-09-15",
+    "due_date": "2026-10-15",
+    "currency": "EUR",
+    "subtotal": "4446.43",
+    "tax_rate": "21",
+    "tax_amount": "933.75",
+    "total": "5380.18",
+    "line_items": [
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "15",
+      "unit_price": "136.08",
+      "amount": "2041.20",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "17.57",
+      "amount": "17.57",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "3",
+      "unit_price": "190.03",
+      "amount": "570.09",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "5",
+      "unit_price": "221.65",
+      "amount": "1108.25",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "709.32",
+      "amount": "709.32",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0074.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "van de Brink & Köster",
+    "vendor_tax_id": "NL882965198B50",
+    "invoice_number": "RE-2026-0324",
+    "issue_date": "2026-08-01",
+    "due_date": "2026-08-31",
+    "currency": "EUR",
+    "subtotal": "6029.62",
+    "tax_rate": "21",
+    "tax_amount": "1266.22",
+    "total": "7295.84",
+    "line_items": [
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "110.73",
+      "amount": "332.19",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "2",
+      "unit_price": "2319.75",
+      "amount": "4639.50",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "4",
+      "unit_price": "65.74",
+      "amount": "262.96",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "4",
+      "unit_price": "56.89",
+      "amount": "227.56",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "1",
+      "unit_price": "567.41",
+      "amount": "567.41",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0075.pdf",
+   "layout": "it",
+   "scanned": true,
+   "defect": "line_amount",
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 1.0,
+   "codes": [
+    "LINE_AMOUNT_MISMATCH",
+    "READERS_DISAGREE"
+   ],
+   "wrong_fields": [
+    "invoice_number"
+   ],
+   "got": {
+    "vendor_name": "Maderna-Pizzo e figli",
+    "vendor_tax_id": "IT13044082700",
+    "invoice_number": "NV-2026-0237",
+    "issue_date": "2026-08-01",
+    "due_date": "2026-09-15",
+    "currency": "EUR",
+    "subtotal": "4267.90",
+    "tax_rate": "4",
+    "tax_amount": "170.72",
+    "total": "4438.62",
+    "line_items": [
+     {
+      "description": "Canone manutenzione sito web, mensile",
+      "quantity": "1",
+      "unit_price": "909.36",
+      "amount": "909.36",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulenza migrazione dati, workshop in sede",
+      "quantity": "12",
+      "unit_price": "89.67",
+      "amount": "1076.94",
+      "discount_percent": null
+     },
+     {
+      "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "75.83",
+      "amount": "227.49",
+      "discount_percent": null
+     },
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "11.75",
+      "unit_price": "91.18",
+      "amount": "1071.37",
+      "discount_percent": null
+     },
+     {
+      "description": "Toner stampante nero, alta capacità",
+      "quantity": "11",
+      "unit_price": "89.34",
+      "amount": "982.74",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0076.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Argan SPA",
+    "vendor_tax_id": "IT44586319683",
+    "invoice_number": "RE-2026-0588",
+    "issue_date": "2026-07-02",
+    "due_date": "2026-08-01",
+    "currency": "EUR",
+    "subtotal": "5296.97",
+    "tax_rate": "22",
+    "tax_amount": "1165.33",
+    "total": "6462.30",
+    "line_items": [
+     {
+      "description": "Licenza software annuale, 5 postazioni",
+      "quantity": "1",
+      "unit_price": "1482.17",
+      "amount": "1482.17",
+      "discount_percent": null
+     },
+     {
+      "description": "Toner stampante nero, alta capacità",
+      "quantity": "10",
+      "unit_price": "71.08",
+      "amount": "710.80",
+      "discount_percent": null
+     },
+     {
+      "description": "Canone manutenzione sito web, mensile",
+      "quantity": "1",
+      "unit_price": "363.26",
+      "amount": "363.26",
+      "discount_percent": null
+     },
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "26",
+      "unit_price": "98.96",
+      "amount": "2572.96",
+      "discount_percent": null
+     },
+     {
+      "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
+      "quantity": "2",
+      "unit_price": "71.93",
+      "amount": "143.86",
+      "discount_percent": null
+     },
+     {
+      "description": "Spese di spedizione",
+      "quantity": "1",
+      "unit_price": "23.92",
+      "amount": "23.92",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0077.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": "total",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "TOTAL_MISMATCH"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Gulotta, Prati e Gianinazzi s.r.l.",
+    "vendor_tax_id": "IT87726511899",
+    "invoice_number": "INV-2026-0204",
+    "issue_date": "2026-07-13",
+    "due_date": "2026-07-27",
+    "currency": "EUR",
+    "subtotal": "4197.59",
+    "tax_rate": "4",
+    "tax_amount": "167.90",
+    "total": "4364.49",
+    "line_items": [
+     {
+      "description": "Docking station USB-C 12-in-1",
+      "quantity": "6",
+      "unit_price": "171.07",
+      "amount": "1026.42",
+      "discount_percent": null
+     },
+     {
+      "description": "Canone manutenzione sito web, mensile",
+      "quantity": "1",
+      "unit_price": "957.09",
+      "amount": "957.09",
+      "discount_percent": null
+     },
+     {
+      "description": "Spese di spedizione",
+      "quantity": "1",
+      "unit_price": "43.93",
+      "amount": "43.93",
+      "discount_percent": null
+     },
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "8.75",
+      "unit_price": "93.71",
+      "amount": "819.96",
+      "discount_percent": null
+     },
+     {
+      "description": "Licenza software annuale, 5 postazioni",
+      "quantity": "1",
+      "unit_price": "810.73",
+      "amount": "810.73",
+      "discount_percent": null
+     },
+     {
+      "description": "Toner stampante nero, alta capacità",
+      "quantity": "6",
+      "unit_price": "89.91",
+      "amount": "539.46",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0078.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": "tax_id",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "INVALID_TAX_ID"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Opizzi e figli",
+    "vendor_tax_id": "IT4811980175",
+    "invoice_number": "26/00164",
+    "issue_date": "2026-08-07",
+    "due_date": "2026-09-06",
+    "currency": "EUR",
+    "subtotal": "162.90",
+    "tax_rate": "4",
+    "tax_amount": "6.52",
+    "total": "169.42",
+    "line_items": [
+     {
+      "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "54.30",
+      "amount": "162.90",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0079.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Udinesi-Cabibbo e figli",
+    "vendor_tax_id": "IT62730184045",
+    "invoice_number": "INV-2026-0380",
+    "issue_date": "2026-06-03",
+    "due_date": "2026-07-03",
+    "currency": "EUR",
+    "subtotal": "4679.99",
+    "tax_rate": "22",
+    "tax_amount": "1029.60",
+    "total": "5709.59",
+    "line_items": [
+     {
+      "description": "Consulenza migrazione dati, workshop in sede",
+      "quantity": "4",
+      "unit_price": "146.54",
+      "amount": "586.16",
+      "discount_percent": null
+     },
+     {
+      "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "65.28",
+      "amount": "195.84",
+      "discount_percent": null
+     },
+     {
+      "description": "Licenza software annuale, 5 postazioni",
+      "quantity": "2",
+      "unit_price": "1000.66",
+      "amount": "2001.32",
+      "discount_percent": null
+     },
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "20.25",
+      "unit_price": "75.80",
+      "amount": "1534.95",
+      "discount_percent": null
+     },
+     {
+      "description": "Toner stampante nero, alta capacità",
+      "quantity": "4",
+      "unit_price": "90.43",
+      "amount": "361.72",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0080.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Udinesi-Cabibbo e figli",
+    "vendor_tax_id": "IT62730184045",
+    "invoice_number": "INV-2026-0389",
+    "issue_date": "2026-07-14",
+    "due_date": "2026-08-13",
+    "currency": "EUR",
+    "subtotal": "3229.08",
+    "tax_rate": "22",
+    "tax_amount": "710.40",
+    "total": "3939.48",
+    "line_items": [
+     {
+      "description": "Ore di sviluppo backend (sprint 14)",
+      "quantity": "29.5",
+      "unit_price": "73.57",
+      "amount": "2170.32",
+      "discount_percent": null
+     },
+     {
+      "description": "Canone manutenzione sito web, mensile",
+      "quantity": "1",
+      "unit_price": "767.54",
+      "amount": "767.54",
+      "discount_percent": null
+     },
+     {
+      "description": "Toner stampante nero, alta capacità",
+      "quantity": "2",
+      "unit_price": "38.00",
+      "amount": "76.00",
+      "discount_percent": null
+     },
+     {
+      "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "61.74",
+      "amount": "185.22",
+      "discount_percent": null
+     },
+     {
+      "description": "Spese di spedizione",
+      "quantity": "1",
+      "unit_price": "30.00",
+      "amount": "30.00",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0081.pdf",
+   "layout": "it",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Argan SPA",
+    "vendor_tax_id": "IT44586319683",
+    "invoice_number": "RE-2026-0604",
+    "issue_date": "2026-09-12",
+    "due_date": "2026-10-12",
+    "currency": "EUR",
+    "subtotal": "2529.21",
+    "tax_rate": "22",
+    "tax_amount": "556.43",
+    "total": "3085.64",
+    "line_items": [
+     {
+      "description": "Hosting cloud piano Business (3 vCPU / 8 GB)",
+      "quantity": "1",
+      "unit_price": "96.52",
+      "amount": "96.52",
+      "discount_percent": null
+     },
+     {
+      "description": "Spese di spedizione",
+      "quantity": "1",
+      "unit_price": "34.26",
+      "amount": "34.26",
+      "discount_percent": null
+     },
+     {
+      "description": "Licenza software annuale, 5 postazioni",
+      "quantity": "1",
+      "unit_price": "2398.43",
+      "amount": "2398.43",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0082.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Stichting van den Nuwenhuysen",
+    "vendor_tax_id": "NL912645326B73",
+    "invoice_number": "10134",
+    "issue_date": "2026-06-14",
+    "due_date": "2026-07-29",
+    "currency": "EUR",
+    "subtotal": "973.17",
+    "tax_rate": "9",
+    "tax_amount": "87.59",
+    "total": "1060.76",
+    "line_items": [
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "1",
+      "unit_price": "135.92",
+      "amount": "135.92",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "5",
+      "unit_price": "128.57",
+      "amount": "642.85",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "3",
+      "unit_price": "64.80",
+      "amount": "194.40",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0083.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "van Bunschoten BV",
+    "vendor_tax_id": "NL669928629B63",
+    "invoice_number": "RE-2026-0511",
+    "issue_date": "2026-08-14",
+    "due_date": "2026-09-13",
+    "currency": "EUR",
+    "subtotal": "8464.85",
+    "tax_rate": "9",
+    "tax_amount": "761.84",
+    "total": "9226.69",
+    "line_items": [
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "7",
+      "unit_price": "100.70",
+      "amount": "704.90",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "1",
+      "unit_price": "876.38",
+      "amount": "876.38",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "13",
+      "unit_price": "147.52",
+      "amount": "1917.76",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "37.25",
+      "unit_price": "111.68",
+      "amount": "4160.08",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "1",
+      "unit_price": "96.32",
+      "amount": "96.32",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "3",
+      "unit_price": "236.47",
+      "amount": "709.41",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0084.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "de Bont & de Keijzer",
+    "vendor_tax_id": "NL266751099B18",
+    "invoice_number": "INV-2026-0282",
+    "issue_date": "2026-08-03",
+    "due_date": "2026-08-17",
+    "currency": "EUR",
+    "subtotal": "5097.63",
+    "tax_rate": "21",
+    "tax_amount": "1070.50",
+    "total": "6168.13",
+    "line_items": [
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "801.38",
+      "amount": "801.38",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "8",
+      "unit_price": "175.09",
+      "amount": "1400.72",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "1764.32",
+      "amount": "1764.32",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "37.81",
+      "amount": "37.81",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "11",
+      "unit_price": "99.40",
+      "amount": "1093.40",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0085.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": "total",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "TOTAL_MISMATCH"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "de Bont & de Keijzer",
+    "vendor_tax_id": "NL266751099B18",
+    "invoice_number": "INV-2026-0302",
+    "issue_date": "2026-07-03",
+    "due_date": "2026-07-17",
+    "currency": "EUR",
+    "subtotal": "1044.68",
+    "tax_rate": "21",
+    "tax_amount": "219.38",
+    "total": "1274.06",
+    "line_items": [
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "1044.68",
+      "amount": "1044.68",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0086.pdf",
+   "layout": "nl",
+   "scanned": false,
+   "defect": "future_date",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "FUTURE_DATE"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "de Bont & de Keijzer",
+    "vendor_tax_id": "NL266751099B18",
+    "invoice_number": "INV-2026-0331",
+    "issue_date": "2026-10-15",
+    "due_date": "2026-11-14",
+    "currency": "EUR",
+    "subtotal": "1621.18",
+    "tax_rate": "21",
+    "tax_amount": "340.45",
+    "total": "1961.63",
+    "line_items": [
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "838.06",
+      "amount": "838.06",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "1",
+      "unit_price": "767.08",
+      "amount": "767.08",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "16.04",
+      "amount": "16.04",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0087.pdf",
+   "layout": "it",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Udinesi-Cabibboefigli",
+    "vendor_tax_id": "IT62730184045",
+    "invoice_number": "INV-2026-0406",
+    "issue_date": "2026-09-14",
+    "due_date": "2026-10-14",
+    "currency": "EUR",
+    "subtotal": "6069.75",
+    "tax_rate": "22",
+    "tax_amount": "1335.35",
+    "total": "7405.10",
+    "line_items": [
+     {
+      "description": "Licenzasoftwareannuale,5postazioni",
+      "quantity": "1",
+      "unit_price": "2439.74",
+      "amount": "2439.74",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulenzamigrazionedatiworkshopinsede",
+      "quantity": "10",
+      "unit_price": "105.30",
+      "amount": "1053.00",
+      "discount_percent": null
+     },
+     {
+      "description": "Oredisviluppobackend(sprint14)",
+      "quantity": "23.5",
+      "unit_price": "109.66",
+      "amount": "2577.01",
+      "discount_percent": null
+     }
+    ]
+   }
+  }
+ ]
+}

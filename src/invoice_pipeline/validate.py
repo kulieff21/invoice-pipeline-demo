@@ -20,8 +20,9 @@ def _issue(code: str, message: str, severity: Severity = Severity.ERROR) -> Issu
     return Issue(code=code, severity=severity, message=message)
 
 
-def validate(inv: Invoice, as_of: date, confidence: float | None = None, min_confidence: float = 0.8) -> list[Issue]:
-    issues: list[Issue] = []
+def validate(inv: Invoice, as_of: date, confidence: float | None = None, min_confidence: float = 0.8,
+             conflicts: list[str] | None = None) -> list[Issue]:
+    issues: list[Issue] = [_issue("READERS_DISAGREE", c, Severity.REVIEW) for c in conflicts or []]
     for field in REQUIRED:
         if getattr(inv, field) in (None, ""):
             issues.append(_issue(f"MISSING_{field.upper()}", f"{field} not found on the document"))

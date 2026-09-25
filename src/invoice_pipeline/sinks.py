@@ -135,7 +135,24 @@ class SheetsSink:
             ws = self.book.add_worksheet(sheet, rows=1000, cols=len(header))
             ws.update([header], "A1", value_input_option="RAW")
             ws.freeze(rows=1)
+            self.format_sheet(ws, header)
             return ws
+
+    NUMBER_FORMATS = {
+        "subtotal": "#,##0.00", "tax_amount": "#,##0.00", "total": "#,##0.00", "unit_price": "#,##0.00",
+        "amount": "#,##0.00", "tax_rate": "0.###", "quantity": "0.##",
+    }
+
+    def format_sheet(self, ws, header: list[str]) -> None:
+        """Bold header and fixed decimals: without a number format the viewer's locale shows 2904.40
+        as '2904,4'. Formatting changes only how cells look; values stay as written."""
+        from gspread.utils import rowcol_to_a1
+
+        ws.format("1:1", {"textFormat": {"bold": True}})
+        for i, name in enumerate(header, 1):
+            if name in self.NUMBER_FORMATS:
+                col = rowcol_to_a1(1, i).rstrip("1")
+                ws.format(f"{col}2:{col}", {"numberFormat": {"type": "NUMBER", "pattern": self.NUMBER_FORMATS[name]}})
 
     def _call(self, fn, *args, **kwargs):
         import gspread
@@ -176,4 +193,5 @@ class SheetsSink:
             # write to explicit rows instead of values.append: a retried append cannot know
             # whether the first one landed, a retried range update simply overwrites the same cells
             self._call(ws.update, appends, f"A{start}", value_input_option="RAW")
+            self._call(ws.columns_auto_resize, 0, len(header))  # cosmetic; retried like any call
         return {"updated": len(updates), "appended": len(appends)}

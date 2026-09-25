@@ -62,7 +62,8 @@ def run(split_dir: Path, cache_dir: str | None, fallback=None) -> dict:
     caught = Counter()
     false_alarms = Counter()
     clean_flagged = 0
-    slipped: list[str] = []  # planted defect, yet no issue at all: would reach the sheet as "ok"
+    slipped: list[str] = []
+    silent: list[dict] = []  # planted defect, yet no issue at all: would reach the sheet as "ok"
     clean_total = 0
     rows = []
     t0 = time.time()
@@ -77,16 +78,19 @@ def run(split_dir: Path, cache_dir: str | None, fallback=None) -> dict:
             from invoice_pipeline.pipeline import needs_fallback
 
             if needs_fallback(result, validate(result.invoice, AS_OF, result.confidence)):
-                better = fallback(str(path), result)
-                if better is not None:
-                    result, used_llm = better, True
+                from invoice_pipeline.reconcile import reconcile
+
+                second = fallback(str(path), result)
+                if second is not None:
+                    result, used_llm = reconcile(result, second), True
         truth = Invoice.model_validate(rec["invoice"])
         cmp = compare(truth, result.invoice)
         kind = "scan" if rec["scanned"] else "text"
         for field, ok in cmp.items():
             per_field[field][f"{kind}_ok"] += ok
             per_field[field][f"{kind}_n"] += 1
-        codes = sorted({i.code for i in validate(result.invoice, AS_OF, result.confidence)})
+        codes = sorted({i.code for i in validate(result.invoice, AS_OF, result.confidence,
+                                                 conflicts=result.conflicts)})
         expected = set(rec["expected_issues"])
         if rec["defect"]:
             defects[rec["defect"]] += 1
@@ -98,6 +102,9 @@ def run(split_dir: Path, cache_dir: str | None, fallback=None) -> dict:
             clean_flagged += bool(codes)
         for code in set(codes) - expected:
             false_alarms[code] += 1
+        wrong = [f for f, ok in cmp.items() if not ok and f != "line_descriptions"]
+        if not codes and wrong:  # went to the sheet as "ok" with a misread value
+            silent.append({"file": rec["file"], "fields": wrong})
         rows.append({
             "file": rec["file"], "layout": rec["layout"], "scanned": rec["scanned"], "defect": rec["defect"],
             "method": result.method, "llm": used_llm, "confidence": result.confidence, "codes": codes,
@@ -113,6 +120,7 @@ def run(split_dir: Path, cache_dir: str | None, fallback=None) -> dict:
         "defects": {d: {"planted": defects[d], "caught": caught[d]} for d in sorted(defects)},
         "clean": {"total": clean_total, "flagged": clean_flagged},
         "defective_passed_as_ok": slipped,
+        "ok_with_wrong_fields": silent,
         "false_alarm_codes": dict(false_alarms.most_common()),
     }
     return {"summary": summary, "rows": rows}
@@ -130,6 +138,7 @@ def print_summary(s: dict) -> None:
     print("defects caught:", {d: f"{v['caught']}/{v['planted']}" for d, v in s["defects"].items()})
     print(f"clean invoices flagged: {s['clean']['flagged']}/{s['clean']['total']}")
     print(f"defective invoices passed as ok: {len(s['defective_passed_as_ok'])} {s['defective_passed_as_ok']}")
+    print(f"ok rows with a misread field: {len(s['ok_with_wrong_fields'])} {s['ok_with_wrong_fields']}")
     print("false alarm codes:", s["false_alarm_codes"])
 
 

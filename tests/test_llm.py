@@ -28,7 +28,7 @@ class FakeMessages:
 
 
 def client(messages):
-    return NS(beta=NS(messages=messages))
+    return NS(beta=NS(messages=messages), messages=messages)
 
 
 def test_request_carries_pdf_schema_and_parses(tmp_path):
@@ -71,3 +71,13 @@ def test_schema_objects_are_closed():
             for v in node:
                 walk(v)
     walk(SCHEMA)
+
+
+def test_openrouter_uses_plain_endpoint_and_prefixed_model(tmp_path):
+    pdf = tmp_path / "x.pdf"
+    pdf.write_bytes(b"%PDF-1.4 test")
+    msgs = FakeMessages()
+    fb = LLMFallback(model="claude-opus-5", client=client(msgs), provider="openrouter")
+    fb(str(pdf), ExtractionResult(invoice=Invoice(), method="ocr", confidence=0.5))
+    call = msgs.calls[0]
+    assert call["model"] == "anthropic/claude-opus-5" and "fallbacks" not in call and "betas" not in call

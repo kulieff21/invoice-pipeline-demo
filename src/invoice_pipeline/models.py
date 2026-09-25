@@ -65,3 +65,4 @@ class ExtractionResult(BaseModel):
     confidence: float  # 0..1, share of required fields the extractor was sure about
     raw_text: str = ""
     notes: list[str] = Field(default_factory=list)  # repairs and inferences, shown to the reviewer
+    conflicts: list[str] = Field(default_factory=list)  # OCR and LLM disagree and nothing decides

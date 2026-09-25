@@ -5,7 +5,12 @@ add up, low confidence). The model reads the PDF page itself and returns the pri
 JSON under a strict schema; the result goes through the same validation as everything else, so
 a model mistake still ends in the review queue rather than in the sheet as "ok".
 
-Credentials: ANTHROPIC_API_KEY (or an `ant auth login` profile). Model: INVOICE_LLM_MODEL.
+Providers (INVOICE_LLM_PROVIDER):
+- anthropic (default): ANTHROPIC_API_KEY or an `ant auth login` profile.
+- openrouter: OpenRouter's Anthropic-compatible endpoint; key in OPENROUTER_API_KEY or in the file
+  named by OPENROUTER_API_KEY_FILE. Server-side model fallback is not available there (400), so a
+  refusal simply leaves the invoice in review.
+Model: INVOICE_LLM_MODEL (default claude-opus-5; "anthropic/" is prefixed for OpenRouter).
 """
 
 from __future__ import annotations
@@ -110,23 +115,46 @@ def to_invoice(data: dict) -> Invoice:
     )
 
 
+OPENROUTER_BASE_URL = "https://openrouter.ai/api"
+
+
+def _openrouter_key() -> str:
+    key = os.environ.get("OPENROUTER_API_KEY")
+    if not key and os.environ.get("OPENROUTER_API_KEY_FILE"):
+        key = Path(os.environ["OPENROUTER_API_KEY_FILE"]).read_text(encoding="utf-8").strip()
+    if not key:
+        raise RuntimeError("set OPENROUTER_API_KEY or OPENROUTER_API_KEY_FILE")
+    return key
+
+
 class LLMFallback:
-    def __init__(self, model: str | None = None, client=None):
-        self.model = model or os.environ.get("INVOICE_LLM_MODEL", DEFAULT_MODEL)
+    def __init__(self, model: str | None = None, client=None, provider: str | None = None):
+        self.provider = provider or os.environ.get("INVOICE_LLM_PROVIDER", "anthropic")
+        model = model or os.environ.get("INVOICE_LLM_MODEL", DEFAULT_MODEL)
+        if self.provider == "openrouter" and "/" not in model:
+            model = f"anthropic/{model}"
+        self.model = model
         if client is None:
             import anthropic
 
-            client = anthropic.Anthropic()
+            if self.provider == "openrouter":
+                client = anthropic.Anthropic(base_url=OPENROUTER_BASE_URL, auth_token=_openrouter_key(), api_key=None)
+            else:
+                client = anthropic.Anthropic()
         self.client = client
         self.usage = {"input_tokens": 0, "output_tokens": 0, "calls": 0, "refusals": 0}
 
     def __call__(self, pdf_path: str, rules_result: ExtractionResult) -> ExtractionResult | None:
         pdf = base64.standard_b64encode(Path(pdf_path).read_bytes()).decode()
-        response = self.client.beta.messages.create(
+        if self.provider == "openrouter":
+            create, extra = self.client.messages.create, {}
+        else:  # a declined request is retried on a fallback model server-side
+            create = self.client.beta.messages.create
+            extra = {"betas": ["server-side-fallback-2026-07-01"], "fallbacks": "default"}
+        response = create(
             model=self.model,
             max_tokens=16000,
-            betas=["server-side-fallback-2026-07-01"],
-            fallbacks="default",  # a declined request is retried on a fallback model server-side
+            **extra,
             system=SYSTEM,
             output_config={"format": {"type": "json_schema", "schema": SCHEMA}},
             messages=[{

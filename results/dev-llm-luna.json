@@ -1,0 +1,6078 @@
+{
+ "summary": {
+  "files": 120,
+  "seconds": 144.6,
+  "fields": {
+   "vendor_name": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 37,
+    "scan_n": 39
+   },
+   "vendor_tax_id": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 32,
+    "scan_n": 39
+   },
+   "invoice_number": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 36,
+    "scan_n": 39
+   },
+   "issue_date": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "due_date": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "currency": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "subtotal": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "tax_rate": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "tax_amount": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "total": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 39,
+    "scan_n": 39
+   },
+   "line_items": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 38,
+    "scan_n": 39
+   },
+   "line_descriptions": {
+    "text_ok": 81,
+    "text_n": 81,
+    "scan_ok": 35,
+    "scan_n": 39
+   }
+  },
+  "defects": {
+   "due_before_issue": {
+    "planted": 3,
+    "caught": 3
+   },
+   "future_date": {
+    "planted": 8,
+    "caught": 8
+   },
+   "line_amount": {
+    "planted": 4,
+    "caught": 4
+   },
+   "missing_number": {
+    "planted": 7,
+    "caught": 7
+   },
+   "tax": {
+    "planted": 3,
+    "caught": 3
+   },
+   "tax_id": {
+    "planted": 4,
+    "caught": 4
+   },
+   "total": {
+    "planted": 2,
+    "caught": 2
+   }
+  },
+  "clean": {
+   "total": 89,
+   "flagged": 5
+  },
+  "defective_passed_as_ok": [],
+  "false_alarm_codes": {
+   "INVALID_TAX_ID": 7,
+   "LINES_SUM_MISMATCH": 1,
+   "LINE_AMOUNT_MISMATCH": 1
+  },
+  "llm": {
+   "model": "openai/gpt-6-luna",
+   "input_tokens": 51,
+   "output_tokens": 6989,
+   "calls": 17,
+   "refusals": 0
+  }
+ },
+ "rows": [
+  {
+   "file": "inv_0001.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Schmiedecke GmbH",
+    "vendor_tax_id": "DE597465077",
+    "invoice_number": "10173",
+    "issue_date": "2026-09-03",
+    "due_date": "2026-10-18",
+    "currency": "EUR",
+    "subtotal": "423.64",
+    "tax_rate": "19",
+    "tax_amount": "80.49",
+    "total": "504.13",
+    "line_items": [
+     {
+      "description": "USB-C Dockingstation 12-in-1",
+      "quantity": "2",
+      "unit_price": "211.82",
+      "amount": "423.64",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0002.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Rogner Holsten Stiftung & Co. KG",
+    "vendor_tax_id": "DE419487573",
+    "invoice_number": "10624",
+    "issue_date": "2026-08-09",
+    "due_date": "2026-08-23",
+    "currency": "EUR",
+    "subtotal": "4822.16",
+    "tax_rate": "7",
+    "tax_amount": "337.55",
+    "total": "5159.71",
+    "line_items": [
+     {
+      "description": "Stunden Backend-Entwicklung (Sprint 14)",
+      "quantity": "39.75",
+      "unit_price": "79.41",
+      "amount": "3156.55",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C Dockingstation 12-in-1",
+      "quantity": "2",
+      "unit_price": "203.06",
+      "amount": "406.12",
+      "discount_percent": null
+     },
+     {
+      "description": "Druckerpatrone schwarz, XL",
+      "quantity": "6",
+      "unit_price": "80.46",
+      "amount": "482.76",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud-Hosting Tarif Business (3 vCPU / 8 GB)",
+      "quantity": "2",
+      "unit_price": "67.36",
+      "amount": "134.72",
+      "discount_percent": null
+     },
+     {
+      "description": "Wartungspauschale Webseite, monatlich",
+      "quantity": "1",
+      "unit_price": "642.01",
+      "amount": "642.01",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0003.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Rogner Holsten Stiftung & Co. KG",
+    "vendor_tax_id": "DE419487573",
+    "invoice_number": "10649",
+    "issue_date": "2026-06-04",
+    "due_date": "2026-06-18",
+    "currency": "EUR",
+    "subtotal": "2280.03",
+    "tax_rate": "7",
+    "tax_amount": "159.60",
+    "total": "2439.63",
+    "line_items": [
+     {
+      "description": "Jahreslizenz Software, 5 Arbeitsplätze",
+      "quantity": "1",
+      "unit_price": "1756.95",
+      "amount": "1756.95",
+      "discount_percent": null
+     },
+     {
+      "description": "Monitorhalterung, Aluminium, 2 Arme",
+      "quantity": "9",
+      "unit_price": "58.12",
+      "amount": "523.08",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0004.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": "missing_number",
+   "method": "text",
+   "llm": false,
+   "confidence": 0.833,
+   "codes": [
+    "MISSING_INVOICE_NUMBER"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Besnard",
+    "vendor_tax_id": "FR90745025986",
+    "invoice_number": null,
+    "issue_date": "2026-06-26",
+    "due_date": "2026-07-26",
+    "currency": "EUR",
+    "subtotal": "1487.78",
+    "tax_rate": "5.5",
+    "tax_amount": "81.83",
+    "total": "1569.61",
+    "line_items": [
+     {
+      "description": "Cartouche toner noir, haute capacité",
+      "quantity": "7",
+      "unit_price": "67.87",
+      "amount": "475.09",
+      "discount_percent": null
+     },
+     {
+      "description": "Frais de port",
+      "quantity": "1",
+      "unit_price": "18.03",
+      "amount": "18.03",
+      "discount_percent": null
+     },
+     {
+      "description": "Licence logicielle annuelle, 5 postes",
+      "quantity": "1",
+      "unit_price": "994.66",
+      "amount": "994.66",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0005.pdf",
+   "layout": "uk",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [
+    "invoice_number"
+   ],
+   "got": {
+    "vendor_name": "Wells-Byrne",
+    "vendor_tax_id": "GB526018174",
+    "invoice_number": "1059",
+    "issue_date": "2026-07-30",
+    "due_date": "2026-08-29",
+    "currency": "GBP",
+    "subtotal": "5711.93",
+    "tax_rate": "20",
+    "tax_amount": "1142.39",
+    "total": "6854.32",
+    "line_items": [
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "30.75",
+      "unit_price": "119.08",
+      "amount": "3661.71",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "1",
+      "unit_price": "613.28",
+      "amount": "613.28",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "6",
+      "unit_price": "120.54",
+      "amount": "723.24",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "713.70",
+      "amount": "713.70",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0007.pdf",
+   "layout": "fr",
+   "scanned": true,
+   "defect": "future_date",
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [
+    "FUTURE_DATE"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Gerard",
+    "vendor_tax_id": "FR43323287495",
+    "invoice_number": "26/00386",
+    "issue_date": "2026-10-28",
+    "due_date": "2026-11-27",
+    "currency": "EUR",
+    "subtotal": "1080.94",
+    "tax_rate": "20",
+    "tax_amount": "216.19",
+    "total": "1297.13",
+    "line_items": [
+     {
+      "description": "StationdaccueilUSB-C12-en-1",
+      "quantity": "3",
+      "unit_price": "92.50",
+      "amount": "277.50",
+      "discount_percent": null
+     },
+     {
+      "description": "Heures de developpement backend(sprint14)",
+      "quantity": "6.75",
+      "unit_price": "114.50",
+      "amount": "772.88",
+      "discount_percent": null
+     },
+     {
+      "description": "Fraisdeport",
+      "quantity": "1",
+      "unit_price": "30.56",
+      "amount": "30.56",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0008.pdf",
+   "layout": "de",
+   "scanned": true,
+   "defect": "missing_number",
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 0.833,
+   "codes": [
+    "INVALID_TAX_ID",
+    "MISSING_INVOICE_NUMBER"
+   ],
+   "wrong_fields": [
+    "vendor_name",
+    "vendor_tax_id"
+   ],
+   "got": {
+    "vendor_name": "Wehmann Hettner GmbH & Co. KGaA",
+    "vendor_tax_id": "DE13423678",
+    "invoice_number": null,
+    "issue_date": "2026-06-17",
+    "due_date": "2026-08-01",
+    "currency": "EUR",
+    "subtotal": "3416.87",
+    "tax_rate": "7",
+    "tax_amount": "239.18",
+    "total": "3656.05",
+    "line_items": [
+     {
+      "description": "Druckerpatrone schwarz, XL",
+      "quantity": "4",
+      "unit_price": "42.98",
+      "amount": "171.92",
+      "discount_percent": null
+     },
+     {
+      "description": "Jahreslizenz Software, 5 Arbeitsplätze",
+      "quantity": "2",
+      "unit_price": "1601.04",
+      "amount": "3202.08",
+      "discount_percent": null
+     },
+     {
+      "description": "Versandkosten",
+      "quantity": "1",
+      "unit_price": "42.87",
+      "amount": "42.87",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0009.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "MILLS INC",
+    "vendor_tax_id": "98-8648511",
+    "invoice_number": "26/00671",
+    "issue_date": "2026-08-04",
+    "due_date": "2026-09-18",
+    "currency": "USD",
+    "subtotal": "3222.70",
+    "tax_rate": "6",
+    "tax_amount": "193.36",
+    "total": "3416.06",
+    "line_items": [
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "41.12",
+      "amount": "41.12",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "16",
+      "unit_price": "93.69",
+      "amount": "1499.04",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "10",
+      "unit_price": "42.65",
+      "amount": "426.50",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "600.74",
+      "amount": "600.74",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "2",
+      "unit_price": "327.65",
+      "amount": "655.30",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0010.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "ROSE AND SONS",
+    "vendor_tax_id": "28-7028755",
+    "invoice_number": "26/00379",
+    "issue_date": "2026-08-29",
+    "due_date": "2026-09-28",
+    "currency": "USD",
+    "subtotal": "1988.06",
+    "tax_rate": "7.25",
+    "tax_amount": "144.13",
+    "total": "2132.19",
+    "line_items": [
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "1507.97",
+      "amount": "1507.97",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "6",
+      "unit_price": "75.05",
+      "amount": "450.30",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "29.79",
+      "amount": "29.79",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0011.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": "line_amount",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "LINE_AMOUNT_MISMATCH"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "BUTLER GROUP",
+    "vendor_tax_id": "23-8078612",
+    "invoice_number": "F2026-0064",
+    "issue_date": "2026-06-10",
+    "due_date": "2026-06-24",
+    "currency": "USD",
+    "subtotal": "2667.65",
+    "tax_rate": "8.875",
+    "tax_amount": "236.75",
+    "total": "2904.40",
+    "line_items": [
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "2",
+      "unit_price": "718.82",
+      "amount": "1537.64",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "7",
+      "unit_price": "161.43",
+      "amount": "1130.01",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0012.pdf",
+   "layout": "uk",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Allen, Hawkins and Sinclair",
+    "vendor_tax_id": "GB199351815",
+    "invoice_number": "INV-2026-0578",
+    "issue_date": "2026-07-24",
+    "due_date": "2026-08-23",
+    "currency": "GBP",
+    "subtotal": "5658.57",
+    "tax_rate": "20",
+    "tax_amount": "1131.71",
+    "total": "6790.28",
+    "line_items": [
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "35.75",
+      "unit_price": "72.98",
+      "amount": "2609.04",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "25.31",
+      "amount": "25.31",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "2",
+      "unit_price": "406.68",
+      "amount": "813.36",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "4",
+      "unit_price": "115.45",
+      "amount": "461.80",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "110.70",
+      "amount": "332.10",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "12",
+      "unit_price": "118.08",
+      "amount": "1416.96",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0013.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": "future_date",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "FUTURE_DATE"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "JACOBS, COOPER AND STOKES",
+    "vendor_tax_id": "32-2538365",
+    "invoice_number": "RE-2026-0675",
+    "issue_date": "2026-10-26",
+    "due_date": "2026-11-25",
+    "currency": "USD",
+    "subtotal": "2123.08",
+    "tax_rate": "6",
+    "tax_amount": "127.38",
+    "total": "2250.46",
+    "line_items": [
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "10",
+      "unit_price": "43.26",
+      "amount": "432.60",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "1633.32",
+      "amount": "1633.32",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "1",
+      "unit_price": "57.16",
+      "amount": "57.16",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0014.pdf",
+   "layout": "us",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [
+    "line_descriptions"
+   ],
+   "got": {
+    "vendor_name": "MCCORMICK-COOK",
+    "vendor_tax_id": "72-9883852",
+    "invoice_number": "RE-2026-0270",
+    "issue_date": "2026-06-11",
+    "due_date": "2026-06-25",
+    "currency": "USD",
+    "subtotal": "3912.76",
+    "tax_rate": "8.875",
+    "tax_amount": "347.26",
+    "total": "4260.02",
+    "line_items": [
+     {
+      "description": "Cloud hostingplan(Business,3vCPU/8GB)",
+      "quantity": "2",
+      "unit_price": "54.65",
+      "amount": "109.30",
+      "discount_percent": null
+     },
+     {
+      "description": "On-sitesupportvisit incl.travel withinzone2",
+      "quantity": "2",
+      "unit_price": "129.42",
+      "amount": "258.84",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-Cdocking station12-in-1",
+      "quantity": "3",
+      "unit_price": "158.68",
+      "amount": "476.04",
+      "discount_percent": null
+     },
+     {
+      "description": "Printertonercartridge,black,highyild",
+      "quantity": "3",
+      "unit_price": "60.03",
+      "amount": "180.09",
+      "discount_percent": null
+     },
+     {
+      "description": "Annualsoftware licence-5seats",
+      "quantity": "1",
+      "unit_price": "2063.14",
+      "amount": "2063.14",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting:productdescriptionsfor25SKUs",
+      "quantity": "1",
+      "unit_price": "825.35",
+      "amount": "825.35",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0015.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "BUTLER GROUP",
+    "vendor_tax_id": "23-8078612",
+    "invoice_number": "F2026-0086",
+    "issue_date": "2026-07-10",
+    "due_date": "2026-07-24",
+    "currency": "USD",
+    "subtotal": "2195.34",
+    "tax_rate": "7.25",
+    "tax_amount": "159.16",
+    "total": "2354.50",
+    "line_items": [
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "156.25",
+      "amount": "468.75",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "743.46",
+      "amount": "743.46",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "3",
+      "unit_price": "131.90",
+      "amount": "395.70",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "587.43",
+      "amount": "587.43",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0016.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "HAYES, JOHNSON AND SHANNON",
+    "vendor_tax_id": "97-9383022",
+    "invoice_number": "F2026-0408",
+    "issue_date": "2026-08-24",
+    "due_date": "2026-10-08",
+    "currency": "USD",
+    "subtotal": "5062.20",
+    "tax_rate": "6.35",
+    "tax_amount": "321.45",
+    "total": "5383.65",
+    "line_items": [
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "1",
+      "unit_price": "92.02",
+      "amount": "92.02",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "122.84",
+      "amount": "368.52",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "1",
+      "unit_price": "637.00",
+      "amount": "637.00",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "672.01",
+      "amount": "672.01",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "34.5",
+      "unit_price": "63.70",
+      "amount": "2197.65",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "12",
+      "unit_price": "91.25",
+      "amount": "1095.00",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0017.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Schmiedecke GmbH",
+    "vendor_tax_id": "DE597465077",
+    "invoice_number": "10182",
+    "issue_date": "2026-08-25",
+    "due_date": "2026-10-09",
+    "currency": "EUR",
+    "subtotal": "5149.77",
+    "tax_rate": "19",
+    "tax_amount": "978.46",
+    "total": "6128.23",
+    "line_items": [
+     {
+      "description": "Monitorhalterung, Aluminium, 2 Arme",
+      "quantity": "7",
+      "unit_price": "33.45",
+      "amount": "234.15",
+      "discount_percent": null
+     },
+     {
+      "description": "Druckerpatrone schwarz, XL",
+      "quantity": "4",
+      "unit_price": "39.16",
+      "amount": "156.64",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C Dockingstation 12-in-1",
+      "quantity": "2",
+      "unit_price": "191.47",
+      "amount": "382.94",
+      "discount_percent": null
+     },
+     {
+      "description": "Beratung Datenmigration, Workshop vor Ort",
+      "quantity": "15",
+      "unit_price": "157.07",
+      "amount": "2356.05",
+      "discount_percent": null
+     },
+     {
+      "description": "Stunden Backend-Entwicklung (Sprint 14)",
+      "quantity": "22.25",
+      "unit_price": "90.28",
+      "amount": "2008.73",
+      "discount_percent": null
+     },
+     {
+      "description": "Versandkosten",
+      "quantity": "1",
+      "unit_price": "11.26",
+      "amount": "11.26",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0018.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Besnard",
+    "vendor_tax_id": "FR90745025986",
+    "invoice_number": "INV-2026-0116",
+    "issue_date": "2026-06-01",
+    "due_date": "2026-07-01",
+    "currency": "EUR",
+    "subtotal": "3176.48",
+    "tax_rate": "5.5",
+    "tax_amount": "174.71",
+    "total": "3351.19",
+    "line_items": [
+     {
+      "description": "Heures de développement backend (sprint 14)",
+      "quantity": "35.25",
+      "unit_price": "70.18",
+      "amount": "2473.85",
+      "discount_percent": null
+     },
+     {
+      "description": "Maintenance site web, forfait mensuel",
+      "quantity": "1",
+      "unit_price": "702.63",
+      "amount": "702.63",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0019.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Weihmann Hettner GmbH & Co. KGaA",
+    "vendor_tax_id": "DE134236678",
+    "invoice_number": "INV-2026-0189",
+    "issue_date": "2026-07-19",
+    "due_date": "2026-09-02",
+    "currency": "EUR",
+    "subtotal": "857.55",
+    "tax_rate": "19",
+    "tax_amount": "162.93",
+    "total": "1020.48",
+    "line_items": [
+     {
+      "description": "Wartungspauschale Webseite, monatlich",
+      "quantity": "1",
+      "unit_price": "817.38",
+      "amount": "817.38",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud-Hosting Tarif Business (3 vCPU / 8 GB)",
+      "quantity": "1",
+      "unit_price": "40.17",
+      "amount": "40.17",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0020.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "HAYES, JOHNSON AND SHANNON",
+    "vendor_tax_id": "97-9383022",
+    "invoice_number": "F2026-0424",
+    "issue_date": "2026-06-19",
+    "due_date": "2026-08-03",
+    "currency": "USD",
+    "subtotal": "1215.44",
+    "tax_rate": "6",
+    "tax_amount": "72.93",
+    "total": "1288.37",
+    "line_items": [
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "8",
+      "unit_price": "151.93",
+      "amount": "1215.44",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0021.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Maillard",
+    "vendor_tax_id": "FR78676189932",
+    "invoice_number": "INV-2026-0373",
+    "issue_date": "2026-09-06",
+    "due_date": "2026-09-20",
+    "currency": "EUR",
+    "subtotal": "3573.23",
+    "tax_rate": "5.5",
+    "tax_amount": "196.53",
+    "total": "3769.76",
+    "line_items": [
+     {
+      "description": "Conseil migration de données, atelier sur site",
+      "quantity": "12",
+      "unit_price": "154.89",
+      "amount": "1858.68",
+      "discount_percent": null
+     },
+     {
+      "description": "Heures de développement backend (sprint 14)",
+      "quantity": "15.75",
+      "unit_price": "108.86",
+      "amount": "1714.55",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0022.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Besnard",
+    "vendor_tax_id": "FR90745025986",
+    "invoice_number": "INV-2026-0125",
+    "issue_date": "2026-09-15",
+    "due_date": "2026-10-15",
+    "currency": "EUR",
+    "subtotal": "3376.08",
+    "tax_rate": "5.5",
+    "tax_amount": "185.68",
+    "total": "3561.76",
+    "line_items": [
+     {
+      "description": "Station d'accueil USB-C 12-en-1",
+      "quantity": "3",
+      "unit_price": "238.07",
+      "amount": "714.21",
+      "discount_percent": null
+     },
+     {
+      "description": "Maintenance site web, forfait mensuel",
+      "quantity": "1",
+      "unit_price": "1115.54",
+      "amount": "1115.54",
+      "discount_percent": null
+     },
+     {
+      "description": "Licence logicielle annuelle, 5 postes",
+      "quantity": "1",
+      "unit_price": "623.06",
+      "amount": "623.06",
+      "discount_percent": null
+     },
+     {
+      "description": "Heures de développement backend (sprint 14)",
+      "quantity": "7.75",
+      "unit_price": "58.42",
+      "amount": "452.76",
+      "discount_percent": null
+     },
+     {
+      "description": "Hébergement cloud offre Business (3 vCPU / 8 Go)",
+      "quantity": "1",
+      "unit_price": "144.38",
+      "amount": "144.38",
+      "discount_percent": null
+     },
+     {
+      "description": "Cartouche toner noir, haute capacité",
+      "quantity": "7",
+      "unit_price": "46.59",
+      "amount": "326.13",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0023.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": "tax_id",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "INVALID_TAX_ID"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Gérard",
+    "vendor_tax_id": "FR43323282495",
+    "invoice_number": "26/00414",
+    "issue_date": "2026-08-24",
+    "due_date": "2026-09-23",
+    "currency": "EUR",
+    "subtotal": "574.04",
+    "tax_rate": "20",
+    "tax_amount": "114.81",
+    "total": "688.85",
+    "line_items": [
+     {
+      "description": "Cartouche toner noir, haute capacité",
+      "quantity": "2",
+      "unit_price": "75.43",
+      "amount": "150.86",
+      "discount_percent": null
+     },
+     {
+      "description": "Station d'accueil USB-C 12-en-1",
+      "quantity": "2",
+      "unit_price": "211.59",
+      "amount": "423.18",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0024.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Fiebig GmbH & Co. KG",
+    "vendor_tax_id": "DE962527600",
+    "invoice_number": "INV-2026-0783",
+    "issue_date": "2026-07-03",
+    "due_date": "2026-08-02",
+    "currency": "EUR",
+    "subtotal": "6207.60",
+    "tax_rate": "19",
+    "tax_amount": "1179.44",
+    "total": "7387.04",
+    "line_items": [
+     {
+      "description": "Monitorhalterung, Aluminium, 2 Arme",
+      "quantity": "8",
+      "unit_price": "35.28",
+      "amount": "282.24",
+      "discount_percent": null
+     },
+     {
+      "description": "Druckerpatrone schwarz, XL",
+      "quantity": "9",
+      "unit_price": "94.00",
+      "amount": "846.00",
+      "discount_percent": null
+     },
+     {
+      "description": "Stunden Backend-Entwicklung (Sprint 14)",
+      "quantity": "24.25",
+      "unit_price": "117.83",
+      "amount": "2857.38",
+      "discount_percent": null
+     },
+     {
+      "description": "Jahreslizenz Software, 5 Arbeitsplätze",
+      "quantity": "1",
+      "unit_price": "2017.36",
+      "amount": "2017.36",
+      "discount_percent": null
+     },
+     {
+      "description": "Versandkosten",
+      "quantity": "1",
+      "unit_price": "12.17",
+      "amount": "12.17",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud-Hosting Tarif Business (3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "64.15",
+      "amount": "192.45",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0025.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Wells-Byrne",
+    "vendor_tax_id": "GB526018174",
+    "invoice_number": "10610",
+    "issue_date": "2026-09-07",
+    "due_date": "2026-10-07",
+    "currency": "GBP",
+    "subtotal": "7123.36",
+    "tax_rate": "20",
+    "tax_amount": "1424.67",
+    "total": "8548.03",
+    "line_items": [
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "991.74",
+      "amount": "991.74",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "2",
+      "unit_price": "2258.26",
+      "amount": "4516.52",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "86.78",
+      "amount": "260.34",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "11",
+      "unit_price": "123.16",
+      "amount": "1354.76",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0026.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Jackson Ltd",
+    "vendor_tax_id": "GB390996008",
+    "invoice_number": "RE-2026-0048",
+    "issue_date": "2026-09-04",
+    "due_date": "2026-10-04",
+    "currency": "EUR",
+    "subtotal": "2647.53",
+    "tax_rate": "20",
+    "tax_amount": "529.51",
+    "total": "3177.04",
+    "line_items": [
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "702.13",
+      "amount": "702.13",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "2",
+      "unit_price": "74.37",
+      "amount": "148.74",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "1",
+      "unit_price": "595.59",
+      "amount": "595.59",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "13",
+      "unit_price": "92.39",
+      "amount": "1201.07",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0027.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Maillard",
+    "vendor_tax_id": "FR78676189932",
+    "invoice_number": "INV-2026-0384",
+    "issue_date": "2026-09-02",
+    "due_date": "2026-09-16",
+    "currency": "EUR",
+    "subtotal": "7277.09",
+    "tax_rate": "10",
+    "tax_amount": "727.71",
+    "total": "8004.80",
+    "line_items": [
+     {
+      "description": "Heures de développement backend (sprint 14)",
+      "quantity": "37.75",
+      "unit_price": "94.82",
+      "amount": "3579.46",
+      "discount_percent": null
+     },
+     {
+      "description": "Maintenance site web, forfait mensuel",
+      "quantity": "1",
+      "unit_price": "382.55",
+      "amount": "382.55",
+      "discount_percent": null
+     },
+     {
+      "description": "Licence logicielle annuelle, 5 postes",
+      "quantity": "1",
+      "unit_price": "409.41",
+      "amount": "409.41",
+      "discount_percent": null
+     },
+     {
+      "description": "Station d'accueil USB-C 12-en-1",
+      "quantity": "8",
+      "unit_price": "200.67",
+      "amount": "1605.36",
+      "discount_percent": null
+     },
+     {
+      "description": "Conseil migration de données, atelier sur site",
+      "quantity": "11",
+      "unit_price": "118.21",
+      "amount": "1300.31",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0028.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": "tax_id",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "INVALID_TAX_ID"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Weihmann Hettner GmbH & Co. KGaA",
+    "vendor_tax_id": "DE134286678",
+    "invoice_number": "INV-2026-0192",
+    "issue_date": "2026-06-26",
+    "due_date": "2026-08-10",
+    "currency": "EUR",
+    "subtotal": "2409.55",
+    "tax_rate": "19",
+    "tax_amount": "457.81",
+    "total": "2867.36",
+    "line_items": [
+     {
+      "description": "Stunden Backend-Entwicklung (Sprint 14)",
+      "quantity": "27.5",
+      "unit_price": "87.62",
+      "amount": "2409.55",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0029.pdf",
+   "layout": "fr",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "MunozPerretS.A.S.",
+    "vendor_tax_id": "FR89324157762",
+    "invoice_number": "F2026-0167",
+    "issue_date": "2026-09-18",
+    "due_date": "2026-10-18",
+    "currency": "EUR",
+    "subtotal": "4761.80",
+    "tax_rate": "10",
+    "tax_amount": "476.18",
+    "total": "5237.98",
+    "line_items": [
+     {
+      "description": "Licencelogicielle annuelle,5postes",
+      "quantity": "2",
+      "unit_price": "2380.90",
+      "amount": "4761.80",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0030.pdf",
+   "layout": "us",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "MCCORMICK-COOK",
+    "vendor_tax_id": "72-9883852",
+    "invoice_number": "RE-2026-0290",
+    "issue_date": "2026-08-22",
+    "due_date": "2026-09-05",
+    "currency": "USD",
+    "subtotal": "3644.66",
+    "tax_rate": "7.25",
+    "tax_amount": "264.24",
+    "total": "3908.90",
+    "line_items": [
+     {
+      "description": "Copywriting:product descriptionsfor25SKUs",
+      "quantity": "2",
+      "unit_price": "898.62",
+      "amount": "1797.24",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand,aluminium",
+      "quantity": "10",
+      "unit_price": "73.99",
+      "amount": "739.90",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping andhandling",
+      "quantity": "1",
+      "unit_price": "38.47",
+      "amount": "38.47",
+      "discount_percent": null
+     },
+     {
+      "description": "On-sitesupportvisit incl.travel withinzone2",
+      "quantity": "1",
+      "unit_price": "128.10",
+      "amount": "128.10",
+      "discount_percent": null
+     },
+     {
+      "description": "Websitemaintenance,monthlyretainer",
+      "quantity": "1",
+      "unit_price": "940.95",
+      "amount": "940.95",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0031.pdf",
+   "layout": "de",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "WeihmannHettnerGmbH &Co.KGaA",
+    "vendor_tax_id": "DE134236678",
+    "invoice_number": "INV-2026-0215",
+    "issue_date": "2026-08-11",
+    "due_date": "2026-09-25",
+    "currency": "EUR",
+    "subtotal": "2560.82",
+    "tax_rate": "19",
+    "tax_amount": "486.56",
+    "total": "3047.38",
+    "line_items": [
+     {
+      "description": "Cloud-HostingTarif Business(3vCPU/8GB)",
+      "quantity": "3",
+      "unit_price": "146.95",
+      "amount": "440.85",
+      "discount_percent": null
+     },
+     {
+      "description": "Druckerpatrone schwarz,XL",
+      "quantity": "6",
+      "unit_price": "71.27",
+      "amount": "427.62",
+      "discount_percent": null
+     },
+     {
+      "description": "StundenBackend-Entwicklung(Sprint14)",
+      "quantity": "21.25",
+      "unit_price": "79.64",
+      "amount": "1692.35",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0032.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": "line_amount",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "LINE_AMOUNT_MISMATCH"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "ROSE AND SONS",
+    "vendor_tax_id": "28-7028755",
+    "invoice_number": "26/00396",
+    "issue_date": "2026-09-12",
+    "due_date": "2026-10-12",
+    "currency": "USD",
+    "subtotal": "2069.04",
+    "tax_rate": "8.875",
+    "tax_amount": "183.63",
+    "total": "2252.67",
+    "line_items": [
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "2",
+      "unit_price": "117.62",
+      "amount": "235.24",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "7",
+      "unit_price": "83.53",
+      "amount": "584.71",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "3",
+      "unit_price": "55.15",
+      "amount": "165.45",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "1082.74",
+      "amount": "1083.64",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0033.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "JACOBS, COOPER AND STOKES",
+    "vendor_tax_id": "32-2538365",
+    "invoice_number": "RE-2026-0684",
+    "issue_date": "2026-07-02",
+    "due_date": "2026-07-16",
+    "currency": "USD",
+    "subtotal": "2510.44",
+    "tax_rate": "8.875",
+    "tax_amount": "222.80",
+    "total": "2733.24",
+    "line_items": [
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "2",
+      "unit_price": "676.36",
+      "amount": "1352.72",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "514.98",
+      "amount": "514.98",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "1",
+      "unit_price": "642.74",
+      "amount": "642.74",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0034.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Wells-Byrne",
+    "vendor_tax_id": "GB526018174",
+    "invoice_number": "10614",
+    "issue_date": "2026-07-21",
+    "due_date": "2026-08-20",
+    "currency": "GBP",
+    "subtotal": "1359.66",
+    "tax_rate": "20",
+    "tax_amount": "271.93",
+    "total": "1631.59",
+    "line_items": [
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "1119.62",
+      "amount": "1119.62",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "2",
+      "unit_price": "120.02",
+      "amount": "240.04",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0035.pdf",
+   "layout": "us",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "ROSE AND SONS",
+    "vendor_tax_id": "28-7028755",
+    "invoice_number": "26/00415",
+    "issue_date": "2026-06-11",
+    "due_date": "2026-07-11",
+    "currency": "USD",
+    "subtotal": "963.90",
+    "tax_rate": "6.35",
+    "tax_amount": "61.21",
+    "total": "1025.11",
+    "line_items": [
+     {
+      "description": "Consulting-data migrationworkshop",
+      "quantity": "6",
+      "unit_price": "97.45",
+      "amount": "584.70",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand,aluminium",
+      "quantity": "10",
+      "unit_price": "37.92",
+      "amount": "379.20",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0036.pdf",
+   "layout": "fr",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Maillard",
+    "vendor_tax_id": "FR78676189932",
+    "invoice_number": "INV-2026-0389",
+    "issue_date": "2026-06-29",
+    "due_date": "2026-07-13",
+    "currency": "EUR",
+    "subtotal": "4420.08",
+    "tax_rate": "10",
+    "tax_amount": "442.01",
+    "total": "4862.09",
+    "line_items": [
+     {
+      "description": "Fraisdeport",
+      "quantity": "1",
+      "unit_price": "11.88",
+      "amount": "11.88",
+      "discount_percent": null
+     },
+     {
+      "description": "Licencelogicielle annuelle,5postes",
+      "quantity": "2",
+      "unit_price": "1774.77",
+      "amount": "3549.54",
+      "discount_percent": null
+     },
+     {
+      "description": "Maintenancesiteweb,forfaitmensuel",
+      "quantity": "1",
+      "unit_price": "858.66",
+      "amount": "858.66",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0037.pdf",
+   "layout": "fr",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Maillard",
+    "vendor_tax_id": "FR78676189932",
+    "invoice_number": "INV-2026-0415",
+    "issue_date": "2026-08-30",
+    "due_date": "2026-09-13",
+    "currency": "EUR",
+    "subtotal": "1662.28",
+    "tax_rate": "5.5",
+    "tax_amount": "91.43",
+    "total": "1753.71",
+    "line_items": [
+     {
+      "description": "Cartouche tonernoir,haute capacite",
+      "quantity": "5",
+      "unit_price": "82.81",
+      "amount": "414.05",
+      "discount_percent": null
+     },
+     {
+      "description": "Heuresde developpementbackend(sprint14)",
+      "quantity": "21.75",
+      "unit_price": "57.39",
+      "amount": "1248.23",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0038.pdf",
+   "layout": "fr",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [
+    "line_descriptions"
+   ],
+   "got": {
+    "vendor_name": "Gerard",
+    "vendor_tax_id": "FR43323287495",
+    "invoice_number": "26/00431",
+    "issue_date": "2026-09-03",
+    "due_date": "2026-10-03",
+    "currency": "EUR",
+    "subtotal": "6386.56",
+    "tax_rate": "10",
+    "tax_amount": "638.66",
+    "total": "7025.22",
+    "line_items": [
+     {
+      "description": "Licencelogicielleannuelle,5postes",
+      "quantity": "2",
+      "unit_price": "2283.06",
+      "amount": "4566.12",
+      "discount_percent": null
+     },
+     {
+      "description": "Conseilmigrationde donnees,ateliersursite",
+      "quantity": "10",
+      "unit_price": "114.68",
+      "amount": "1146.80",
+      "discount_percent": null
+     },
+     {
+      "description": "HebergementcloudoffreBusiness(3vCPU/8Go)",
+      "quantity": "3",
+      "unit_price": "104.93",
+      "amount": "314.79",
+      "discount_percent": null
+     },
+     {
+      "description": "Maintenancesiteweb,forfaitmensul",
+      "quantity": "1",
+      "unit_price": "358.85",
+      "amount": "358.85",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0039.pdf",
+   "layout": "de",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Fiebig GmbH & Co.KG",
+    "vendor_tax_id": "DE962527600",
+    "invoice_number": "INV-2026-0804",
+    "issue_date": "2026-08-25",
+    "due_date": "2026-09-24",
+    "currency": "EUR",
+    "subtotal": "1619.13",
+    "tax_rate": "19",
+    "tax_amount": "307.63",
+    "total": "1926.76",
+    "line_items": [
+     {
+      "description": "Cloud-Hosting Tarif Business(3vCPU/8GB)",
+      "quantity": "2",
+      "unit_price": "139.95",
+      "amount": "279.90",
+      "discount_percent": null
+     },
+     {
+      "description": "BeratungDatenmigration,WorkshopvorOrt",
+      "quantity": "6",
+      "unit_price": "158.43",
+      "amount": "950.58",
+      "discount_percent": null
+     },
+     {
+      "description": "Druckerpatroneschwarz,XL",
+      "quantity": "5",
+      "unit_price": "77.73",
+      "amount": "388.65",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0040.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Allen, Hawkins and Sinclair",
+    "vendor_tax_id": "GB199351815",
+    "invoice_number": "INV-2026-0585",
+    "issue_date": "2026-06-05",
+    "due_date": "2026-07-05",
+    "currency": "GBP",
+    "subtotal": "1353.28",
+    "tax_rate": "20",
+    "tax_amount": "270.66",
+    "total": "1623.94",
+    "line_items": [
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "761.82",
+      "amount": "761.82",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "12.25",
+      "amount": "12.25",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "3",
+      "unit_price": "142.94",
+      "amount": "428.82",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "1",
+      "unit_price": "150.39",
+      "amount": "150.39",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0041.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Weihmann Hettner GmbH & Co. KGaA",
+    "vendor_tax_id": "DE134236678",
+    "invoice_number": "INV-2026-0237",
+    "issue_date": "2026-09-07",
+    "due_date": "2026-10-22",
+    "currency": "EUR",
+    "subtotal": "4067.89",
+    "tax_rate": "19",
+    "tax_amount": "772.90",
+    "total": "4840.79",
+    "line_items": [
+     {
+      "description": "USB-C Dockingstation 12-in-1",
+      "quantity": "5",
+      "unit_price": "102.23",
+      "amount": "511.15",
+      "discount_percent": null
+     },
+     {
+      "description": "Beratung Datenmigration, Workshop vor Ort",
+      "quantity": "9",
+      "unit_price": "119.42",
+      "amount": "1074.78",
+      "discount_percent": null
+     },
+     {
+      "description": "Wartungspauschale Webseite, monatlich",
+      "quantity": "1",
+      "unit_price": "1085.48",
+      "amount": "1085.48",
+      "discount_percent": null
+     },
+     {
+      "description": "Jahreslizenz Software, 5 Arbeitsplätze",
+      "quantity": "1",
+      "unit_price": "1396.48",
+      "amount": "1396.48",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0042.pdf",
+   "layout": "fr",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Couturier SA",
+    "vendor_tax_id": "FR80473006684",
+    "invoice_number": "26/00373",
+    "issue_date": "2026-09-12",
+    "due_date": "2026-09-26",
+    "currency": "EUR",
+    "subtotal": "4295.22",
+    "tax_rate": "20",
+    "tax_amount": "859.04",
+    "total": "5154.26",
+    "line_items": [
+     {
+      "description": "HebergementcloudoffreBusiness(3vCPU/8Go)",
+      "quantity": "1",
+      "unit_price": "92.97",
+      "amount": "92.97",
+      "discount_percent": null
+     },
+     {
+      "description": "Stationd'accueil USB-C12-en-1",
+      "quantity": "6",
+      "unit_price": "209.80",
+      "amount": "1258.80",
+      "discount_percent": null
+     },
+     {
+      "description": "Heuresdedeveloppementbackend(sprint14)",
+      "quantity": "36.25",
+      "unit_price": "57.48",
+      "amount": "2083.65",
+      "discount_percent": null
+     },
+     {
+      "description": "Cartouche tonernoir,haute capacite",
+      "quantity": "12",
+      "unit_price": "71.65",
+      "amount": "859.80",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0043.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Royer",
+    "vendor_tax_id": "FR79223859888",
+    "invoice_number": "F2026-0478",
+    "issue_date": "2026-08-18",
+    "due_date": "2026-10-02",
+    "currency": "EUR",
+    "subtotal": "2227.70",
+    "tax_rate": "10",
+    "tax_amount": "222.77",
+    "total": "2450.47",
+    "line_items": [
+     {
+      "description": "Licence logicielle annuelle, 5 postes",
+      "quantity": "2",
+      "unit_price": "1113.85",
+      "amount": "2227.70",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0044.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Börner AG & Co. OHG",
+    "vendor_tax_id": "DE697971143",
+    "invoice_number": "F2026-0714",
+    "issue_date": "2026-07-26",
+    "due_date": "2026-08-09",
+    "currency": "EUR",
+    "subtotal": "2697.23",
+    "tax_rate": "19",
+    "tax_amount": "512.47",
+    "total": "3209.70",
+    "line_items": [
+     {
+      "description": "Wartungspauschale Webseite, monatlich",
+      "quantity": "1",
+      "unit_price": "490.58",
+      "amount": "490.58",
+      "discount_percent": null
+     },
+     {
+      "description": "Beratung Datenmigration, Workshop vor Ort",
+      "quantity": "11",
+      "unit_price": "143.61",
+      "amount": "1579.71",
+      "discount_percent": null
+     },
+     {
+      "description": "Druckerpatrone schwarz, XL",
+      "quantity": "9",
+      "unit_price": "69.66",
+      "amount": "626.94",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0045.pdf",
+   "layout": "fr",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Royer",
+    "vendor_tax_id": "FR79223859888",
+    "invoice_number": "F2026-0480",
+    "issue_date": "2026-08-05",
+    "due_date": "2026-09-19",
+    "currency": "EUR",
+    "subtotal": "5157.92",
+    "tax_rate": "20",
+    "tax_amount": "1031.58",
+    "total": "6189.50",
+    "line_items": [
+     {
+      "description": "StationdaccueilUSB-C12-en-1",
+      "quantity": "6",
+      "unit_price": "230.10",
+      "amount": "1380.60",
+      "discount_percent": null
+     },
+     {
+      "description": "Heuresdedeveloppementbackend(sprint14)",
+      "quantity": "26.25",
+      "unit_price": "92.74",
+      "amount": "2434.43",
+      "discount_percent": null
+     },
+     {
+      "description": "Conseil migrationde donnees,ateliersursite",
+      "quantity": "9",
+      "unit_price": "149.21",
+      "amount": "1342.89",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0046.pdf",
+   "layout": "us",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "BUTLERGROUP",
+    "vendor_tax_id": "23-8078612",
+    "invoice_number": "F2026-0107",
+    "issue_date": "2026-08-03",
+    "due_date": "2026-08-17",
+    "currency": "USD",
+    "subtotal": "1316.32",
+    "tax_rate": "6.35",
+    "tax_amount": "83.59",
+    "total": "1399.91",
+    "line_items": [
+     {
+      "description": "USB-Cdocking station 12-in-1",
+      "quantity": "2",
+      "unit_price": "132.39",
+      "amount": "264.78",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site supportvisit incl.travelwithinzone2",
+      "quantity": "3",
+      "unit_price": "133.77",
+      "amount": "401.31",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting-datamigrationworkshop",
+      "quantity": "7",
+      "unit_price": "92.89",
+      "amount": "650.23",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0047.pdf",
+   "layout": "de",
+   "scanned": true,
+   "defect": "missing_number",
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 0.833,
+   "codes": [
+    "MISSING_INVOICE_NUMBER"
+   ],
+   "wrong_fields": [
+    "vendor_name"
+   ],
+   "got": {
+    "vendor_name": "Schiedecke GmbH",
+    "vendor_tax_id": "DE597465077",
+    "invoice_number": null,
+    "issue_date": "2026-07-02",
+    "due_date": "2026-08-16",
+    "currency": "EUR",
+    "subtotal": "1683.94",
+    "tax_rate": "19",
+    "tax_amount": "319.95",
+    "total": "2003.89",
+    "line_items": [
+     {
+      "description": "Cloud-Hosting Tarif Business (3 vCPU / 8 GB)",
+      "quantity": "2",
+      "unit_price": "160.92",
+      "amount": "321.84",
+      "discount_percent": null
+     },
+     {
+      "description": "Druckerpatrone schwarz, XL",
+      "quantity": "6",
+      "unit_price": "54.31",
+      "amount": "325.86",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C Dockingstation 12-in-1",
+      "quantity": "8",
+      "unit_price": "129.53",
+      "amount": "1036.24",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0048.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Harrison and Sons",
+    "vendor_tax_id": "GB462819429",
+    "invoice_number": "26/00836",
+    "issue_date": "2026-07-18",
+    "due_date": "2026-08-17",
+    "currency": "EUR",
+    "subtotal": "4097.78",
+    "tax_rate": "20",
+    "tax_amount": "819.56",
+    "total": "4917.34",
+    "line_items": [
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "1",
+      "unit_price": "1575.18",
+      "amount": "1575.18",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "402.90",
+      "amount": "402.90",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "8",
+      "unit_price": "104.07",
+      "amount": "832.56",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "13.5",
+      "unit_price": "59.12",
+      "amount": "798.12",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "33.59",
+      "amount": "33.59",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "3",
+      "unit_price": "151.81",
+      "amount": "455.43",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0049.pdf",
+   "layout": "fr",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Gerard",
+    "vendor_tax_id": "FR43323287495",
+    "invoice_number": "26/00459",
+    "issue_date": "2026-06-28",
+    "due_date": "2026-07-28",
+    "currency": "EUR",
+    "subtotal": "1873.62",
+    "tax_rate": "10",
+    "tax_amount": "187.36",
+    "total": "2060.98",
+    "line_items": [
+     {
+      "description": "Conseilmigrationdedonnees,ateliersur site",
+      "quantity": "14",
+      "unit_price": "133.83",
+      "amount": "1873.62",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0050.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": "due_before_issue",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "DUE_BEFORE_ISSUE"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Maillard",
+    "vendor_tax_id": "FR78676189932",
+    "invoice_number": "INV-2026-0436",
+    "issue_date": "2026-06-10",
+    "due_date": "2026-05-21",
+    "currency": "EUR",
+    "subtotal": "902.65",
+    "tax_rate": "10",
+    "tax_amount": "90.27",
+    "total": "992.92",
+    "line_items": [
+     {
+      "description": "Maintenance site web, forfait mensuel",
+      "quantity": "1",
+      "unit_price": "886.07",
+      "amount": "886.07",
+      "discount_percent": null
+     },
+     {
+      "description": "Frais de port",
+      "quantity": "1",
+      "unit_price": "16.58",
+      "amount": "16.58",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0051.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "JACOBS, COOPER AND STOKES",
+    "vendor_tax_id": "32-2538365",
+    "invoice_number": "RE-2026-0697",
+    "issue_date": "2026-08-22",
+    "due_date": "2026-09-05",
+    "currency": "USD",
+    "subtotal": "4690.21",
+    "tax_rate": "8.875",
+    "tax_amount": "416.26",
+    "total": "5106.47",
+    "line_items": [
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "6",
+      "unit_price": "71.56",
+      "amount": "429.36",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "5",
+      "unit_price": "198.41",
+      "amount": "992.05",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "26.11",
+      "amount": "26.11",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "4",
+      "unit_price": "110.58",
+      "amount": "442.32",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "28.75",
+      "unit_price": "88.92",
+      "amount": "2556.45",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "8",
+      "unit_price": "30.49",
+      "amount": "243.92",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0052.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": "line_amount",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "LINE_AMOUNT_MISMATCH"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "MCCORMICK-COOK",
+    "vendor_tax_id": "72-9883852",
+    "invoice_number": "RE-2026-0318",
+    "issue_date": "2026-07-29",
+    "due_date": "2026-08-12",
+    "currency": "USD",
+    "subtotal": "2232.71",
+    "tax_rate": "8.875",
+    "tax_amount": "198.15",
+    "total": "2430.86",
+    "line_items": [
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "1",
+      "unit_price": "186.55",
+      "amount": "187.55",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "13",
+      "unit_price": "157.32",
+      "amount": "2045.16",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0053.pdf",
+   "layout": "uk",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 1.0,
+   "codes": [
+    "INVALID_TAX_ID"
+   ],
+   "wrong_fields": [
+    "vendor_tax_id"
+   ],
+   "got": {
+    "vendor_name": "Jackson Ltd",
+    "vendor_tax_id": "GB39096008",
+    "invoice_number": "RE-2026-0065",
+    "issue_date": "2026-07-09",
+    "due_date": "2026-08-08",
+    "currency": "EUR",
+    "subtotal": "2130.42",
+    "tax_rate": "20",
+    "tax_amount": "426.08",
+    "total": "2556.50",
+    "line_items": [
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "971.32",
+      "amount": "971.32",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "1",
+      "unit_price": "641.54",
+      "amount": "641.54",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "4",
+      "unit_price": "43.49",
+      "amount": "173.96",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "2",
+      "unit_price": "151.87",
+      "amount": "303.74",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "39.86",
+      "amount": "39.86",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0054.pdf",
+   "layout": "fr",
+   "scanned": true,
+   "defect": "missing_number",
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 0.833,
+   "codes": [
+    "MISSING_INVOICE_NUMBER"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Maillard",
+    "vendor_tax_id": "FR78676189932",
+    "invoice_number": null,
+    "issue_date": "2026-08-12",
+    "due_date": "2026-08-26",
+    "currency": "EUR",
+    "subtotal": "7847.79",
+    "tax_rate": "20",
+    "tax_amount": "1569.56",
+    "total": "9417.35",
+    "line_items": [
+     {
+      "description": "Conseil migration de données, atelier sur site",
+      "quantity": "14",
+      "unit_price": "149.37",
+      "amount": "2091.18",
+      "discount_percent": null
+     },
+     {
+      "description": "Licence logicielle annuelle, 5 postes",
+      "quantity": "1",
+      "unit_price": "2028.05",
+      "amount": "2028.05",
+      "discount_percent": null
+     },
+     {
+      "description": "Heures de développement backend (sprint 14)",
+      "quantity": "31.75",
+      "unit_price": "105.35",
+      "amount": "3344.86",
+      "discount_percent": null
+     },
+     {
+      "description": "Cartouche toner noir, haute capacité",
+      "quantity": "5",
+      "unit_price": "76.74",
+      "amount": "383.70",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0055.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": "missing_number",
+   "method": "text",
+   "llm": false,
+   "confidence": 0.833,
+   "codes": [
+    "MISSING_INVOICE_NUMBER"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Rogner Holsten Stiftung & Co. KG",
+    "vendor_tax_id": "DE419487573",
+    "invoice_number": null,
+    "issue_date": "2026-09-16",
+    "due_date": "2026-09-30",
+    "currency": "EUR",
+    "subtotal": "493.44",
+    "tax_rate": "7",
+    "tax_amount": "34.54",
+    "total": "527.98",
+    "line_items": [
+     {
+      "description": "Druckerpatrone schwarz, XL",
+      "quantity": "12",
+      "unit_price": "41.12",
+      "amount": "493.44",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0056.pdf",
+   "layout": "de",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Schmiedecke GmbH",
+    "vendor_tax_id": "DE597465077",
+    "invoice_number": "10217",
+    "issue_date": "2026-09-08",
+    "due_date": "2026-10-23",
+    "currency": "EUR",
+    "subtotal": "5007.59",
+    "tax_rate": "7",
+    "tax_amount": "350.53",
+    "total": "5358.12",
+    "line_items": [
+     {
+      "description": "JahreslizenzSoftware,5Arbeitsplatze",
+      "quantity": "2",
+      "unit_price": "1571.23",
+      "amount": "3142.46",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud-HostingTarifBusiness(3vCPU/8GB)",
+      "quantity": "3",
+      "unit_price": "111.81",
+      "amount": "335.43",
+      "discount_percent": null
+     },
+     {
+      "description": "Versandkosten",
+      "quantity": "1",
+      "unit_price": "9.95",
+      "amount": "9.95",
+      "discount_percent": null
+     },
+     {
+      "description": "BeratungDatenmigration,WorkshopvorOrt",
+      "quantity": "4",
+      "unit_price": "135.69",
+      "amount": "542.76",
+      "discount_percent": null
+     },
+     {
+      "description": "Monitorhalterung,Aluminium,2Arme",
+      "quantity": "9",
+      "unit_price": "67.11",
+      "amount": "603.99",
+      "discount_percent": null
+     },
+     {
+      "description": "Druckerpatroneschwarz,XL",
+      "quantity": "5",
+      "unit_price": "74.60",
+      "amount": "373.00",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0057.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "MCCORMICK-COOK",
+    "vendor_tax_id": "72-9883852",
+    "invoice_number": "RE-2026-0343",
+    "issue_date": "2026-09-02",
+    "due_date": "2026-09-16",
+    "currency": "USD",
+    "subtotal": "2756.44",
+    "tax_rate": "6",
+    "tax_amount": "165.39",
+    "total": "2921.83",
+    "line_items": [
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "12",
+      "unit_price": "138.82",
+      "amount": "1665.84",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "1",
+      "unit_price": "506.56",
+      "amount": "506.56",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "12",
+      "unit_price": "48.67",
+      "amount": "584.04",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0058.pdf",
+   "layout": "us",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "HAYES,JOHNSON AND SHANNON",
+    "vendor_tax_id": "97-9383022",
+    "invoice_number": "F2026-0437",
+    "issue_date": "2026-08-27",
+    "due_date": "2026-10-11",
+    "currency": "USD",
+    "subtotal": "4752.76",
+    "tax_rate": "7.25",
+    "tax_amount": "344.58",
+    "total": "5097.34",
+    "line_items": [
+     {
+      "description": "Hours-backend development(sprint14)",
+      "quantity": "13",
+      "unit_price": "70.86",
+      "amount": "921.18",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-Cdocking station12-in-1",
+      "quantity": "3",
+      "unit_price": "234.11",
+      "amount": "702.33",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance,monthlyretainer",
+      "quantity": "1",
+      "unit_price": "727.33",
+      "amount": "727.33",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting-data migrationworkshop",
+      "quantity": "16",
+      "unit_price": "150.12",
+      "amount": "2401.92",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0059.pdf",
+   "layout": "fr",
+   "scanned": true,
+   "defect": "tax",
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 1.0,
+   "codes": [
+    "INVALID_TAX_ID",
+    "TAX_MISMATCH"
+   ],
+   "wrong_fields": [
+    "vendor_tax_id"
+   ],
+   "got": {
+    "vendor_name": "Besnard",
+    "vendor_tax_id": "FR9074502596",
+    "invoice_number": "INV-2026-0140",
+    "issue_date": "2026-07-11",
+    "due_date": "2026-08-10",
+    "currency": "EUR",
+    "subtotal": "2657.16",
+    "tax_rate": "20",
+    "tax_amount": "478.29",
+    "total": "3135.45",
+    "line_items": [
+     {
+      "description": "Cartouche toner noir, haute capacité",
+      "quantity": "10",
+      "unit_price": "77.33",
+      "amount": "773.30",
+      "discount_percent": null
+     },
+     {
+      "description": "Conseil migration de données, atelier sur site",
+      "quantity": "7",
+      "unit_price": "133.48",
+      "amount": "934.36",
+      "discount_percent": null
+     },
+     {
+      "description": "Station d'accueil USB-C 12-en-1",
+      "quantity": "5",
+      "unit_price": "189.90",
+      "amount": "949.50",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0060.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Singh LLC",
+    "vendor_tax_id": "GB786579749",
+    "invoice_number": "10307",
+    "issue_date": "2026-09-03",
+    "due_date": "2026-10-03",
+    "currency": "GBP",
+    "subtotal": "3380.45",
+    "tax_rate": "20",
+    "tax_amount": "676.09",
+    "total": "4056.54",
+    "line_items": [
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "14",
+      "unit_price": "155.31",
+      "amount": "2174.34",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "7",
+      "unit_price": "75.11",
+      "amount": "525.77",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "680.34",
+      "amount": "680.34",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0061.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Allen, Hawkins and Sinclair",
+    "vendor_tax_id": "GB199351815",
+    "invoice_number": "INV-2026-0595",
+    "issue_date": "2026-07-10",
+    "due_date": "2026-08-09",
+    "currency": "GBP",
+    "subtotal": "3489.61",
+    "tax_rate": "20",
+    "tax_amount": "697.92",
+    "total": "4187.53",
+    "line_items": [
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "1",
+      "unit_price": "415.83",
+      "amount": "415.83",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "13",
+      "unit_price": "145.91",
+      "amount": "1896.83",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "1",
+      "unit_price": "1176.95",
+      "amount": "1176.95",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0062.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": "total",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "TOTAL_MISMATCH"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Weihmann Hettner GmbH & Co. KGaA",
+    "vendor_tax_id": "DE134236678",
+    "invoice_number": "INV-2026-0264",
+    "issue_date": "2026-07-16",
+    "due_date": "2026-08-30",
+    "currency": "EUR",
+    "subtotal": "4222.09",
+    "tax_rate": "7",
+    "tax_amount": "295.55",
+    "total": "4617.64",
+    "line_items": [
+     {
+      "description": "Wartungspauschale Webseite, monatlich",
+      "quantity": "1",
+      "unit_price": "1021.97",
+      "amount": "1021.97",
+      "discount_percent": null
+     },
+     {
+      "description": "Druckerpatrone schwarz, XL",
+      "quantity": "7",
+      "unit_price": "41.91",
+      "amount": "293.37",
+      "discount_percent": null
+     },
+     {
+      "description": "Beratung Datenmigration, Workshop vor Ort",
+      "quantity": "6",
+      "unit_price": "125.00",
+      "amount": "750.00",
+      "discount_percent": null
+     },
+     {
+      "description": "Jahreslizenz Software, 5 Arbeitsplätze",
+      "quantity": "1",
+      "unit_price": "2005.68",
+      "amount": "2005.68",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C Dockingstation 12-in-1",
+      "quantity": "1",
+      "unit_price": "92.65",
+      "amount": "92.65",
+      "discount_percent": null
+     },
+     {
+      "description": "Monitorhalterung, Aluminium, 2 Arme",
+      "quantity": "2",
+      "unit_price": "29.21",
+      "amount": "58.42",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0063.pdf",
+   "layout": "uk",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 1.0,
+   "codes": [
+    "INVALID_TAX_ID"
+   ],
+   "wrong_fields": [
+    "vendor_tax_id",
+    "invoice_number"
+   ],
+   "got": {
+    "vendor_name": "Allen, Hawkins and Sinclair",
+    "vendor_tax_id": "GB19931815",
+    "invoice_number": "INV-2026-016",
+    "issue_date": "2026-08-30",
+    "due_date": "2026-09-29",
+    "currency": "GBP",
+    "subtotal": "1426.39",
+    "tax_rate": "20",
+    "tax_amount": "285.28",
+    "total": "1711.67",
+    "line_items": [
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "2",
+      "unit_price": "403.95",
+      "amount": "807.90",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "618.49",
+      "amount": "618.49",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0064.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Wells-Byrne",
+    "vendor_tax_id": "GB526018174",
+    "invoice_number": "10644",
+    "issue_date": "2026-08-17",
+    "due_date": "2026-09-16",
+    "currency": "GBP",
+    "subtotal": "2929.81",
+    "tax_rate": "20",
+    "tax_amount": "585.96",
+    "total": "3515.77",
+    "line_items": [
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "28.25",
+      "unit_price": "103.71",
+      "amount": "2929.81",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0065.pdf",
+   "layout": "uk",
+   "scanned": true,
+   "defect": "future_date",
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 1.0,
+   "codes": [
+    "FUTURE_DATE"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Wells-Byrne",
+    "vendor_tax_id": "GB526018174",
+    "invoice_number": "10674",
+    "issue_date": "2026-10-21",
+    "due_date": "2026-11-20",
+    "currency": "GBP",
+    "subtotal": "882.13",
+    "tax_rate": "20",
+    "tax_amount": "176.43",
+    "total": "1058.56",
+    "line_items": [
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "882.13",
+      "amount": "882.13",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0066.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Rogner Holsten Stiftung & Co. KG",
+    "vendor_tax_id": "DE419487573",
+    "invoice_number": "10661",
+    "issue_date": "2026-09-17",
+    "due_date": "2026-10-01",
+    "currency": "EUR",
+    "subtotal": "3199.84",
+    "tax_rate": "19",
+    "tax_amount": "607.97",
+    "total": "3807.81",
+    "line_items": [
+     {
+      "description": "Druckerpatrone schwarz, XL",
+      "quantity": "10",
+      "unit_price": "63.34",
+      "amount": "633.40",
+      "discount_percent": null
+     },
+     {
+      "description": "Jahreslizenz Software, 5 Arbeitsplätze",
+      "quantity": "1",
+      "unit_price": "1187.12",
+      "amount": "1187.12",
+      "discount_percent": null
+     },
+     {
+      "description": "Versandkosten",
+      "quantity": "1",
+      "unit_price": "38.66",
+      "amount": "38.66",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud-Hosting Tarif Business (3 vCPU / 8 GB)",
+      "quantity": "2",
+      "unit_price": "157.21",
+      "amount": "314.42",
+      "discount_percent": null
+     },
+     {
+      "description": "Beratung Datenmigration, Workshop vor Ort",
+      "quantity": "12",
+      "unit_price": "85.52",
+      "amount": "1026.24",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0067.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "ROSE AND SONS",
+    "vendor_tax_id": "28-7028755",
+    "invoice_number": "26/00433",
+    "issue_date": "2026-07-13",
+    "due_date": "2026-08-12",
+    "currency": "USD",
+    "subtotal": "1522.50",
+    "tax_rate": "6",
+    "tax_amount": "91.35",
+    "total": "1613.85",
+    "line_items": [
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "6",
+      "unit_price": "48.02",
+      "amount": "288.12",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "14",
+      "unit_price": "88.17",
+      "amount": "1234.38",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0068.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Couturier SA",
+    "vendor_tax_id": "FR80473006684",
+    "invoice_number": "26/00394",
+    "issue_date": "2026-07-08",
+    "due_date": "2026-07-22",
+    "currency": "EUR",
+    "subtotal": "3751.99",
+    "tax_rate": "10",
+    "tax_amount": "375.20",
+    "total": "4127.19",
+    "line_items": [
+     {
+      "description": "Heures de développement backend (sprint 14)",
+      "quantity": "33.75",
+      "unit_price": "111.17",
+      "amount": "3751.99",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0069.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": "tax",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "TAX_MISMATCH"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "HAYES, JOHNSON AND SHANNON",
+    "vendor_tax_id": "97-9383022",
+    "invoice_number": "F2026-0463",
+    "issue_date": "2026-09-16",
+    "due_date": "2026-10-31",
+    "currency": "USD",
+    "subtotal": "1186.10",
+    "tax_rate": "7.25",
+    "tax_amount": "50.41",
+    "total": "1236.51",
+    "line_items": [
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "5",
+      "unit_price": "237.22",
+      "amount": "1186.10",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0070.pdf",
+   "layout": "us",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "JACOBS,COOPERANDSTOKES",
+    "vendor_tax_id": "32-2538365",
+    "invoice_number": "RE-2026-0704",
+    "issue_date": "2026-08-13",
+    "due_date": "2026-08-27",
+    "currency": "USD",
+    "subtotal": "1705.67",
+    "tax_rate": "7.25",
+    "tax_amount": "123.66",
+    "total": "1829.33",
+    "line_items": [
+     {
+      "description": "Designreviewandaccessibilityauditofcheckoutflow",
+      "quantity": "1",
+      "unit_price": "1218.84",
+      "amount": "1218.84",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptopstand,aluminium",
+      "quantity": "10",
+      "unit_price": "29.52",
+      "amount": "295.20",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site supportvisit incl.travelwithinzone2",
+      "quantity": "1",
+      "unit_price": "191.63",
+      "amount": "191.63",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0071.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": "line_amount",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "LINE_AMOUNT_MISMATCH"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Wells-Byrne",
+    "vendor_tax_id": "GB526018174",
+    "invoice_number": "10680",
+    "issue_date": "2026-06-19",
+    "due_date": "2026-07-19",
+    "currency": "GBP",
+    "subtotal": "1287.25",
+    "tax_rate": "20",
+    "tax_amount": "257.45",
+    "total": "1544.70",
+    "line_items": [
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "13",
+      "unit_price": "98.25",
+      "amount": "1287.25",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0072.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": "future_date",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "FUTURE_DATE"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Jackson Ltd",
+    "vendor_tax_id": "GB390996008",
+    "invoice_number": "RE-2026-0070",
+    "issue_date": "2026-12-02",
+    "due_date": "2027-01-01",
+    "currency": "EUR",
+    "subtotal": "1832.85",
+    "tax_rate": "20",
+    "tax_amount": "366.57",
+    "total": "2199.42",
+    "line_items": [
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "1",
+      "unit_price": "461.59",
+      "amount": "461.59",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "5",
+      "unit_price": "45.64",
+      "amount": "228.20",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "3",
+      "unit_price": "40.77",
+      "amount": "122.31",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "4",
+      "unit_price": "154.44",
+      "amount": "617.76",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "3",
+      "unit_price": "134.33",
+      "amount": "402.99",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0073.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Weihmann Hettner GmbH & Co. KGaA",
+    "vendor_tax_id": "DE134236678",
+    "invoice_number": "INV-2026-0274",
+    "issue_date": "2026-06-04",
+    "due_date": "2026-07-19",
+    "currency": "EUR",
+    "subtotal": "6735.75",
+    "tax_rate": "7",
+    "tax_amount": "471.50",
+    "total": "7207.25",
+    "line_items": [
+     {
+      "description": "Cloud-Hosting Tarif Business (3 vCPU / 8 GB)",
+      "quantity": "2",
+      "unit_price": "47.93",
+      "amount": "95.86",
+      "discount_percent": null
+     },
+     {
+      "description": "Wartungspauschale Webseite, monatlich",
+      "quantity": "1",
+      "unit_price": "770.51",
+      "amount": "770.51",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C Dockingstation 12-in-1",
+      "quantity": "8",
+      "unit_price": "228.48",
+      "amount": "1827.84",
+      "discount_percent": null
+     },
+     {
+      "description": "Jahreslizenz Software, 5 Arbeitsplätze",
+      "quantity": "2",
+      "unit_price": "2020.77",
+      "amount": "4041.54",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0074.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": "tax_id",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "INVALID_TAX_ID"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Riehl",
+    "vendor_tax_id": "DE940684650",
+    "invoice_number": "F2026-0237",
+    "issue_date": "2026-07-15",
+    "due_date": "2026-07-29",
+    "currency": "EUR",
+    "subtotal": "3886.85",
+    "tax_rate": "19",
+    "tax_amount": "738.50",
+    "total": "4625.35",
+    "line_items": [
+     {
+      "description": "Wartungspauschale Webseite, monatlich",
+      "quantity": "1",
+      "unit_price": "573.30",
+      "amount": "573.30",
+      "discount_percent": null
+     },
+     {
+      "description": "Monitorhalterung, Aluminium, 2 Arme",
+      "quantity": "8",
+      "unit_price": "29.10",
+      "amount": "232.80",
+      "discount_percent": null
+     },
+     {
+      "description": "Stunden Backend-Entwicklung (Sprint 14)",
+      "quantity": "39.5",
+      "unit_price": "71.55",
+      "amount": "2826.23",
+      "discount_percent": null
+     },
+     {
+      "description": "Druckerpatrone schwarz, XL",
+      "quantity": "6",
+      "unit_price": "42.42",
+      "amount": "254.52",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0075.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "HAYES, JOHNSON AND SHANNON",
+    "vendor_tax_id": "97-9383022",
+    "invoice_number": "F2026-0487",
+    "issue_date": "2026-08-02",
+    "due_date": "2026-09-16",
+    "currency": "USD",
+    "subtotal": "2257.38",
+    "tax_rate": "6",
+    "tax_amount": "135.44",
+    "total": "2392.82",
+    "line_items": [
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "1516.82",
+      "amount": "1516.82",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "4",
+      "unit_price": "170.64",
+      "amount": "682.56",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "1",
+      "unit_price": "58.00",
+      "amount": "58.00",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0076.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Weihmann Hettner GmbH & Co. KGaA",
+    "vendor_tax_id": "DE134236678",
+    "invoice_number": "INV-2026-0300",
+    "issue_date": "2026-07-09",
+    "due_date": "2026-08-23",
+    "currency": "EUR",
+    "subtotal": "5685.87",
+    "tax_rate": "19",
+    "tax_amount": "1080.32",
+    "total": "6766.19",
+    "line_items": [
+     {
+      "description": "Beratung Datenmigration, Workshop vor Ort",
+      "quantity": "15",
+      "unit_price": "92.05",
+      "amount": "1380.75",
+      "discount_percent": null
+     },
+     {
+      "description": "Jahreslizenz Software, 5 Arbeitsplätze",
+      "quantity": "2",
+      "unit_price": "2093.09",
+      "amount": "4186.18",
+      "discount_percent": null
+     },
+     {
+      "description": "Monitorhalterung, Aluminium, 2 Arme",
+      "quantity": "2",
+      "unit_price": "59.47",
+      "amount": "118.94",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0077.pdf",
+   "layout": "fr",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Maillard",
+    "vendor_tax_id": "FR78676189932",
+    "invoice_number": "INV-2026-0450",
+    "issue_date": "2026-07-15",
+    "due_date": "2026-07-29",
+    "currency": "EUR",
+    "subtotal": "3129.96",
+    "tax_rate": "20",
+    "tax_amount": "625.99",
+    "total": "3755.95",
+    "line_items": [
+     {
+      "description": "Cartouchetonernoir,haute capacite",
+      "quantity": "10",
+      "unit_price": "86.66",
+      "amount": "866.60",
+      "discount_percent": null
+     },
+     {
+      "description": "Conseil migration de donnees,ateliersur site",
+      "quantity": "16",
+      "unit_price": "141.46",
+      "amount": "2263.36",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0078.pdf",
+   "layout": "us",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "ROSE AND SONS",
+    "vendor_tax_id": "28-7028755",
+    "invoice_number": "26/00462",
+    "issue_date": "2026-08-17",
+    "due_date": "2026-09-16",
+    "currency": "USD",
+    "subtotal": "5005.31",
+    "tax_rate": "8.875",
+    "tax_amount": "444.22",
+    "total": "5449.53",
+    "line_items": [
+     {
+      "description": "Cloud hosting plan(Business,3vCPU/8GB)",
+      "quantity": "3",
+      "unit_price": "154.12",
+      "amount": "462.36",
+      "discount_percent": null
+     },
+     {
+      "description": "Designreviewandaccessibilityauditofcheckoutflow",
+      "quantity": "1",
+      "unit_price": "1265.45",
+      "amount": "1265.45",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand,aluminium",
+      "quantity": "5",
+      "unit_price": "50.91",
+      "amount": "254.55",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-Cdocking station12-in-1",
+      "quantity": "5",
+      "unit_price": "212.65",
+      "amount": "1063.25",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting:productdescriptionsfor25SKUs",
+      "quantity": "1",
+      "unit_price": "774.04",
+      "amount": "774.04",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours-backend development(sprint14)",
+      "quantity": "15.75",
+      "unit_price": "75.28",
+      "amount": "1185.66",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0079.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Gérard",
+    "vendor_tax_id": "FR43323287495",
+    "invoice_number": "26/00461",
+    "issue_date": "2026-09-10",
+    "due_date": "2026-10-10",
+    "currency": "EUR",
+    "subtotal": "129.46",
+    "tax_rate": "20",
+    "tax_amount": "25.89",
+    "total": "155.35",
+    "line_items": [
+     {
+      "description": "Hébergement cloud offre Business (3 vCPU / 8 Go)",
+      "quantity": "2",
+      "unit_price": "64.73",
+      "amount": "129.46",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0080.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Maillard",
+    "vendor_tax_id": "FR78676189932",
+    "invoice_number": "INV-2026-0469",
+    "issue_date": "2026-06-05",
+    "due_date": "2026-06-19",
+    "currency": "EUR",
+    "subtotal": "1649.39",
+    "tax_rate": "5.5",
+    "tax_amount": "90.72",
+    "total": "1740.11",
+    "line_items": [
+     {
+      "description": "Heures de développement backend (sprint 14)",
+      "quantity": "19",
+      "unit_price": "86.81",
+      "amount": "1649.39",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0081.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "HAYES, JOHNSON AND SHANNON",
+    "vendor_tax_id": "97-9383022",
+    "invoice_number": "F2026-0513",
+    "issue_date": "2026-08-22",
+    "due_date": "2026-10-06",
+    "currency": "USD",
+    "subtotal": "7473.17",
+    "tax_rate": "7.25",
+    "tax_amount": "541.80",
+    "total": "8014.97",
+    "line_items": [
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "106.30",
+      "amount": "318.90",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "1",
+      "unit_price": "2342.34",
+      "amount": "2342.34",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "913.64",
+      "amount": "913.64",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "7",
+      "unit_price": "227.60",
+      "amount": "1593.20",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "36.35",
+      "amount": "36.35",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "20.5",
+      "unit_price": "110.67",
+      "amount": "2268.74",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0082.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Harrison and Sons",
+    "vendor_tax_id": "GB462819429",
+    "invoice_number": "26/00853",
+    "issue_date": "2026-08-23",
+    "due_date": "2026-09-22",
+    "currency": "EUR",
+    "subtotal": "2457.06",
+    "tax_rate": "20",
+    "tax_amount": "491.41",
+    "total": "2948.47",
+    "line_items": [
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "8",
+      "unit_price": "68.54",
+      "amount": "548.32",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "2",
+      "unit_price": "123.22",
+      "amount": "246.44",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "7",
+      "unit_price": "173.91",
+      "amount": "1217.37",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "148.31",
+      "amount": "444.93",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0083.pdf",
+   "layout": "uk",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 1.0,
+   "codes": [
+    "INVALID_TAX_ID"
+   ],
+   "wrong_fields": [
+    "vendor_tax_id"
+   ],
+   "got": {
+    "vendor_name": "Harrison and Sons",
+    "vendor_tax_id": "GB46281929",
+    "invoice_number": "26/00864",
+    "issue_date": "2026-08-31",
+    "due_date": "2026-09-30",
+    "currency": "EUR",
+    "subtotal": "227.07",
+    "tax_rate": "20",
+    "tax_amount": "45.41",
+    "total": "272.48",
+    "line_items": [
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "75.69",
+      "amount": "227.07",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0084.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "ROSE AND SONS",
+    "vendor_tax_id": "28-7028755",
+    "invoice_number": "26/00479",
+    "issue_date": "2026-08-21",
+    "due_date": "2026-09-20",
+    "currency": "USD",
+    "subtotal": "3426.38",
+    "tax_rate": "8.875",
+    "tax_amount": "304.09",
+    "total": "3730.47",
+    "line_items": [
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "31",
+      "unit_price": "97.08",
+      "amount": "3009.48",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "2",
+      "unit_price": "208.45",
+      "amount": "416.90",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0085.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": "future_date",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "FUTURE_DATE"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Jackson Ltd",
+    "vendor_tax_id": "GB390996008",
+    "invoice_number": "RE-2026-0074",
+    "issue_date": "2026-10-19",
+    "due_date": "2026-11-18",
+    "currency": "EUR",
+    "subtotal": "4541.36",
+    "tax_rate": "20",
+    "tax_amount": "908.27",
+    "total": "5449.63",
+    "line_items": [
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "1",
+      "unit_price": "156.77",
+      "amount": "156.77",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "25.25",
+      "unit_price": "115.74",
+      "amount": "2922.44",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "2",
+      "unit_price": "645.42",
+      "amount": "1290.84",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "1",
+      "unit_price": "171.31",
+      "amount": "171.31",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0086.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "MILLS INC",
+    "vendor_tax_id": "98-8648511",
+    "invoice_number": "26/00686",
+    "issue_date": "2026-08-01",
+    "due_date": "2026-09-15",
+    "currency": "USD",
+    "subtotal": "5069.45",
+    "tax_rate": "7.25",
+    "tax_amount": "367.54",
+    "total": "5436.99",
+    "line_items": [
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "6",
+      "unit_price": "82.91",
+      "amount": "497.46",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "4",
+      "unit_price": "67.45",
+      "amount": "269.80",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "6",
+      "unit_price": "217.38",
+      "amount": "1304.28",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "1",
+      "unit_price": "475.25",
+      "amount": "475.25",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "3",
+      "unit_price": "181.62",
+      "amount": "544.86",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "22",
+      "unit_price": "89.90",
+      "amount": "1977.80",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0087.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": "future_date",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "FUTURE_DATE"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Maillard",
+    "vendor_tax_id": "FR78676189932",
+    "invoice_number": "INV-2026-0470",
+    "issue_date": "2026-11-20",
+    "due_date": "2026-12-20",
+    "currency": "EUR",
+    "subtotal": "4245.44",
+    "tax_rate": "10",
+    "tax_amount": "424.54",
+    "total": "4669.98",
+    "line_items": [
+     {
+      "description": "Licence logicielle annuelle, 5 postes",
+      "quantity": "2",
+      "unit_price": "2034.11",
+      "amount": "4068.22",
+      "discount_percent": null
+     },
+     {
+      "description": "Hébergement cloud offre Business (3 vCPU / 8 Go)",
+      "quantity": "3",
+      "unit_price": "53.99",
+      "amount": "161.97",
+      "discount_percent": null
+     },
+     {
+      "description": "Frais de port",
+      "quantity": "1",
+      "unit_price": "15.25",
+      "amount": "15.25",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0088.pdf",
+   "layout": "uk",
+   "scanned": true,
+   "defect": "due_before_issue",
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 1.0,
+   "codes": [
+    "DUE_BEFORE_ISSUE"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Allen, Hawkins and Sinclair",
+    "vendor_tax_id": "GB199351815",
+    "invoice_number": "INV-2026-0621",
+    "issue_date": "2026-09-09",
+    "due_date": "2026-08-20",
+    "currency": "GBP",
+    "subtotal": "4529.85",
+    "tax_rate": "20",
+    "tax_amount": "905.97",
+    "total": "5435.82",
+    "line_items": [
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "1",
+      "unit_price": "347.18",
+      "amount": "347.18",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "24.75",
+      "unit_price": "75.48",
+      "amount": "1868.13",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "1358.23",
+      "amount": "1358.23",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "656.23",
+      "amount": "656.23",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "4",
+      "unit_price": "75.02",
+      "amount": "300.08",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0089.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "BUTLER GROUP",
+    "vendor_tax_id": "23-8078612",
+    "invoice_number": "F2026-0130",
+    "issue_date": "2026-08-01",
+    "due_date": "2026-08-15",
+    "currency": "USD",
+    "subtotal": "6118.98",
+    "tax_rate": "6",
+    "tax_amount": "367.14",
+    "total": "6486.12",
+    "line_items": [
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "2",
+      "unit_price": "149.97",
+      "amount": "299.94",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "3",
+      "unit_price": "74.47",
+      "amount": "223.41",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "1",
+      "unit_price": "1093.35",
+      "amount": "1093.35",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "32.75",
+      "unit_price": "74.18",
+      "amount": "2429.40",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "6",
+      "unit_price": "123.76",
+      "amount": "742.56",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "2",
+      "unit_price": "665.16",
+      "amount": "1330.32",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0090.pdf",
+   "layout": "uk",
+   "scanned": true,
+   "defect": "missing_number",
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 0.833,
+   "codes": [
+    "MISSING_INVOICE_NUMBER"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Singh LLC",
+    "vendor_tax_id": "GB786579749",
+    "invoice_number": null,
+    "issue_date": "2026-08-21",
+    "due_date": "2026-09-20",
+    "currency": "GBP",
+    "subtotal": "5744.23",
+    "tax_rate": "20",
+    "tax_amount": "1148.85",
+    "total": "6893.08",
+    "line_items": [
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "1472.02",
+      "amount": "1472.02",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "960.48",
+      "amount": "960.48",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "6",
+      "unit_price": "158.76",
+      "amount": "952.56",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "2",
+      "unit_price": "742.98",
+      "amount": "1485.96",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "1",
+      "unit_price": "873.21",
+      "amount": "873.21",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0091.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Harrison and Sons",
+    "vendor_tax_id": "GB462819429",
+    "invoice_number": "26/00890",
+    "issue_date": "2026-07-07",
+    "due_date": "2026-08-06",
+    "currency": "EUR",
+    "subtotal": "6007.25",
+    "tax_rate": "20",
+    "tax_amount": "1201.45",
+    "total": "7208.70",
+    "line_items": [
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "2",
+      "unit_price": "2039.12",
+      "amount": "4078.24",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "22.86",
+      "amount": "22.86",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "2",
+      "unit_price": "230.17",
+      "amount": "460.34",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "797.36",
+      "amount": "797.36",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "9",
+      "unit_price": "72.05",
+      "amount": "648.45",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0092.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Schmiedecke GmbH",
+    "vendor_tax_id": "DE597465077",
+    "invoice_number": "10244",
+    "issue_date": "2026-08-23",
+    "due_date": "2026-10-07",
+    "currency": "EUR",
+    "subtotal": "3240.24",
+    "tax_rate": "19",
+    "tax_amount": "615.65",
+    "total": "3855.89",
+    "line_items": [
+     {
+      "description": "Stunden Backend-Entwicklung (Sprint 14)",
+      "quantity": "27.25",
+      "unit_price": "96.26",
+      "amount": "2623.09",
+      "discount_percent": null
+     },
+     {
+      "description": "Versandkosten",
+      "quantity": "1",
+      "unit_price": "44.75",
+      "amount": "44.75",
+      "discount_percent": null
+     },
+     {
+      "description": "Monitorhalterung, Aluminium, 2 Arme",
+      "quantity": "10",
+      "unit_price": "57.24",
+      "amount": "572.40",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0093.pdf",
+   "layout": "de",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [
+    "line_descriptions"
+   ],
+   "got": {
+    "vendor_name": "Schmiedecke GmbH",
+    "vendor_tax_id": "DE597465077",
+    "invoice_number": "10260",
+    "issue_date": "2026-06-07",
+    "due_date": "2026-07-22",
+    "currency": "EUR",
+    "subtotal": "2506.86",
+    "tax_rate": "7",
+    "tax_amount": "175.48",
+    "total": "2682.34",
+    "line_items": [
+     {
+      "description": "BeratungDatenmigration,WorkshopvorOrt",
+      "quantity": "10",
+      "unit_price": "144.20",
+      "amount": "1442.00",
+      "discount_percent": null
+     },
+     {
+      "description": "WartungspauschaleWebseite,monatich",
+      "quantity": "1",
+      "unit_price": "1064.86",
+      "amount": "1064.86",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0094.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Gérard",
+    "vendor_tax_id": "FR43323287495",
+    "invoice_number": "26/00471",
+    "issue_date": "2026-06-28",
+    "due_date": "2026-07-28",
+    "currency": "EUR",
+    "subtotal": "34.67",
+    "tax_rate": "20",
+    "tax_amount": "6.93",
+    "total": "41.60",
+    "line_items": [
+     {
+      "description": "Frais de port",
+      "quantity": "1",
+      "unit_price": "34.67",
+      "amount": "34.67",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0095.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Harrison and Sons",
+    "vendor_tax_id": "GB462819429",
+    "invoice_number": "26/00904",
+    "issue_date": "2026-08-12",
+    "due_date": "2026-09-11",
+    "currency": "EUR",
+    "subtotal": "4930.96",
+    "tax_rate": "20",
+    "tax_amount": "986.19",
+    "total": "5917.15",
+    "line_items": [
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "3",
+      "unit_price": "217.86",
+      "amount": "653.58",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "1086.75",
+      "amount": "1086.75",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "3",
+      "unit_price": "162.27",
+      "amount": "486.81",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "8",
+      "unit_price": "100.13",
+      "amount": "801.04",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "32.75",
+      "unit_price": "57.80",
+      "amount": "1892.95",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "9.83",
+      "amount": "9.83",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0096.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "HAYES, JOHNSON AND SHANNON",
+    "vendor_tax_id": "97-9383022",
+    "invoice_number": "F2026-0517",
+    "issue_date": "2026-08-13",
+    "due_date": "2026-09-27",
+    "currency": "USD",
+    "subtotal": "2422.08",
+    "tax_rate": "6.35",
+    "tax_amount": "153.80",
+    "total": "2575.88",
+    "line_items": [
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "16",
+      "unit_price": "151.38",
+      "amount": "2422.08",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0098.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": "tax_id",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "INVALID_TAX_ID"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "MCCORMICK-COOK",
+    "vendor_tax_id": "72-988385",
+    "invoice_number": "RE-2026-0354",
+    "issue_date": "2026-06-17",
+    "due_date": "2026-07-01",
+    "currency": "USD",
+    "subtotal": "4443.90",
+    "tax_rate": "6",
+    "tax_amount": "266.63",
+    "total": "4710.53",
+    "line_items": [
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "14",
+      "unit_price": "86.27",
+      "amount": "1207.78",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "9.19",
+      "amount": "9.19",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "1",
+      "unit_price": "2192.43",
+      "amount": "2192.43",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "3",
+      "unit_price": "36.22",
+      "amount": "108.66",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "4",
+      "unit_price": "231.46",
+      "amount": "925.84",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0099.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Royer",
+    "vendor_tax_id": "FR79223859888",
+    "invoice_number": "F2026-0487",
+    "issue_date": "2026-07-29",
+    "due_date": "2026-09-12",
+    "currency": "EUR",
+    "subtotal": "1420.43",
+    "tax_rate": "5.5",
+    "tax_amount": "78.12",
+    "total": "1498.55",
+    "line_items": [
+     {
+      "description": "Maintenance site web, forfait mensuel",
+      "quantity": "1",
+      "unit_price": "460.48",
+      "amount": "460.48",
+      "discount_percent": null
+     },
+     {
+      "description": "Station d'accueil USB-C 12-en-1",
+      "quantity": "5",
+      "unit_price": "191.99",
+      "amount": "959.95",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0100.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Couturier SA",
+    "vendor_tax_id": "FR80473006684",
+    "invoice_number": "26/00415",
+    "issue_date": "2026-07-20",
+    "due_date": "2026-08-03",
+    "currency": "EUR",
+    "subtotal": "369.30",
+    "tax_rate": "20",
+    "tax_amount": "73.86",
+    "total": "443.16",
+    "line_items": [
+     {
+      "description": "Maintenance site web, forfait mensuel",
+      "quantity": "1",
+      "unit_price": "369.30",
+      "amount": "369.30",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0101.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "MILLS INC",
+    "vendor_tax_id": "98-8648511",
+    "invoice_number": "26/00687",
+    "issue_date": "2026-09-09",
+    "due_date": "2026-10-24",
+    "currency": "USD",
+    "subtotal": "6711.20",
+    "tax_rate": "8.875",
+    "tax_amount": "595.62",
+    "total": "7306.82",
+    "line_items": [
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "539.93",
+      "amount": "539.93",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "1",
+      "unit_price": "538.06",
+      "amount": "538.06",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "16.25",
+      "unit_price": "106.58",
+      "amount": "1731.93",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "2",
+      "unit_price": "1650.32",
+      "amount": "3300.64",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "8",
+      "unit_price": "75.08",
+      "amount": "600.64",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0102.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": "total",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "TOTAL_MISMATCH"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Maillard",
+    "vendor_tax_id": "FR78676189932",
+    "invoice_number": "INV-2026-0483",
+    "issue_date": "2026-07-07",
+    "due_date": "2026-07-21",
+    "currency": "EUR",
+    "subtotal": "11044.64",
+    "tax_rate": "5.5",
+    "tax_amount": "607.46",
+    "total": "11652.20",
+    "line_items": [
+     {
+      "description": "Licence logicielle annuelle, 5 postes",
+      "quantity": "2",
+      "unit_price": "1932.67",
+      "amount": "3865.34",
+      "discount_percent": null
+     },
+     {
+      "description": "Frais de port",
+      "quantity": "1",
+      "unit_price": "19.08",
+      "amount": "19.08",
+      "discount_percent": null
+     },
+     {
+      "description": "Heures de développement backend (sprint 14)",
+      "quantity": "30",
+      "unit_price": "86.73",
+      "amount": "2601.90",
+      "discount_percent": null
+     },
+     {
+      "description": "Maintenance site web, forfait mensuel",
+      "quantity": "1",
+      "unit_price": "1138.76",
+      "amount": "1138.76",
+      "discount_percent": null
+     },
+     {
+      "description": "Conseil migration de données, atelier sur site",
+      "quantity": "16",
+      "unit_price": "158.40",
+      "amount": "2534.40",
+      "discount_percent": null
+     },
+     {
+      "description": "Station d'accueil USB-C 12-en-1",
+      "quantity": "4",
+      "unit_price": "221.29",
+      "amount": "885.16",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0103.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": "future_date",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "FUTURE_DATE"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Howard-Armstrong",
+    "vendor_tax_id": "GB016613109",
+    "invoice_number": "26/00435",
+    "issue_date": "2026-11-30",
+    "due_date": "2026-12-30",
+    "currency": "GBP",
+    "subtotal": "2227.98",
+    "tax_rate": "20",
+    "tax_amount": "445.60",
+    "total": "2673.58",
+    "line_items": [
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "5",
+      "unit_price": "228.45",
+      "amount": "1142.25",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "1054.62",
+      "amount": "1054.62",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "31.11",
+      "amount": "31.11",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0104.pdf",
+   "layout": "fr",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Besnard",
+    "vendor_tax_id": "FR90745025986",
+    "invoice_number": "INV-2026-0152",
+    "issue_date": "2026-07-03",
+    "due_date": "2026-08-02",
+    "currency": "EUR",
+    "subtotal": "38.01",
+    "tax_rate": "20",
+    "tax_amount": "7.60",
+    "total": "45.61",
+    "line_items": [
+     {
+      "description": "Frais de port",
+      "quantity": "1",
+      "unit_price": "38.01",
+      "amount": "38.01",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0105.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Jackson Ltd",
+    "vendor_tax_id": "GB390996008",
+    "invoice_number": "RE-2026-0081",
+    "issue_date": "2026-07-17",
+    "due_date": "2026-08-16",
+    "currency": "EUR",
+    "subtotal": "3267.45",
+    "tax_rate": "20",
+    "tax_amount": "653.49",
+    "total": "3920.94",
+    "line_items": [
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "2",
+      "unit_price": "612.33",
+      "amount": "1224.66",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "12",
+      "unit_price": "133.27",
+      "amount": "1599.24",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "5",
+      "unit_price": "44.49",
+      "amount": "222.45",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "1",
+      "unit_price": "151.50",
+      "amount": "151.50",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "1",
+      "unit_price": "69.60",
+      "amount": "69.60",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0106.pdf",
+   "layout": "uk",
+   "scanned": true,
+   "defect": "missing_number",
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 0.833,
+   "codes": [
+    "MISSING_INVOICE_NUMBER"
+   ],
+   "wrong_fields": [
+    "line_descriptions"
+   ],
+   "got": {
+    "vendor_name": "Allen, Hawkins and Sinclair",
+    "vendor_tax_id": "GB199351815",
+    "invoice_number": null,
+    "issue_date": "2026-09-09",
+    "due_date": "2026-10-09",
+    "currency": "GBP",
+    "subtotal": "4606.47",
+    "tax_rate": "20",
+    "tax_amount": "921.29",
+    "total": "5527.76",
+    "line_items": [
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "489.09",
+      "amount": "489.09",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software license - 5 seats",
+      "quantity": "2",
+      "unit_price": "2058.69",
+      "amount": "4117.38",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0107.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Rogner Holsten Stiftung & Co. KG",
+    "vendor_tax_id": "DE419487573",
+    "invoice_number": "10675",
+    "issue_date": "2026-06-07",
+    "due_date": "2026-06-21",
+    "currency": "EUR",
+    "subtotal": "1603.59",
+    "tax_rate": "19",
+    "tax_amount": "304.68",
+    "total": "1908.27",
+    "line_items": [
+     {
+      "description": "Versandkosten",
+      "quantity": "1",
+      "unit_price": "27.30",
+      "amount": "27.30",
+      "discount_percent": null
+     },
+     {
+      "description": "Monitorhalterung, Aluminium, 2 Arme",
+      "quantity": "4",
+      "unit_price": "49.80",
+      "amount": "199.20",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C Dockingstation 12-in-1",
+      "quantity": "1",
+      "unit_price": "144.51",
+      "amount": "144.51",
+      "discount_percent": null
+     },
+     {
+      "description": "Jahreslizenz Software, 5 Arbeitsplätze",
+      "quantity": "1",
+      "unit_price": "873.78",
+      "amount": "873.78",
+      "discount_percent": null
+     },
+     {
+      "description": "Druckerpatrone schwarz, XL",
+      "quantity": "8",
+      "unit_price": "44.85",
+      "amount": "358.80",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0108.pdf",
+   "layout": "uk",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 1.0,
+   "codes": [
+    "INVALID_TAX_ID"
+   ],
+   "wrong_fields": [
+    "vendor_tax_id",
+    "invoice_number"
+   ],
+   "got": {
+    "vendor_name": "Jackson Ltd",
+    "vendor_tax_id": "GB39096008",
+    "invoice_number": "RE-2026-010",
+    "issue_date": "2026-07-18",
+    "due_date": "2026-08-17",
+    "currency": "EUR",
+    "subtotal": "4779.65",
+    "tax_rate": "20",
+    "tax_amount": "955.93",
+    "total": "5735.58",
+    "line_items": [
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "26.25",
+      "unit_price": "101.24",
+      "amount": "2657.55",
+      "discount_percent": null
+     },
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "1",
+      "unit_price": "224.96",
+      "amount": "224.96",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "5",
+      "unit_price": "139.86",
+      "amount": "699.30",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "839.42",
+      "amount": "839.42",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "2",
+      "unit_price": "179.21",
+      "amount": "358.42",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0109.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": "future_date",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "FUTURE_DATE"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Wells-Byrne",
+    "vendor_tax_id": "GB526018174",
+    "invoice_number": "10703",
+    "issue_date": "2026-10-15",
+    "due_date": "2026-11-14",
+    "currency": "GBP",
+    "subtotal": "468.78",
+    "tax_rate": "20",
+    "tax_amount": "93.76",
+    "total": "562.54",
+    "line_items": [
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "156.26",
+      "amount": "468.78",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0110.pdf",
+   "layout": "de",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Schmiedecke GmbH",
+    "vendor_tax_id": "DE597465077",
+    "invoice_number": "10273",
+    "issue_date": "2026-06-02",
+    "due_date": "2026-07-17",
+    "currency": "EUR",
+    "subtotal": "3046.15",
+    "tax_rate": "7",
+    "tax_amount": "213.23",
+    "total": "3259.38",
+    "line_items": [
+     {
+      "description": "Versandkosten",
+      "quantity": "1",
+      "unit_price": "24.97",
+      "amount": "24.97",
+      "discount_percent": null
+     },
+     {
+      "description": "BeratungDatenmigration,WorkshopvorOrt",
+      "quantity": "5",
+      "unit_price": "115.71",
+      "amount": "578.55",
+      "discount_percent": null
+     },
+     {
+      "description": "Monitorhalterung,Aluminium,2Arme",
+      "quantity": "9",
+      "unit_price": "60.10",
+      "amount": "540.90",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-CDockingstation12-in-1",
+      "quantity": "3",
+      "unit_price": "161.31",
+      "amount": "483.93",
+      "discount_percent": null
+     },
+     {
+      "description": "StundenBackend-Entwicklung(Sprint14)",
+      "quantity": "21.25",
+      "unit_price": "66.72",
+      "amount": "1417.80",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0111.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Riehl",
+    "vendor_tax_id": "DE942684650",
+    "invoice_number": "F2026-0253",
+    "issue_date": "2026-06-24",
+    "due_date": "2026-07-08",
+    "currency": "EUR",
+    "subtotal": "3783.69",
+    "tax_rate": "19",
+    "tax_amount": "718.90",
+    "total": "4502.59",
+    "line_items": [
+     {
+      "description": "USB-C Dockingstation 12-in-1",
+      "quantity": "8",
+      "unit_price": "144.66",
+      "amount": "1157.28",
+      "discount_percent": null
+     },
+     {
+      "description": "Versandkosten",
+      "quantity": "1",
+      "unit_price": "42.71",
+      "amount": "42.71",
+      "discount_percent": null
+     },
+     {
+      "description": "Wartungspauschale Webseite, monatlich",
+      "quantity": "1",
+      "unit_price": "975.91",
+      "amount": "975.91",
+      "discount_percent": null
+     },
+     {
+      "description": "Monitorhalterung, Aluminium, 2 Arme",
+      "quantity": "3",
+      "unit_price": "58.98",
+      "amount": "176.94",
+      "discount_percent": null
+     },
+     {
+      "description": "Jahreslizenz Software, 5 Arbeitsplätze",
+      "quantity": "1",
+      "unit_price": "1270.26",
+      "amount": "1270.26",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud-Hosting Tarif Business (3 vCPU / 8 GB)",
+      "quantity": "1",
+      "unit_price": "160.59",
+      "amount": "160.59",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0112.pdf",
+   "layout": "uk",
+   "scanned": true,
+   "defect": "due_before_issue",
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 1.0,
+   "codes": [
+    "DUE_BEFORE_ISSUE",
+    "LINES_SUM_MISMATCH",
+    "LINE_AMOUNT_MISMATCH"
+   ],
+   "wrong_fields": [
+    "line_items"
+   ],
+   "got": {
+    "vendor_name": "Allen, Hawkins and Sinclair",
+    "vendor_tax_id": "GB199351815",
+    "invoice_number": "INV-2026-0629",
+    "issue_date": "2026-07-04",
+    "due_date": "2026-06-16",
+    "currency": "GBP",
+    "subtotal": "494.94",
+    "tax_rate": "20",
+    "tax_amount": "98.99",
+    "total": "593.93",
+    "line_items": [
+     {
+      "description": "On-site support visit incl. travel within zone 2",
+      "quantity": "1",
+      "unit_price": "124.16",
+      "amount": "124.16",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "32.38",
+      "amount": "32.38",
+      "discount_percent": null
+     },
+     {
+      "description": "Laptop stand, aluminium",
+      "quantity": "6",
+      "unit_price": "56.40",
+      "amount": "38.40",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0113.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Rogner Holsten Stiftung & Co. KG",
+    "vendor_tax_id": "DE419487573",
+    "invoice_number": "10677",
+    "issue_date": "2026-06-08",
+    "due_date": "2026-06-22",
+    "currency": "EUR",
+    "subtotal": "2414.68",
+    "tax_rate": "19",
+    "tax_amount": "458.79",
+    "total": "2873.47",
+    "line_items": [
+     {
+      "description": "Jahreslizenz Software, 5 Arbeitsplätze",
+      "quantity": "1",
+      "unit_price": "655.76",
+      "amount": "655.76",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud-Hosting Tarif Business (3 vCPU / 8 GB)",
+      "quantity": "2",
+      "unit_price": "87.41",
+      "amount": "174.82",
+      "discount_percent": null
+     },
+     {
+      "description": "Beratung Datenmigration, Workshop vor Ort",
+      "quantity": "10",
+      "unit_price": "158.41",
+      "amount": "1584.10",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0114.pdf",
+   "layout": "uk",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 1.0,
+   "codes": [
+    "INVALID_TAX_ID"
+   ],
+   "wrong_fields": [
+    "vendor_tax_id"
+   ],
+   "got": {
+    "vendor_name": "Wells-Byrne",
+    "vendor_tax_id": "GB52608174",
+    "invoice_number": "10707",
+    "issue_date": "2026-06-28",
+    "due_date": "2026-07-28",
+    "currency": "GBP",
+    "subtotal": "1452.12",
+    "tax_rate": "20",
+    "tax_amount": "290.42",
+    "total": "1742.54",
+    "line_items": [
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "9",
+      "unit_price": "38.15",
+      "amount": "343.35",
+      "discount_percent": null
+     },
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "2",
+      "unit_price": "421.77",
+      "amount": "843.54",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "26.82",
+      "amount": "26.82",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C docking station 12-in-1",
+      "quantity": "1",
+      "unit_price": "238.41",
+      "amount": "238.41",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0115.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Rogner Holsten Stiftung & Co. KG",
+    "vendor_tax_id": "DE419487573",
+    "invoice_number": "10704",
+    "issue_date": "2026-06-09",
+    "due_date": "2026-06-23",
+    "currency": "EUR",
+    "subtotal": "4227.31",
+    "tax_rate": "19",
+    "tax_amount": "803.19",
+    "total": "5030.50",
+    "line_items": [
+     {
+      "description": "Beratung Datenmigration, Workshop vor Ort",
+      "quantity": "16",
+      "unit_price": "107.43",
+      "amount": "1718.88",
+      "discount_percent": null
+     },
+     {
+      "description": "Druckerpatrone schwarz, XL",
+      "quantity": "4",
+      "unit_price": "54.87",
+      "amount": "219.48",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud-Hosting Tarif Business (3 vCPU / 8 GB)",
+      "quantity": "1",
+      "unit_price": "140.34",
+      "amount": "140.34",
+      "discount_percent": null
+     },
+     {
+      "description": "Stunden Backend-Entwicklung (Sprint 14)",
+      "quantity": "18.25",
+      "unit_price": "102.75",
+      "amount": "1875.19",
+      "discount_percent": null
+     },
+     {
+      "description": "Monitorhalterung, Aluminium, 2 Arme",
+      "quantity": "6",
+      "unit_price": "45.57",
+      "amount": "273.42",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0116.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Howard-Armstrong",
+    "vendor_tax_id": "GB016613109",
+    "invoice_number": "26/00448",
+    "issue_date": "2026-06-05",
+    "due_date": "2026-06-19",
+    "currency": "GBP",
+    "subtotal": "3711.97",
+    "tax_rate": "20",
+    "tax_amount": "742.39",
+    "total": "4454.36",
+    "line_items": [
+     {
+      "description": "Copywriting: product descriptions for 25 SKUs",
+      "quantity": "1",
+      "unit_price": "568.38",
+      "amount": "568.38",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "14.45",
+      "amount": "14.45",
+      "discount_percent": null
+     },
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "3",
+      "unit_price": "83.62",
+      "amount": "250.86",
+      "discount_percent": null
+     },
+     {
+      "description": "Annual software licence - 5 seats",
+      "quantity": "1",
+      "unit_price": "887.72",
+      "amount": "887.72",
+      "discount_percent": null
+     },
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "13",
+      "unit_price": "153.12",
+      "amount": "1990.56",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0117.pdf",
+   "layout": "de",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Riehl",
+    "vendor_tax_id": "DE942684650",
+    "invoice_number": "F2026-0276",
+    "issue_date": "2026-08-05",
+    "due_date": "2026-08-19",
+    "currency": "EUR",
+    "subtotal": "3860.29",
+    "tax_rate": "19",
+    "tax_amount": "733.46",
+    "total": "4593.75",
+    "line_items": [
+     {
+      "description": "Versandkosten",
+      "quantity": "1",
+      "unit_price": "40.91",
+      "amount": "40.91",
+      "discount_percent": null
+     },
+     {
+      "description": "Beratung Datenmigration, Workshop vor Ort",
+      "quantity": "15",
+      "unit_price": "156.11",
+      "amount": "2341.65",
+      "discount_percent": null
+     },
+     {
+      "description": "Wartungspauschale Webseite, monatlich",
+      "quantity": "1",
+      "unit_price": "1105.38",
+      "amount": "1105.38",
+      "discount_percent": null
+     },
+     {
+      "description": "USB-C Dockingstation 12-in-1",
+      "quantity": "1",
+      "unit_price": "136.76",
+      "amount": "136.76",
+      "discount_percent": null
+     },
+     {
+      "description": "Druckerpatrone schwarz, XL",
+      "quantity": "3",
+      "unit_price": "78.53",
+      "amount": "235.59",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0119.pdf",
+   "layout": "uk",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr+llm",
+   "llm": true,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Harrison and Sons",
+    "vendor_tax_id": "GB462819429",
+    "invoice_number": "26/00925",
+    "issue_date": "2026-08-06",
+    "due_date": "2026-09-05",
+    "currency": "EUR",
+    "subtotal": "1488.49",
+    "tax_rate": "20",
+    "tax_amount": "297.70",
+    "total": "1786.19",
+    "line_items": [
+     {
+      "description": "Cloud hosting plan (Business, 3 vCPU / 8 GB)",
+      "quantity": "1",
+      "unit_price": "55.80",
+      "amount": "55.80",
+      "discount_percent": null
+     },
+     {
+      "description": "Printer toner cartridge, black, high yield",
+      "quantity": "5",
+      "unit_price": "59.41",
+      "amount": "297.05",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "1135.64",
+      "amount": "1135.64",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0121.pdf",
+   "layout": "uk",
+   "scanned": false,
+   "defect": "tax",
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [
+    "TAX_MISMATCH"
+   ],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Harrison and Sons",
+    "vendor_tax_id": "GB462819429",
+    "invoice_number": "26/00933",
+    "issue_date": "2026-08-09",
+    "due_date": "2026-09-08",
+    "currency": "EUR",
+    "subtotal": "1574.50",
+    "tax_rate": "20",
+    "tax_amount": "299.16",
+    "total": "1873.66",
+    "line_items": [
+     {
+      "description": "Consulting - data migration workshop",
+      "quantity": "10",
+      "unit_price": "157.45",
+      "amount": "1574.50",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0122.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "JACOBS, COOPER AND STOKES",
+    "vendor_tax_id": "32-2538365",
+    "invoice_number": "RE-2026-0733",
+    "issue_date": "2026-06-07",
+    "due_date": "2026-06-21",
+    "currency": "USD",
+    "subtotal": "3190.55",
+    "tax_rate": "6.35",
+    "tax_amount": "202.60",
+    "total": "3393.15",
+    "line_items": [
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "901.13",
+      "amount": "901.13",
+      "discount_percent": null
+     },
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "39.5",
+      "unit_price": "57.96",
+      "amount": "2289.42",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0123.pdf",
+   "layout": "fr",
+   "scanned": true,
+   "defect": null,
+   "method": "ocr",
+   "llm": false,
+   "confidence": 0.95,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "Couturier SA",
+    "vendor_tax_id": "FR80473006684",
+    "invoice_number": "26/00425",
+    "issue_date": "2026-07-17",
+    "due_date": "2026-07-31",
+    "currency": "EUR",
+    "subtotal": "5057.74",
+    "tax_rate": "20",
+    "tax_amount": "1011.55",
+    "total": "6069.29",
+    "line_items": [
+     {
+      "description": "Licence logicielle annuelle,5postes",
+      "quantity": "1",
+      "unit_price": "1251.65",
+      "amount": "1251.65",
+      "discount_percent": null
+     },
+     {
+      "description": "Fraisdeport",
+      "quantity": "1",
+      "unit_price": "36.85",
+      "amount": "36.85",
+      "discount_percent": null
+     },
+     {
+      "description": "Hebergement cloudoffreBusiness(3vCPU/8Go)",
+      "quantity": "2",
+      "unit_price": "80.84",
+      "amount": "161.68",
+      "discount_percent": null
+     },
+     {
+      "description": "Heures de developpementbackend(sprint14)",
+      "quantity": "33",
+      "unit_price": "109.32",
+      "amount": "3607.56",
+      "discount_percent": null
+     }
+    ]
+   }
+  },
+  {
+   "file": "inv_0124.pdf",
+   "layout": "us",
+   "scanned": false,
+   "defect": null,
+   "method": "text",
+   "llm": false,
+   "confidence": 1.0,
+   "codes": [],
+   "wrong_fields": [],
+   "got": {
+    "vendor_name": "JACOBS, COOPER AND STOKES",
+    "vendor_tax_id": "32-2538365",
+    "invoice_number": "RE-2026-0758",
+    "issue_date": "2026-08-06",
+    "due_date": "2026-08-20",
+    "currency": "USD",
+    "subtotal": "4679.44",
+    "tax_rate": "6",
+    "tax_amount": "280.77",
+    "total": "4960.21",
+    "line_items": [
+     {
+      "description": "Hours - backend development (sprint 14)",
+      "quantity": "23",
+      "unit_price": "110.57",
+      "amount": "2543.11",
+      "discount_percent": null
+     },
+     {
+      "description": "Website maintenance, monthly retainer",
+      "quantity": "1",
+      "unit_price": "1173.45",
+      "amount": "1173.45",
+      "discount_percent": null
+     },
+     {
+      "description": "Shipping and handling",
+      "quantity": "1",
+      "unit_price": "34.44",
+      "amount": "34.44",
+      "discount_percent": null
+     },
+     {
+      "description": "Design review and accessibility audit of checkout flow",
+      "quantity": "1",
+      "unit_price": "928.44",
+      "amount": "928.44",
+      "discount_percent": null
+     }
+    ]
+   }
+  }
+ ]
+}
