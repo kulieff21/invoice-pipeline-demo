@@ -3,8 +3,8 @@
 Invoice PDFs in, validated rows in Google Sheets out: safe to re-run, safe to kill, and honest
 about what it could not read.
 
-Case study page: [`site/index.html`](site/index.html), built from the measurement files by
-`tools/case_study.py`.
+**Case study: https://kulieff21.github.io/invoice-pipeline-demo/** (built from the measurement
+files and runs by `tools/case_study.py`, published from `site/`).
 
 > **Demo project with synthetic data.** Every invoice here is generated (fictional companies,
 > Faker addresses, generated tax IDs). The generator is in the repo, so every number below can be
